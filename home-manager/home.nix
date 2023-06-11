@@ -70,6 +70,7 @@
       tor-browser-bundle-bin
       qemu
       virt-manager
+      gcc
     ];
   };
 
@@ -91,10 +92,10 @@
 
   programs.zsh = {
     enable = true;
-    autosuggestions.enable = true;
+    enableAutosuggestions = true;
     enableCompletion = true;
-    syntaxHighlighting.enable = true;
-    autocd.enable = true;
+    enableSyntaxHighlighting = true;
+    autocd = true;
     shellAliases = {
       ls = "exa -lTFah -L 1 --group-directories-first";
       edit = "nvim";
@@ -109,17 +110,21 @@
       save = 100000;
       path = "${config.xdg.dataHome}/zsh/history";
     };
-    ohMyZsh = {
+    oh-my-zsh = {
       enable = true;
-      plugins = [ "zsh-fzf-tab" "zsh-autosuggestions" "z" "colored-man-pages" "git" "tmux" "docker" "node" "zsh-syntax-highlighting" ];
-      # plugins = [ "z" "colored-man-pages" "git" "tmux" "docker" "node" ];
+      # plugins = [ "zsh-fzf-tab" "zsh-autosuggestions" "z" "colored-man-pages" "git" "tmux" "docker" "node" "zsh-syntax-highlighting" ];
+      plugins = [ "z" "colored-man-pages" "git" "tmux" "docker" "node" ];
       theme = "agnoster";
     };
   };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    userName  = "Mateusz Gawin";
+    userEmail = "matrix.gaw@gmail.com";
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
