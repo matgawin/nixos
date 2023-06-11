@@ -92,7 +92,15 @@
 
   services.xserver.enable = true;
   services.xserver.windowManager.dwm.enable = true;
-  #
+  services.xserver.desktopManager.session = [
+    {
+      name = "xsession";
+      start = ''
+        slstatus &
+      '';
+    }
+  ];
+
   # Configure keymap in X11
   services.xserver = {
     layout = "pl";
