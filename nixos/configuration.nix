@@ -30,7 +30,7 @@
       # neovim-nightly-overlay.overlays.default
 
       (final: prev: {
-        dwm = prev.dwm.overrideAttrs (old: { src = ./dwm ;});
+        dwm = prev.dwm.overrideAttrs (old: { src = ../dwm ;});
       })
     ];
     # Configure your nixpkgs instance
