@@ -43,13 +43,79 @@
 
   # TODO: Set your username
   home = {
-    username = "your-username";
-    homeDirectory = "/home/your-username";
+    username = "matt";
+    homeDirectory = "/home/matt";
+    packages = with pkgs; [
+      brave
+      remmina
+      bitwarden
+      bitwarden-cli
+      protonmail-bridge
+      protonvpn-gui
+      protonvpn-cli
+      spotify
+      calibre
+      qbittorrent
+      telegram-desktop
+      freetube
+      thunderbird
+      lutris
+      steam
+      lynx
+      keybase-gui
+      scrcpy
+      joplin-desktop
+      vale
+      vscode
+      tor-browser-bundle-bin
+      qemu
+      virt-manager
+    ];
   };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    # configure = {
+    #   packages.myVimPackage = with pkgs.vimPlugins; {
+    #     start = [ LazyVim ];
+    #   };
+    # };
+  };
+
+  programs.zsh = {
+    enable = true;
+    autosuggestions.enable = true;
+    enableCompletion = true;
+    syntaxHighlighting.enable = true;
+    autocd.enable = true;
+    shellAliases = {
+      ls = "exa -lTFah -L 1 --group-directories-first";
+      edit = "nvim";
+      vi = "nvim";
+      vim = "nvim";
+      pf = "fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down";
+      clip = "xclip -sel clip";
+    };
+    history = {
+      ignoreDups = true;
+      size = 100000;
+      save = 100000;
+      path = "${config.xdg.dataHome}/zsh/history";
+    };
+    ohMyZsh = {
+      enable = true;
+      plugins = [ "zsh-fzf-tab" "zsh-autosuggestions" "z" "colored-man-pages" "git" "tmux" "docker" "node" "zsh-syntax-highlighting" ];
+      # plugins = [ "z" "colored-man-pages" "git" "tmux" "docker" "node" ];
+      theme = "agnoster";
+    };
+  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
@@ -59,5 +125,5 @@
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 }
