@@ -71,6 +71,7 @@
       qemu
       virt-manager
       gcc
+      tldr
     ];
   };
 
