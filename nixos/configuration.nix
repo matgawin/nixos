@@ -57,13 +57,14 @@
     };
   };
 
-  # TODO: Set your hostname
   networking.hostName = "ix";
 
   networking.networkmanager.enable = true;
 
-  # TODO: This is just an example, be sure to use whatever bootloader you prefer
-  boot.loader.systemd-boot.enable = true;
+  # boot.loader.systemd-boot.enable = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
