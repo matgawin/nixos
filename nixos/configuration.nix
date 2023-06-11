@@ -32,6 +32,9 @@
       (final: prev: {
         dwm = prev.dwm.overrideAttrs (old: { src = /home/matt/dwm ;});
       })
+      (final: prev: {
+        slstatus = prev.slstatus.overrideAttrs (old: { src = /home/matt/slstatus ;});
+      })
     ];
     # Configure your nixpkgs instance
     config = {
