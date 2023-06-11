@@ -182,10 +182,12 @@
   # Feel free to remove if you don't need it.
   services.openssh = {
     enable = true;
-    # Forbid root login through SSH.
-    PermitRootLogin = "no";
-    # Use keys only. Remove if you want to SSH using password (not recommended)
-    PasswordAuthentication = true;
+    settings = {
+      # Forbid root login through SSH.
+      PermitRootLogin = "no";
+      # Use keys only. Remove if you want to SSH using password (not recommended)
+      PasswordAuthentication = true;
+    };
   };
   #
   # Open ports in the firewall.
