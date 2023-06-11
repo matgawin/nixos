@@ -149,6 +149,7 @@
   services.xrdp.enable = true;
 
   environment.systemPackages = with pkgs; [
+    slstatus
     zsh
     tmux
     rofi
