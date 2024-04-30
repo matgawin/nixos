@@ -1,27 +1,7 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-  nixosHardwareVersion = "7f1836531b126cfcf584e7d7d71bf8758bb58969";
-in {
-  # You can import other NixOS modules here
-  imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
-    # Import your generated (nixos-generate-config) hardware configuration
-    # ./hardware-configuration.nix
-    "${fetchTarball "https://github.com/NixOS/nixos-hardware/archive/${nixosHardwareVersion}.tar.gz" }/raspberry-pi/4"
-  ];
-
+{ inputs, outputs, lib, config, pkgs, ... }: {
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
@@ -32,6 +12,7 @@ in {
 
   nixpkgs = {
     # You can add overlays here
+    hostPlatform = lib.mkDefault "aarch64-linux";
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
       # outputs.overlays.additions
@@ -80,9 +61,9 @@ in {
   networking.networkmanager.enable = true;
 
   # boot.loader.systemd-boot.enable = true;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  # boot.loader.grub.enable = true;
+  # boot.loader.grub.device = "/dev/sda";
+  # boot.loader.grub.useOSProber = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
@@ -107,7 +88,7 @@ in {
 
   services.xserver.enable = true;
   services.xserver.windowManager.dwm.enable = true;
-  services.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.session = [
   #   {
   #     name = "xsession";
@@ -173,34 +154,23 @@ in {
   services.xrdp.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # slstatus
-    # zsh
     tmux
-    # rofi
-    # tailscale
     xfce.thunar
-    # dunst
     neofetch
     unzip
     ack
     gawk
     curl
-    eza
+    # eza
     fzf
     fd
     gimp
     nextdns
     alacritty
     firefox
-    # neovim
     wget
     git
     sioyek
-    # podman
-    # podman-tui
-    # podman-desktop
-    # podman-compose
-    # distrobox
     vlc
     xclip
     solaar

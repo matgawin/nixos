@@ -16,9 +16,13 @@
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
+
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -53,6 +57,7 @@
           modules = [
             # > Our main nixos configuration file <
             ./nixpi/configuration.nix
+	    nixos-hardware.nixosModules.raspberry-pi-4
           ];
         };
       };
