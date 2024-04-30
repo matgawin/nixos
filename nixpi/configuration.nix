@@ -29,12 +29,12 @@
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
-      (final: prev: {
-        dwm = prev.dwm.overrideAttrs (old: { src = /home/matt/dwm ;});
-      })
-      (final: prev: {
-        slstatus = prev.slstatus.overrideAttrs (old: { src = /home/matt/slstatus ;});
-      })
+      # (final: prev: {
+      #   dwm = prev.dwm.overrideAttrs (old: { src = /home/matt/dwm ;});
+      # })
+      # (final: prev: {
+      #   slstatus = prev.slstatus.overrideAttrs (old: { src = /home/matt/slstatus ;});
+      # })
     ];
     # Configure your nixpkgs instance
     config = {
@@ -59,6 +59,9 @@
       auto-optimise-store = true;
     };
   };
+
+  # Enable GPU acceleration
+  hardware.raspberry-pi."4".fkms-3d.enable = true;
 
   networking.hostName = "nix";
 
@@ -92,14 +95,15 @@
 
   services.xserver.enable = true;
   services.xserver.windowManager.dwm.enable = true;
-  services.xserver.desktopManager.session = [
-    {
-      name = "xsession";
-      start = ''
-        slstatus &
-      '';
-    }
-  ];
+  services.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.session = [
+  #   {
+  #     name = "xsession";
+  #     start = ''
+  #       slstatus &
+  #     '';
+  #   }
+  # ];
 
   # Configure keymap in X11
   services.xserver = {
@@ -157,13 +161,13 @@
   services.xrdp.enable = true;
 
   environment.systemPackages = with pkgs; [
-    slstatus
-    zsh
+    # slstatus
+    # zsh
     tmux
-    rofi
-    tailscale
+    # rofi
+    # tailscale
     xfce.thunar
-    dunst
+    # dunst
     neofetch
     unzip
     ack
@@ -176,19 +180,20 @@
     nextdns
     alacritty
     firefox
-    neovim
+    # neovim
     wget
     git
     sioyek
-    podman
-    podman-tui
-    podman-desktop
-    podman-compose
-    distrobox
+    # podman
+    # podman-tui
+    # podman-desktop
+    # podman-compose
+    # distrobox
     vlc
     xclip
     solaar
     flameshot
+    dmenu
   ];
 
   # This setups a SSH server. Very important if you're setting up a headless system.

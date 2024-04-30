@@ -41,7 +41,6 @@
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "matt";
     homeDirectory = "/home/matt";
@@ -98,7 +97,7 @@
     enableSyntaxHighlighting = true;
     autocd = true;
     shellAliases = {
-      ls = "exa -lTFah -L 1 --group-directories-first";
+      ls = "eza -lTFah -L 1 --group-directories-first";
       edit = "nvim";
       vi = "nvim";
       vim = "nvim";
