@@ -1,6 +1,3 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-
 { inputs, outputs, lib, config, pkgs, ... }: {
   fileSystems = {
     "/" = {
@@ -11,27 +8,16 @@
   };
 
   nixpkgs = {
-    # You can add overlays here
     hostPlatform = lib.mkDefault "aarch64-linux";
     overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      # outputs.overlays.additions
-      # outputs.overlays.modifications
-      # outputs.overlays.unstable-packages
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # (final: prev: {
-      #   dwm = prev.dwm.overrideAttrs (old: { src = /home/matt/dwm ;});
-      # })
+      (final: prev: {
+        dwm = prev.dwm.overrideAttrs (old: { src = /home/matt/dwm ;});
+      })
       # (final: prev: {
       #   slstatus = prev.slstatus.overrideAttrs (old: { src = /home/matt/slstatus ;});
       # })
     ];
-    # Configure your nixpkgs instance
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
       allowUnsupportedSystem = true;
     };
@@ -77,21 +63,14 @@
   
   # Enable GPU acceleration
   hardware.raspberry-pi."4".fkms-3d.enable = true;
-
   networking.hostName = "nix";
-
   networking.networkmanager.enable = true;
-
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.grub.enable = true;
-  # boot.loader.grub.device = "/dev/sda";
-  # boot.loader.grub.useOSProber = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "pl_PL.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "pl_PL.UTF-8";
@@ -126,9 +105,7 @@
     xkb.variant = "";
   };
 
-  # Configure console keymap
   console.keyMap = "pl2";
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -146,7 +123,7 @@
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    # media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -155,12 +132,8 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
-  # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
     matt = {
-      # TODO: You can set an initial password for your user.
-      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-      # Be sure to change it (using passwd) after rebooting!
       initialPassword = "pass";
       isNormalUser = true;
       description = "Matt";
@@ -245,6 +218,5 @@
     };
   };
 
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }
