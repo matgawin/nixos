@@ -54,6 +54,13 @@
     };
   };
 
+  fonts = {
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "Meslo" ]; })
+    ];
+    fontconfig.defaultFonts.monospace = [ "MesloLGS NF" ];
+  };
+  
   # Enable GPU acceleration
   hardware.raspberry-pi."4".fkms-3d.enable = true;
 
@@ -89,7 +96,7 @@
 
   services.xserver.enable = true;
   services.xserver.windowManager.dwm.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.session = [
   #   {
   #     name = "xsession";
@@ -101,8 +108,8 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "pl";
-    xkbVariant = "";
+    xkb.layout = "pl";
+    xkb.variant = "";
   };
 
   # Configure console keymap
@@ -129,7 +136,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;

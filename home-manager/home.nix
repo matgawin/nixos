@@ -100,7 +100,7 @@ in{
     syntaxHighlighting.enable = true;
     autocd = true;
     shellAliases = {
-      ls = "eza -lTFah -L 1 --group-directories-first";
+      ls = "eza -lTahF -L 1 --group-directories-first";
       edit = "nvim";
       pf = "fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down";
       clip = "xclip -sel clip";
@@ -116,6 +116,20 @@ in{
       # plugins = [ "zsh-fzf-tab" "zsh-autosuggestions" "z" "colored-man-pages" "git" "tmux" "docker" "node" "zsh-syntax-highlighting" ];
       plugins = [ "z" "colored-man-pages" "git" "tmux" "docker" "node" ];
       theme = "agnoster";
+    };
+  };
+
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      # env.TERM = "xterm-256color";
+      window = {
+	opacity = 0.9;
+	decorations = "none";
+      };
+      font = {
+	size = 9;
+      };
     };
   };
 
