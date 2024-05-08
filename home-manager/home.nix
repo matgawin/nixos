@@ -48,6 +48,7 @@ in{
     username = "matt";
     homeDirectory = "/home/matt";
     packages = with pkgs; [
+      polkit_gnome
       vscode
       gcc
       tldr

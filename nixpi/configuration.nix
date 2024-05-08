@@ -180,7 +180,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    polkit_gnome
     tmux
     xfce.thunar
     neofetch
@@ -222,11 +221,11 @@
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
-  xdg.portal = {
-    enable = true;
-    config.common.default = "*";
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   config.common.default = "*";
+  #   extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  # };
 
   security.polkit.enable = true;
 
