@@ -159,7 +159,11 @@
     };
   };
 
-  services.xrdp.enable = true;
+  services.xrdp = {
+    enable = true;
+    defaultWindowManager = "dwm";
+    openFirewall = true;
+  };
 
   environment.systemPackages = with pkgs; [
     tmux
