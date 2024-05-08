@@ -100,7 +100,7 @@ in{
     syntaxHighlighting.enable = true;
     autocd = true;
     shellAliases = {
-      ls = "eza -lTahF -L 1 --group-directories-first";
+      ls = "eza -lTah -L 1 --group-directories-first -F always";
       edit = "nvim";
       pf = "fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down";
       clip = "xclip -sel clip";
