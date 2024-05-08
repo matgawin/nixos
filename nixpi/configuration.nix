@@ -1,4 +1,11 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ inputs, outputs, lib, config, pkgs, ... }: 
+let
+  fetchBranch = user-repo: branch: builtins.fetchTarball {
+    url = "https://api.github.com/repos/${user-repo}/tarball/${branch}";
+    sha256 = "1qmiz656ggl7xnrfggvvbs9wgay9l2lr876x622krx4s8x088w2v";
+  };
+  fetchMaster = user-repo: fetchBranch user-repo "main";
+in {
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
@@ -11,7 +18,19 @@
     hostPlatform = lib.mkDefault "aarch64-linux";
     overlays = [
       (final: prev: {
-        dwm = prev.dwm.overrideAttrs (old: { src = /home/matt/dwm ;});
+        dwm = prev.dwm.overrideAttrs (old: {
+          src = /home/matt/Projects/dwm-titus;
+	  # src = builtins.fetchGit {
+          #   url = "https://github.com/ChrisTitusTech/dwm-titus.git";
+          #   ref = "main";
+	  #   rev = "4ffe7f7af6282f540e488febacb153aa2edf1903";
+          # };
+	  # installPhase = ''
+	  #     make PREFIX=$out install
+	  #     # If dwm-titus needs to be installed to /usr/share/xsessions/
+	  #     install -Dm644 $src/dwm.desktop $out/share/xsessions/dwm.desktop
+	  # '';
+        });
       })
       # (final: prev: {
       #   slstatus = prev.slstatus.overrideAttrs (old: { src = /home/matt/slstatus ;});
