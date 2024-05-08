@@ -56,9 +56,23 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Meslo" ]; })
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      font-awesome
+      source-han-sans
+      source-han-sans-japanese
+      source-han-serif-japanese
+      (nerdfonts.override {fonts = ["Meslo"];})
     ];
-    fontconfig.defaultFonts.monospace = [ "MesloLGS NF" ];
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        monospace = ["Meslo LG M Regular Nerd Font Complete Mono"];
+        serif = ["Noto Serif" "Source Han Serif"];
+        sansSerif = ["Noto Sans" "Source Han Sans"];
+      };
+    };
   };
   
   # Enable GPU acceleration
@@ -166,6 +180,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    polkit_gnome
     tmux
     xfce.thunar
     neofetch
@@ -200,12 +215,36 @@
       PasswordAuthentication = true;
     };
   };
-  #
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
+
+  xdg.portal = {
+    enable = true;
+    config.common.default = "*";
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  };
+
+  security.polkit.enable = true;
+
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
