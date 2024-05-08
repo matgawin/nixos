@@ -33,6 +33,7 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
+      allowUnsupportedSystem = true;
     };
   };
 
@@ -161,12 +162,11 @@
     ack
     gawk
     curl
-    # eza
+    eza
     fzf
     fd
     gimp
     nextdns
-    alacritty
     firefox
     wget
     git
@@ -197,5 +197,5 @@
   networking.firewall.enable = false;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

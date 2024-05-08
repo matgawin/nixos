@@ -1,7 +1,10 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ inputs, outputs, lib, config, pkgs, ... }: 
+let
+  isX86_64Linux = pkgs.hostPlatform == "x86_64-linux";
+in{
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -18,9 +21,9 @@
     # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+      # outputs.overlays.additions
+      # outputs.overlays.modifications
+      # outputs.overlays.unstable-packages
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -45,6 +48,10 @@
     username = "matt";
     homeDirectory = "/home/matt";
     packages = with pkgs; [
+      vscode
+      gcc
+      tldr
+    ] ++ lib.optional isX86_64Linux [
       brave
       remmina
       bitwarden
@@ -57,20 +64,16 @@
       qbittorrent
       telegram-desktop
       freetube
-      thunderbird
-      lutris
       steam
+      thunderbird
       lynx
       keybase-gui
+      tor-browser-bundle-bin
       scrcpy
       joplin-desktop
-      vale
-      vscode
-      tor-browser-bundle-bin
-      qemu
       virt-manager
-      gcc
-      tldr
+      qemu
+      vale
     ];
   };
 
@@ -92,15 +95,13 @@
 
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
     autocd = true;
     shellAliases = {
       ls = "eza -lTFah -L 1 --group-directories-first";
       edit = "nvim";
-      vi = "nvim";
-      vim = "nvim";
       pf = "fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down";
       clip = "xclip -sel clip";
     };
@@ -130,5 +131,5 @@
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 }
