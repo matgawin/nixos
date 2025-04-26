@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Build Commands
 - `nix develop` or `nix-shell` - Bootstrap development environment
-- `nixos-rebuild --flake .#nix` - Build main system configuration
+- `nixos-rebuild --flake .#nixos` - Build main system configuration
 - `nixos-rebuild --flake .#nixpi` - Build Raspberry Pi configuration
 - `home-manager --flake .#matt@nix` - Build home-manager configuration
 - `nix flake update` - Update flake inputs

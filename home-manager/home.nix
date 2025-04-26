@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, ... }: 
+{ inputs, outputs, lib, config, pkgs, ... }:
 let
   isX86_64Linux = pkgs.hostPlatform == "x86_64-linux";
 in{
@@ -17,7 +17,6 @@ in{
     ];
     config = {
       allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = (_: true);
     };
   };
@@ -27,32 +26,50 @@ in{
     homeDirectory = "/home/matt";
     packages = with pkgs; [
       polkit_gnome
-      vscode
-      gcc
-      tldr
     ] ++ lib.optional isX86_64Linux [
       brave
-      remmina
       bitwarden
       bitwarden-cli
-      protonmail-bridge
       protonvpn-gui
       protonvpn-cli
       spotify
-      calibre
       qbittorrent
       telegram-desktop
       freetube
-      steam
       thunderbird
-      lynx
-      keybase-gui
-      tor-browser-bundle-bin
       scrcpy
-      joplin-desktop
       virt-manager
-      qemu
       vale
+      tmux
+      tailscale
+      fastfetch
+      protonup-qt
+      lutris
+      wine64
+      wireshark
+      rustup
+      broot
+      neovim
+      duf
+      dust
+      bottom
+      cargo-binstall
+      zed-editor
+      eza
+      atuin
+      claude-code
+      bun
+      nodejs
+      gimp
+      nextdns
+      sioyek
+      podman
+      podman-tui
+      podman-desktop
+      podman-compose
+      distrobox
+      vlc
+      flameshot
     ];
   };
 
@@ -61,11 +78,6 @@ in{
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
-    # configure = {
-    #   packages.myVimPackage = with pkgs.vimPlugins; {
-    #     start = [ LazyVim ];
-    #   };
-    # };
   };
 
   programs.zsh = {
@@ -89,21 +101,20 @@ in{
     oh-my-zsh = {
       enable = true;
       plugins = [ "zsh-fzf-tab" "zsh-autosuggestions" "z" "colored-man-pages" "git" "tmux" "docker" "node" "zsh-syntax-highlighting" ];
-      # plugins = [ "z" "colored-man-pages" "git" "tmux" "docker" "node" ];
       theme = "agnoster";
     };
   };
 
-  programs.alacritty = {
+  programs.st = {
     enable = true;
     settings = {
       env.TERM = "xterm-256color";
       window = {
-	opacity = 0.9;
-	decorations = "none";
+       	opacity = 0.9;
+       	decorations = "none";
       };
       font = {
-	size = 9;
+       	size = 9;
       };
     };
   };
@@ -115,6 +126,13 @@ in{
     userEmail = "matrix.gaw@gmail.com";
   };
 
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+  };
+  programs.virt-manager.enable = true;
+
   systemd.user.startServices = "sd-switch";
-  home.stateVersion = "23.11";
+  home.stateVersion = "25.05";
 }

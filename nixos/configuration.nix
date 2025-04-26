@@ -1,6 +1,3 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-
 { inputs, outputs, lib, config, pkgs, ... }: {
   # You can import other NixOS modules here
   imports = [
@@ -29,12 +26,12 @@
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
-      (final: prev: {
-        dwm = prev.dwm.overrideAttrs (old: { src = /home/matt/dwm ;});
-      })
-      (final: prev: {
-        slstatus = prev.slstatus.overrideAttrs (old: { src = /home/matt/slstatus ;});
-      })
+      # (final: prev: {
+      #   dwm = prev.dwm.overrideAttrs (old: { src = /home/matt/dwm ;});
+      # })
+      # (final: prev: {
+      #   slstatus = prev.slstatus.overrideAttrs (old: { src = /home/matt/slstatus ;});
+      # })
     ];
     # Configure your nixpkgs instance
     config = {
@@ -60,14 +57,66 @@
     };
   };
 
-  networking.hostName = "nix";
-
+  networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
-  # boot.loader.systemd-boot.enable = true;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  boot.kernelModules = [ "i915" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPatches = lib.singleton {
+    name = "config";
+    patch = null;
+    extraStructuredConfig = with lib.kernel; {
+      ACPI_DEBUG = yes;
+    };
+  };
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  hardware.firmware = [
+    (
+      let
+        model = "37xx";
+        version = "0.0";
+
+        firmware = pkgs.fetchurl {
+          url = "https://github.com/intel/linux-npu-driver/raw/v1.16.0/firmware/bin/vpu_${model}_v${version}.bin";
+          hash = "sha256-DInj6Ee+NXdDjamngUda5KUg4jePtxXenqxD5rwnU/s=";
+        };
+      in
+      pkgs.runCommand "intel-vpu-firmware-${model}-${version}" { } ''
+        mkdir -p "$out/lib/firmware/intel/vpu"
+        cp '${firmware}' "$out/lib/firmware/intel/vpu/vpu_${model}_v${version}.bin"
+      ''
+    )
+  ];
+
+  hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+  };
+
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vpl-gpu-rt
+      libvdpau-va-gl
+      intel-media-driver
+      intel-compute-runtime
+      vaapiIntel
+      vaapiVdpau
+    ];
+    extraPackages32 = with pkgs.pkgsi686Linux; [
+      intel-media-driver
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+    NIXOS_OZONE_WL = "1";
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
@@ -91,21 +140,33 @@
   services.getty.helpLine = lib.mkForce ''<<< \l >>>'';
 
   services.xserver.enable = true;
-  services.xserver.windowManager.dwm.enable = true;
-  services.xserver.desktopManager.session = [
-    {
-      name = "xsession";
-      start = ''
-        slstatus &
-      '';
-    }
-  ];
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  # services.xserver.windowManager.dwm.enable = true;
+  # services.xserver.desktopManager.session = [
+  #   {
+  #     name = "xsession";
+  #     start = ''
+  #       slstatus &
+  #     '';
+  #   }
+  # ];
 
   # Configure keymap in X11
   services.xserver = {
     layout = "pl";
     xkbVariant = "";
   };
+  services.flatpak.enable = true;
+
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-code
+    nerd-fonts.meslo-lg
+  ];
+  fonts.fontDir.enable = true;
 
   # Configure console keymap
   console.keyMap = "pl2";
@@ -114,7 +175,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -122,26 +182,15 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-
-  users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
-  # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
+  users.defaultUserShell = pkgs.zsh;
+  users.groups.libvirtd.members = [ "matt" ];
+
   users.users = {
     matt = {
-      # TODO: You can set an initial password for your user.
-      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-      # Be sure to change it (using passwd) after rebooting!
       initialPassword = "pass";
       isNormalUser = true;
       description = "Matt";
@@ -149,45 +198,33 @@
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
-      # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = [ "networkmanager" "wheel" ];
     };
   };
 
   services.xrdp.enable = true;
 
+  virtualisation = {
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
-    slstatus
+    # slstatus
     zsh
-    tmux
-    rofi
-    tailscale
+    gcc
     xfce.thunar
-    dunst
-    neofetch
     unzip
     ack
     gawk
     curl
-    eza
     fzf
     fd
-    gimp
-    nextdns
+    ripgrep
     firefox
-    neovim
     wget
     git
-    sioyek
-    podman
-    podman-tui
-    podman-desktop
-    podman-compose
-    distrobox
-    vlc
     xclip
-    solaar
-    flameshot
   ];
 
   # This setups a SSH server. Very important if you're setting up a headless system.
@@ -201,13 +238,12 @@
       PasswordAuthentication = true;
     };
   };
-  #
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.11";
+  system.stateVersion = "25.05";
 }
