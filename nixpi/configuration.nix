@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, ... }: 
+{ inputs, outputs, lib, config, pkgs, ... }:
 let
   fetchBranch = user-repo: branch: builtins.fetchTarball {
     url = "https://api.github.com/repos/${user-repo}/tarball/${branch}";
@@ -17,9 +17,9 @@ in {
   nixpkgs = {
     hostPlatform = lib.mkDefault "aarch64-linux";
     overlays = [
-      (final: prev: {
-        dwm = prev.dwm.overrideAttrs (old: {
-          src = /home/matt/Projects/dwm-titus;
+      # (final: prev: {
+      #   dwm = prev.dwm.overrideAttrs (old: {
+      #     src = /home/matt/Projects/dwm-titus;
 	  # src = builtins.fetchGit {
           #   url = "https://github.com/ChrisTitusTech/dwm-titus.git";
           #   ref = "main";
@@ -30,8 +30,8 @@ in {
 	  #     # If dwm-titus needs to be installed to /usr/share/xsessions/
 	  #     install -Dm644 $src/dwm.desktop $out/share/xsessions/dwm.desktop
 	  # '';
-        });
-      })
+      #   });
+      # })
       # (final: prev: {
       #   slstatus = prev.slstatus.overrideAttrs (old: { src = /home/matt/slstatus ;});
       # })
@@ -61,14 +61,8 @@ in {
 
   fonts = {
     packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      font-awesome
-      source-han-sans
-      source-han-sans-japanese
-      source-han-serif-japanese
-      (nerdfonts.override {fonts = ["Meslo"];})
+      nerd-fonts.fira-code
+      nerd-fonts.meslo-lg
     ];
     fontconfig = {
       enable = true;
@@ -79,7 +73,8 @@ in {
       };
     };
   };
-  
+  fonts.fontDir.enable = true;
+
   # Enable GPU acceleration
   hardware.raspberry-pi."4".fkms-3d.enable = true;
   networking.hostName = "nix";
@@ -129,8 +124,7 @@ in {
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
