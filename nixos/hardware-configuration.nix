@@ -5,17 +5,36 @@
 
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "thunderbolt" "nvme" "usbhid" "usb_storage" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/436008f7-9ae8-4588-984b-bbc736fcec9b";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/cec3ba41-3795-4f9a-96c1-188ac3ace956";
+      fsType = "btrfs";
+      options = [ "subvol=root" ];
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/E088-C7F0";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/cec3ba41-3795-4f9a-96c1-188ac3ace956";
+      fsType = "btrfs";
+      options = [ "subvol=home" ];
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/cec3ba41-3795-4f9a-96c1-188ac3ace956";
+      fsType = "btrfs";
+      options = [ "subvol=nix" ];
     };
 
   swapDevices = [ ];
@@ -25,7 +44,10 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp86s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp87s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp88s0f0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
