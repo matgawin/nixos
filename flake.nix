@@ -3,10 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # You can access packages and modules from different nixpkgs revs
-    # at the same time. Here's an working example:
-    # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/master";
@@ -27,8 +23,7 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
-    in
-    rec {
+    in {
       # Devshell for bootstrapping
       # Acessible through 'nix develop' or 'nix-shell' (legacy)
       devShells = forAllSystems (system:
@@ -43,6 +38,11 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./nixos/configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager = {
+                users.matt = import ./home-manager/home.nix;
+              };
+            }
           ];
         };
         nixpi = nixpkgs.lib.nixosSystem {
@@ -56,15 +56,14 @@
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
-      homeConfigurations = {
-        "matt@nix" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [
-            # > Our main home-manager configuration file <
-            ./home-manager/home.nix
-          ];
-        };
-      };
+      # homeConfigurations = {
+      #   "matt@nixos" = home-manager.lib.homeManagerConfiguration {
+      #     pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      #     extraSpecialArgs = { inherit inputs outputs; };
+      #     modules = [
+      #       ./home-manager/home.nix
+      #     ];
+      #   };
+      # };
     };
 }

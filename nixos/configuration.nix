@@ -1,13 +1,5 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
-  # You can import other NixOS modules here
+{ inputs, lib, config, pkgs, ... }: {
   imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
 
@@ -16,12 +8,8 @@
   ];
 
   nixpkgs = {
-    # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
 
       # (final: prev: {
       #   dwm = prev.dwm.overrideAttrs (old: { src = /home/matt/dwm ;});
@@ -30,9 +18,7 @@
       #   slstatus = prev.slstatus.overrideAttrs (old: { src = /home/matt/slstatus ;});
       # })
     ];
-    # Configure your nixpkgs instance
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
     };
   };
@@ -46,29 +32,34 @@
     # Making legacy nix commands consistent as well, awesome!
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
+    gc.automatic = true;
+
     settings = {
-      # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
-      # Deduplicate and optimize nix store
       auto-optimise-store = true;
     };
   };
 
-  networking.hostName = "nixos";
-  networking.networkmanager.enable = true;
-
-  boot.kernelModules = [ "i915" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPatches = lib.singleton {
-    name = "config";
-    patch = null;
-    extraStructuredConfig = with lib.kernel; {
-      ACPI_DEBUG = yes;
-    };
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true;
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    kernelModules = [ "i915" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPatches = lib.singleton {
+      name = "config";
+      patch = null;
+      extraStructuredConfig = with lib.kernel; {
+        ACPI_DEBUG = yes;
+      };
+    };
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   hardware.firmware = [
     (
@@ -133,12 +124,39 @@
     LC_TIME = "pl_PL.UTF-8";
   };
 
-  services.getty.greetingLine = "";
-  services.getty.helpLine = lib.mkForce ''<<< \l >>>'';
+  services = {
+    getty.greetingLine = "";
+    getty.helpLine = lib.mkForce ''<<< \l >>>'';
+    xserver.enable = true;
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
+    flatpak.enable = true;
+    xserver = {
+      xkb = {
+        variant = "";
+        layout = "pl";
+      };
+    };
+    qemuGuest.enable = true;
+    spice-vdagentd.enable = true;
+    printing.enable = true;
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+    xrdp.enable = true;
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = true;
+      };
+    };
+  };
 
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
   # services.xserver.windowManager.dwm.enable = true;
   # services.xserver.desktopManager.session = [
   #   {
@@ -149,17 +167,10 @@
   #   }
   # ];
 
-  # Configure keymap in X11
-  services.xserver = {
-    xkb = {
-      variant = "";
-      layout = "pl";
-    };
+  xdg.portal = {
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "gtk";
   };
-  services.flatpak.enable = true;
-
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
 
   fonts = {
     packages = with pkgs; [
@@ -174,45 +185,34 @@
         sansSerif = ["Noto Sans" "Source Han Sans"];
       };
     };
+    fontDir.enable = true;
   };
-  fonts.fontDir.enable = true;
 
   # Configure console keymap
   console.keyMap = "pl2";
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
   };
 
   programs.zsh.enable = true;
-
-  users.defaultUserShell = pkgs.zsh;
-  users.groups.libvirtd.members = [ "matt" ];
-
-  users.users = {
-    matt = {
-      initialPassword = "pass";
-      isNormalUser = true;
-      description = "Matt";
-      shell = pkgs.zsh;
-      openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
-      ];
-      extraGroups = [ "networkmanager" "wheel" ];
+  users = {
+    defaultUserShell = pkgs.zsh;
+    groups.libvirtd.members = [ "matt" ];
+    users = {
+      matt = {
+        initialPassword = "pass";
+        isNormalUser = true;
+        description = "Matt";
+        shell = pkgs.zsh;
+        openssh.authorizedKeys.keys = [
+          # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
+        ];
+        extraGroups = [ "networkmanager" "wheel" ];
+      };
     };
   };
-
-  services.xrdp.enable = true;
 
   virtualisation = {
     libvirtd.enable = true;
@@ -237,23 +237,11 @@
     xclip
   ];
 
-  # This setups a SSH server. Very important if you're setting up a headless system.
-  # Feel free to remove if you don't need it.
-  services.openssh = {
-    enable = true;
-    settings = {
-      # Forbid root login through SSH.
-      PermitRootLogin = "no";
-      # Use keys only. Remove if you want to SSH using password (not recommended)
-      PasswordAuthentication = true;
-    };
-  };
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  # networking.firewall.enable = false;
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
