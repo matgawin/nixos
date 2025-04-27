@@ -7,10 +7,10 @@
     syntaxHighlighting.enable = true;
     autocd = true;
     shellAliases = {
-      ls = "eza -lTah -L 1 --group-directories-first -F always";
       edit = "nvim";
       pf = "fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down";
       clip = "xclip -sel clip";
+      reload = "~/.zshrc";
     };
     history = {
       ignoreDups = true;
@@ -27,6 +27,8 @@
         "tmux"
         "docker"
         "node"
+        "jj"
+        "aliases"
       ];
       theme = "agnoster";
     };
