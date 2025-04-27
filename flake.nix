@@ -13,7 +13,14 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nixos-hardware,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -23,12 +30,16 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
-    in {
+    in
+    {
       # Devshell for bootstrapping
       # Acessible through 'nix develop' or 'nix-shell' (legacy)
-      devShells = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./shell.nix { inherit pkgs; }
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        import ./shell.nix { inherit pkgs; }
       );
 
       # NixOS configuration entrypoint
@@ -38,7 +49,8 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./nixos/configuration.nix
-            home-manager.nixosModules.home-manager {
+            home-manager.nixosModules.home-manager
+            {
               home-manager = {
                 users.matt = import ./home-manager/home.nix;
               };

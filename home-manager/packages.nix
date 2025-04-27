@@ -1,10 +1,14 @@
 { lib, pkgs, ... }:
 let
   isX86_64Linux = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
-in {
-  home.packages = with pkgs; [
+in
+{
+  home.packages =
+    with pkgs;
+    [
       polkit_gnome
-    ] ++ lib.optionals isX86_64Linux [
+    ]
+    ++ lib.optionals isX86_64Linux [
       brave
       bitwarden
       bitwarden-cli

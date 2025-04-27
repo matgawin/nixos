@@ -1,4 +1,11 @@
-{ inputs, lib, config, pkgs, ... }: {
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   imports = [
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
@@ -80,8 +87,8 @@
   ];
 
   hardware.bluetooth = {
-      enable = true;
-      powerOnBoot = true;
+    enable = true;
+    powerOnBoot = true;
   };
 
   hardware.graphics = {
@@ -180,9 +187,15 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = ["Meslo LG M Regular Nerd Font Complete Mono"];
-        serif = ["Noto Serif" "Source Han Serif"];
-        sansSerif = ["Noto Sans" "Source Han Sans"];
+        monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
+        serif = [
+          "Noto Serif"
+          "Source Han Serif"
+        ];
+        sansSerif = [
+          "Noto Sans"
+          "Source Han Sans"
+        ];
       };
     };
     fontDir.enable = true;
@@ -209,7 +222,10 @@
         openssh.authorizedKeys.keys = [
           # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
         ];
-        extraGroups = [ "networkmanager" "wheel" ];
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+        ];
       };
     };
   };
@@ -246,9 +262,9 @@
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
-      wantedBy = ["graphical-session.target"];
-      wants = ["graphical-session.target"];
-      after = ["graphical-session.target"];
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";

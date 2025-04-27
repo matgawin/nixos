@@ -1,11 +1,21 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
-  fetchBranch = user-repo: branch: builtins.fetchTarball {
-    url = "https://api.github.com/repos/${user-repo}/tarball/${branch}";
-    sha256 = "1qmiz656ggl7xnrfggvvbs9wgay9l2lr876x622krx4s8x088w2v";
-  };
+  fetchBranch =
+    user-repo: branch:
+    builtins.fetchTarball {
+      url = "https://api.github.com/repos/${user-repo}/tarball/${branch}";
+      sha256 = "1qmiz656ggl7xnrfggvvbs9wgay9l2lr876x622krx4s8x088w2v";
+    };
   fetchMaster = user-repo: fetchBranch user-repo "main";
-in {
+in
+{
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
@@ -20,16 +30,16 @@ in {
       # (final: prev: {
       #   dwm = prev.dwm.overrideAttrs (old: {
       #     src = /home/matt/Projects/dwm-titus;
-	  # src = builtins.fetchGit {
-          #   url = "https://github.com/ChrisTitusTech/dwm-titus.git";
-          #   ref = "main";
-	  #   rev = "4ffe7f7af6282f540e488febacb153aa2edf1903";
-          # };
-	  # installPhase = ''
-	  #     make PREFIX=$out install
-	  #     # If dwm-titus needs to be installed to /usr/share/xsessions/
-	  #     install -Dm644 $src/dwm.desktop $out/share/xsessions/dwm.desktop
-	  # '';
+      # src = builtins.fetchGit {
+      #   url = "https://github.com/ChrisTitusTech/dwm-titus.git";
+      #   ref = "main";
+      #   rev = "4ffe7f7af6282f540e488febacb153aa2edf1903";
+      # };
+      # installPhase = ''
+      #     make PREFIX=$out install
+      #     # If dwm-titus needs to be installed to /usr/share/xsessions/
+      #     install -Dm644 $src/dwm.desktop $out/share/xsessions/dwm.desktop
+      # '';
       #   });
       # })
       # (final: prev: {
@@ -67,9 +77,15 @@ in {
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = ["Meslo LG M Regular Nerd Font Complete Mono"];
-        serif = ["Noto Serif" "Source Han Serif"];
-        sansSerif = ["Noto Sans" "Source Han Sans"];
+        monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
+        serif = [
+          "Noto Serif"
+          "Source Han Serif"
+        ];
+        sansSerif = [
+          "Noto Sans"
+          "Source Han Sans"
+        ];
       };
     };
   };
@@ -155,7 +171,10 @@ in {
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
     };
   };
 
@@ -218,9 +237,9 @@ in {
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
-      wantedBy = ["graphical-session.target"];
-      wants = ["graphical-session.target"];
-      after = ["graphical-session.target"];
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";

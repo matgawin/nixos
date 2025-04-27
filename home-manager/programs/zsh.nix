@@ -20,7 +20,14 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "zsh-fzf-tab" "zsh-autosuggestions" "z" "colored-man-pages" "git" "tmux" "docker" "node" "zsh-syntax-highlighting" ];
+      plugins = [
+        "z"
+        "colored-man-pages"
+        "git"
+        "tmux"
+        "docker"
+        "node"
+      ];
       theme = "agnoster";
     };
   };
