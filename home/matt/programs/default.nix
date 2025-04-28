@@ -2,7 +2,9 @@
 {
   imports = [
     ./atuin.nix
+    ./broot.nix
     ./git.nix
+    ./jj.nix
     ./neovim.nix
     ./tmux.nix
     ./zed.nix
@@ -27,7 +29,6 @@
     bitwarden-cli
     bottom
     brave
-    broot
     bun
     cargo-binstall
     claude-code
@@ -35,8 +36,10 @@
     duf
     dust
     eza
+    easyeffects
     fastfetch
     flameshot
+    freerdp
     freetube
     gimp
     lazygit

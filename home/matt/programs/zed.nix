@@ -1,4 +1,3 @@
-{ ... }:
 {
   programs.zed-editor = {
     enable = true;
@@ -99,7 +98,7 @@
           provider = "copilot_chat";
           model = "claude-3.7-sonnet-thought";
         };
-        version = 2;
+        version = "2";
         enabled = true;
         button = true;
         provider = null;
@@ -116,7 +115,7 @@
       terminal = {
         env = {
           EDITOR = "zed";
-          NO_TMUX = 1;
+          NO_TMUX = "1";
         };
         font_family = "MesloLGS Nerd Font";
         shell = {

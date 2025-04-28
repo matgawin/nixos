@@ -12,6 +12,8 @@
       pf = "fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down";
       clip = "xclip -sel clip";
       reload = "~/.zshrc";
+      # cd = "z";
+      br = "broot";
     };
     history = {
       ignoreDups = true;
@@ -28,12 +30,11 @@
         "tmux"
         "docker"
         "node"
-        "jj"
         "aliases"
       ];
       theme = "agnoster";
     };
-    initContent = lib.mkAfter ''
+    initContent = lib.mkOrder 2100 ''
       export EDITOR=nvim
       export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
 

@@ -18,6 +18,7 @@
   home-manager.extraSpecialArgs = {
     inherit inputs outputs;
   };
+  home-manager.backupFileExtension = ".home-manager-backup";
 
   nixpkgs = {
     overlays = [

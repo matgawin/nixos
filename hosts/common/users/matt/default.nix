@@ -7,7 +7,8 @@ in
     mutableUsers = false;
     defaultUserShell = pkgs.zsh;
     users.matt = {
-      initialPassword = "pass";
+      # mkpasswd -m yescrypt
+      hashedPassword = "$y$j9T$YrHIMO2Drso6fg6xJTSan1$PULS1MCCH4HmwWRJCVMZCE1bp.PU/HDZFkG.440vw/6";
       packages = [ pkgs.home-manager ];
       isNormalUser = true;
       shell = pkgs.zsh;
