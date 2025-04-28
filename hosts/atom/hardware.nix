@@ -18,6 +18,8 @@
     )
   ];
 
+  hardware.enableRedistributableFirmware = true;
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -26,7 +28,6 @@
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
-      # vpl-gpu-rt
       libvdpau-va-gl
       intel-media-driver
       intel-compute-runtime

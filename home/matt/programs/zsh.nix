@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -6,6 +6,7 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autocd = true;
+    defaultKeymap = "viins";
     shellAliases = {
       edit = "nvim";
       pf = "fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down";
@@ -32,5 +33,19 @@
       ];
       theme = "agnoster";
     };
+    initContent = lib.mkAfter ''
+      export EDITOR=nvim
+      export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
+
+      COMPLETION_WAITING_DOTS="true"
+      HIST_STAMPS="dd/mm/yyyy"
+
+      if [[ "''\${NO_TMUX}" != "1" ]]; then
+          # If not running interactively, do not do anything
+          # [[ $- != *i* ]] && return
+          # Otherwise start tmux
+          [[ -z "$TMUX" ]] && tmux
+      fi
+    '';
   };
 }

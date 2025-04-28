@@ -3,14 +3,19 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    hyprland.url = "github:hyprwm/Hyprland";
 
-    # Home manager
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware";
+    hardware.url = "github:nixos/nixos-hardware";
+
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-gl = {
+      url = "github:nix-community/nixgl";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -19,64 +24,41 @@
       self,
       nixpkgs,
       home-manager,
-      nixos-hardware,
       ...
     }@inputs:
     let
       inherit (self) outputs;
-      forAllSystems = nixpkgs.lib.genAttrs [
+      lib = nixpkgs.lib // home-manager.lib;
+      systems = [
         "aarch64-linux"
         "i686-linux"
         "x86_64-linux"
         "aarch64-darwin"
         "x86_64-darwin"
       ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
-      # Devshell for bootstrapping
-      # Acessible through 'nix develop' or 'nix-shell' (legacy)
-      devShells = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        import ./shell.nix { inherit pkgs; }
-      );
+      inherit lib;
+      homeManagerModules = import ./modules/home-manager;
+
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
       # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
+      # 'nixos-rebuild --flake .#atom'
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        atom = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
-            ./nixos/configuration.nix
+            ./hosts/atom
             home-manager.nixosModules.home-manager
             {
               home-manager = {
-                users.matt = import ./home-manager/home.nix;
+                users.matt = import ./home/matt/atom.nix;
               };
             }
           ];
         };
-        nixpi = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            ./nixpi/configuration.nix
-            nixos-hardware.nixosModules.raspberry-pi-4
-          ];
-        };
       };
-
-      # Standalone home-manager configuration entrypoint
-      # Available through 'home-manager --flake .#your-username@your-hostname'
-      # homeConfigurations = {
-      #   "matt@nixos" = home-manager.lib.homeManagerConfiguration {
-      #     pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      #     extraSpecialArgs = { inherit inputs outputs; };
-      #     modules = [
-      #       ./home-manager/home.nix
-      #     ];
-      #   };
-      # };
     };
 }

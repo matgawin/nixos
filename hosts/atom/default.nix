@@ -1,0 +1,70 @@
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    inputs.hardware.nixosModules.common-gpu-intel
+    inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.common-pc-ssd
+
+    ./hardware-configuration.nix
+    ./hardware.nix
+
+    ../common/global
+    ../common/users/matt
+
+    # ../common/optional/greetd.nix
+    ../common/optional/kde.nix
+  ];
+
+  networking = {
+    hostName = "atom";
+    networkmanager.enable = true;
+  };
+
+  boot = {
+    kernelModules = [ "i915" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPatches = lib.singleton {
+      name = "config";
+      patch = null;
+      extraStructuredConfig = with lib.kernel; {
+        ACPI_DEBUG = yes;
+      };
+    };
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      timeout = 0;
+    };
+  };
+
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+    NIXOS_OZONE_WL = "1";
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "gtk";
+  };
+
+  console.keyMap = "pl2";
+
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
+
+  programs.zsh.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
+  };
+
+  system.stateVersion = "25.05";
+}

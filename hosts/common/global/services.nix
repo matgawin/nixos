@@ -5,8 +5,6 @@
       greetingLine = "";
       helpLine = lib.mkForce ''<<< \l >>>'';
     };
-    # displayManager.sddm.enable = true;
-    # desktopManager.plasma6.enable = true;
     flatpak.enable = true;
     xserver = {
       enable = true;
@@ -34,5 +32,4 @@
       };
     };
   };
-
 }

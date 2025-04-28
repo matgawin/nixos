@@ -16,6 +16,8 @@
     git
     jujutsu
     curl
+    fortune
+    cowsay
     vulkan-loader
     vulkan-tools
     vulkan-validation-layers
@@ -25,5 +27,6 @@
     usbutils
     vlc
     bat
+    kdePackages.kdeconnect-kde
   ];
 }
