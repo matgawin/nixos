@@ -71,7 +71,7 @@
 
       if [[ "''\${NO_TMUX}" != "1" ]]; then
           # If not running interactively, do not do anything
-          # [[ $- != *i* ]] && return
+          [[ $- != *i* ]] && return
           # Otherwise start tmux
           [[ -z "$TMUX" ]] && tmux
       fi

@@ -1,0 +1,76 @@
+[
+    {
+        "label": "open_lazygit",
+        "command": "lazygit -p $ZED_WORKTREE_ROOT",
+        "env": {
+            "EDITOR": "zed --wait",
+            "NO_TMUX": "1"
+        },
+        "use_new_terminal": false,
+        "allow_concurrent_runs": false,
+        "reveal": "always",
+        "hide": "on_success",
+        "shell": {
+            "program": "zsh"
+        }
+    },
+    {
+        "label": "open_vs_code",
+        "command": "code $ZED_WORKTREE_ROOT $ZED_RELATIVE_FILE",
+        "env": {
+            "NO_TMUX": "1"
+        },
+        "use_new_terminal": false,
+        "allow_concurrent_runs": false,
+        "reveal": "never",
+        "hide": "always",
+        "shell": {
+            "program": "zsh"
+        }
+    },
+    {
+        "label": "hurl_run_file",
+        "command": "hurl $ZED_FILENAME | jq > $ZED_STEM.out",
+        "env": {
+            "NO_TMUX": "1"
+        },
+        "use_new_terminal": false,
+        "allow_concurrent_runs": false,
+        "reveal": "no_focus",
+        "hide": "on_success",
+        "cwd": "$ZED_DIRNAME",
+        "shell": {
+            "program": "zsh"
+        }
+    },
+    {
+        "label": "hurl_run_dir",
+        "command": "hurl . | jq > $ZED_STEM.out",
+        "env": {
+            "NO_TMUX": "1"
+        },
+        "use_new_terminal": false,
+        "allow_concurrent_runs": false,
+        "reveal": "no_focus",
+        "hide": "on_success",
+        "cwd": "$ZED_DIRNAME",
+        "shell": {
+            "program": "zsh"
+        }
+    },
+    {
+        "label": "hurl_run_selected",
+        "command": "echo '$ZED_SELECTED_TEXT' | hurl | jq > $ZED_STEM.out",
+        "env": {
+            "NO_TMUX": "1"
+        },
+        "use_new_terminal": false,
+        "allow_concurrent_runs": false,
+        "reveal": "no_focus",
+        "hide": "on_success",
+        "cwd": "$ZED_DIRNAME",
+        "shell": {
+            "program": "zsh"
+        }
+    }
+]

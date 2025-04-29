@@ -1,0 +1,164 @@
+{
+    "active_pane_modifiers": {
+        "border_size": 0.5,
+        "inactive_opacity": 0.8,
+        "magnification": 1.0
+    },
+    "always_treat_brackets_as_autoclosed": true,
+    "assistant": {
+        "button": true,
+        "default_model": {
+            "model": "claude-3.7-sonnet-thought",
+            "provider": "copilot_chat"
+        },
+        "dock": "right",
+        "enabled": true,
+        "provider": null,
+        "version": "2"
+    },
+    "auto_update": false,
+    "auto_update_extensions": {
+        "docker-compose": false,
+        "dockerfile": false,
+        "html": false
+    },
+    "autosave": "on_window_change",
+    "autoscroll_on_clicks": true,
+    "buffer_font_family": "MesloLGS Nerd Font",
+    "buffer_font_size": 12,
+    "buffer_font_weight": 80,
+    "buffer_line_height": {
+        "custom": 1.4
+    },
+    "calls": {
+        "mute_on_join": true
+    },
+    "chat_panel": {
+        "button": "never"
+    },
+    "collaboration_panel": {
+        "button": false
+    },
+    "confirm_quit": true,
+    "cursor_blink": false,
+    "diagnostics": {
+        "include_warnings": false
+    },
+    "double_click_in_multibuffer": "open",
+    "ensure_final_newline_on_save": false,
+    "experimental": {
+        "theme_overrides": {
+            "editor": {
+                "invisible": "#FFFFFF08"
+            },
+            "text": {
+                "accent": "#ffffffff"
+            }
+        }
+    },
+    "features": {
+        "copilot": true,
+        "edit_prediction_provider": "copilot"
+    },
+    "file_finder": {
+        "modal_max_width": "large"
+    },
+    "file_types": {
+        "JSON": [
+            "out"
+        ]
+    },
+    "format_on_save": "off",
+    "formatter": "language_server",
+    "git": {
+        "git_gutter": "tracked_files",
+        "gutter_debounce": 1000,
+        "inline_blame": {
+            "delay_ms": 1000,
+            "enabled": true,
+            "min_column": 60
+        }
+    },
+    "horizontal_scroll_margin": 10,
+    "icon_theme": "VSCode Icons (Dark)",
+    "indent_guides": {
+        "enabled": true
+    },
+    "journal": {
+        "hour_format": "hour24"
+    },
+    "jupyter": {
+        "kernel_selections": {
+            "tsx": "deno"
+        }
+    },
+    "lsp": {
+        "nil": {
+            "initialization_options": {
+                "formatting": {
+                    "command": [
+                        "nixfmt"
+                    ]
+                }
+            }
+        }
+    },
+    "max_tabs": 5,
+    "project_panel": {
+        "auto_reveal_entries": false,
+        "default_width": 220,
+        "dock": "left",
+        "entry_spacing": "standard",
+        "indent_size": 10,
+        "show_diagnostics": "errors"
+    },
+    "relative_line_numbers": true,
+    "restore_on_startup": "last_session",
+    "seed_search_query_from_cursor": "always",
+    "show_completions_on_input": true,
+    "show_edit_predictions": true,
+    "show_whitespaces": "boundary",
+    "show_wrap_guides": true,
+    "tab_size": 4,
+    "tabs": {
+        "activate_on_close": "neighbour",
+        "git_status": true,
+        "show_close_button": "hidden",
+        "show_diagnostics": "errors"
+    },
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false
+    },
+    "terminal": {
+        "env": {
+            "EDITOR": "zed",
+            "NO_TMUX": "1"
+        },
+        "font_family": "MesloLGS Nerd Font",
+        "shell": {
+            "program": "zsh"
+        }
+    },
+    "theme": {
+        "dark": "Nordfox",
+        "light": "Nordfox",
+        "mode": "dark"
+    },
+    "ui_font_family": "MesloLGS Nerd Font",
+    "ui_font_size": 12,
+    "ui_font_weight": 80,
+    "use_system_path_prompts": false,
+    "vertical_scroll_margin": 5,
+    "vim": {
+        "toggle_relative_line_numbers": true,
+        "use_multiline_find": false,
+        "use_smartcase_find": true,
+        "use_system_clipboard": "always"
+    },
+    "vim_mode": true,
+    "wrap_guides": [
+        80,
+        120
+    ]
+}

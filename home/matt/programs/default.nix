@@ -7,9 +7,10 @@
     ./jj.nix
     ./neovim.nix
     ./tmux.nix
-    ./zed.nix
     ./zoxide.nix
     ./zsh.nix
+
+    ./zed
   ];
 
   home.packages = with pkgs; [
@@ -67,6 +68,7 @@
     telegram-desktop
     thunderbird
     vale
+    veracrypt
     virt-manager
     vlc
     vscode

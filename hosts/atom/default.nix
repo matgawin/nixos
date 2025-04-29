@@ -18,6 +18,7 @@
 
     # ../common/optional/greetd.nix
     ../common/optional/kde.nix
+    ../common/optional/i3.nix
   ];
 
   networking = {
