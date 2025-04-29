@@ -12,7 +12,6 @@
       pf = "fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down";
       clip = "xclip -sel clip";
       reload = "~/.zshrc";
-      # cd = "z";
       br = "broot";
     };
     history = {

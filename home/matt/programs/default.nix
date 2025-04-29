@@ -42,6 +42,7 @@
     freerdp
     freetube
     gimp
+    hurl
     lazygit
     lutris
     nextdns

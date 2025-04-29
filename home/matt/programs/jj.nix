@@ -10,6 +10,9 @@
         bk = [ "bookmark" ];
         l = [ "log" ];
         h = [ "help" ];
+        c = [ "commit" ];
+        d = [ "diff" ];
+        s = [ "st" ];
       };
       ui = {
         default-command = [ "st" ];
