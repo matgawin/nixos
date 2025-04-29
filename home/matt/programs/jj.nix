@@ -13,6 +13,8 @@
         c = [ "commit" ];
         d = [ "diff" ];
         s = [ "st" ];
+        p = [ "git" "push" ];
+        pu = [ "git" "pull" ];
       };
       ui = {
         default-command = [ "st" ];

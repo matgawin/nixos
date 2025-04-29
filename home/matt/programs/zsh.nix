@@ -38,6 +38,37 @@
       COMPLETION_WAITING_DOTS="true"
       HIST_STAMPS="dd/mm/yyyy"
 
+      function _show_pkb_doc() {
+        doc=~/.config/pkb/doc.md
+
+        if [ -f "$doc" ]; then
+            nvim --cmd \
+                "nnoremap <buffer> q :quit<CR> | \
+                nnoremap <buffer> <M-x> yy:term <C-r>\"<CR> | \
+                nnoremap <buffer> <M-m> :quit<CR>" \
+                -RM "$doc"
+        fi
+      }
+
+      function _edit_pkb_doc() {
+        doc=~/.config/pkb/doc.md
+        if [ ! -f "$doc" ]; then
+            mkdir -p ~/.config/pkb
+            touch "$doc"
+        fi
+        nvim "$doc"
+      }
+
+      zle -N _show_pkb_doc
+      zle -N _edit_pkb_doc
+
+      bindkey '^[m' _show_pkb_doc
+      bindkey '^[M' _edit_pkb_doc
+
+      if [ -f ~/.zshrc.personal ]; then
+          source ~/.zshrc.personal
+      fi
+
       if [[ "''\${NO_TMUX}" != "1" ]]; then
           # If not running interactively, do not do anything
           # [[ $- != *i* ]] && return

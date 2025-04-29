@@ -69,6 +69,7 @@
     vale
     virt-manager
     vlc
+    vscode
     wine64
     wireshark
   ];

@@ -5,7 +5,8 @@
     settings = {
       inline_height = 20;
       keymap_mode = "vim-normal";
-      dotfiles.enabled = true;
+      enter_accept = true;
+      style = "compact";
     };
   };
 }
