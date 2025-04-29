@@ -7,13 +7,6 @@
     syntaxHighlighting.enable = true;
     autocd = true;
     defaultKeymap = "viins";
-    shellAliases = {
-      edit = "nvim";
-      pf = "fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down";
-      clip = "xclip -sel clip";
-      reload = "~/.zshrc";
-      br = "broot";
-    };
     history = {
       ignoreDups = true;
       size = 100000;
@@ -34,6 +27,11 @@
       theme = "agnoster";
     };
     initContent = lib.mkOrder 2100 ''
+      alias -g edit=nvim
+      alias -g pf="fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+      alias -g clip="xclip -sel clip"
+      alias -g reload="source ~/.zshrc"
+      alias -g br=broot
       export EDITOR=nvim
       export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
 
