@@ -1,14 +1,25 @@
-{ inputs, lib, config, ... }: let
-    mkMutableSymlink = path: config.lib.file.mkOutOfStoreSymlink (
-        config.xdg.configFile + lib.strings.removePrefix (toString inputs.self) (toString path)
-    );
-in
 {
   programs.zed-editor = {
     enable = true;
   };
+  home.activation = {
+    copyZedConfig = ''
+      destDir="$HOME/.config/zed"
+      srcDir="${./.}"
 
-  xdg.configFile."zed/settings.json".source = mkMutableSymlink ./settings.json;
-  xdg.configFile."zed/keymap.json".source = mkMutableSymlink ./keymap.json;
-  xdg.configFile."zed/tasks.json".source = mkMutableSymlink ./tasks.json;
+      mkdir -p "$destDir"
+
+      for file in "$srcDir"/*.json; do
+        baseFile=$(basename "$file")
+        destFile="$destDir/$baseFile"
+
+        if [ -e "$destFile" ]; then
+            cp -f "$destFile" "$destFile.bak"
+        fi
+
+        cp -f "$file" "$destDir/"
+        chmod +w "$destDir/$baseFile"
+      done
+    '';
+  };
 }

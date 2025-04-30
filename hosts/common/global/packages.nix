@@ -2,31 +2,31 @@
 {
   environment.systemPackages = with pkgs; [
     # slstatus
-    xfce.thunar
-    unzip
     ack
-    fzf
+    bat
+    cowsay
+    curl
     fd
-    ripgrep
     firefox
-    xclip
+    fortune
+    fzf
     gcc
-    vim
-    wget
     git
     jujutsu
-    curl
-    fortune
-    cowsay
+    kdePackages.kdeconnect-kde
+    libva
+    libva-utils
+    ripgrep
+    unzip
+    usbutils
+    vim
+    vlc
+    vulkan-extension-layer
     vulkan-loader
     vulkan-tools
     vulkan-validation-layers
-    vulkan-extension-layer
-    libva
-    libva-utils
-    usbutils
-    vlc
-    bat
-    kdePackages.kdeconnect-kde
+    wget
+    xclip
+    xfce.thunar
   ];
 }
