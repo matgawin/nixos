@@ -5,11 +5,11 @@
     ./broot.nix
     ./git.nix
     ./jj.nix
-    ./neovim.nix
     ./tmux.nix
     ./zoxide.nix
     ./zsh.nix
 
+    ./neovim
     ./zed
   ];
 
