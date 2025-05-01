@@ -55,7 +55,8 @@
     },
     {
         "bindings": {
-            "ctrl-s": "workspace::SaveAll"
+            "ctrl-s": "workspace::SaveAll",
+            "ctrl-`": "workspace::ToggleBottomDock"
         },
         "context": "Workspace"
     },

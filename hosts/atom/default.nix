@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-cpu-intel
@@ -27,7 +26,7 @@
   };
 
   boot = {
-    kernelModules = [ "i915" ];
+    kernelModules = ["i915"];
     kernelPackages = pkgs.linuxPackages_latest;
     kernelPatches = lib.singleton {
       name = "config";
@@ -50,7 +49,7 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
     config.common.default = "gtk";
   };
 

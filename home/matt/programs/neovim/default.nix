@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   nvimConfigPatched = pkgs.stdenv.mkDerivation {
     pname = "lazyvim-starter-patched";
     version = "main";
@@ -15,8 +14,7 @@ let
       cp -R . $out
     '';
   };
-in
-{
+in {
   programs.neovim = {
     enable = true;
     defaultEditor = true;

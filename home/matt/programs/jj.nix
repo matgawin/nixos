@@ -7,17 +7,17 @@
         email = "";
       };
       aliases = {
-        bk = [ "bookmark" ];
-        l = [ "log" ];
-        h = [ "help" ];
-        c = [ "commit" ];
-        d = [ "diff" ];
-        s = [ "st" ];
-        p = [ "git" "push" ];
-        pu = [ "git" "pull" ];
+        bk = ["bookmark"];
+        l = ["log"];
+        h = ["help"];
+        c = ["commit"];
+        d = ["diff"];
+        s = ["st"];
+        p = ["git" "push"];
+        pu = ["git" "pull"];
       };
       ui = {
-        default-command = [ "st" ];
+        default-command = ["st"];
         pager = "bat";
         paginate = "auto";
       };

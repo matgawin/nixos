@@ -70,7 +70,6 @@
           key = "ctrl-t";
           internal = "toggle_preview";
         }
-
       ];
     };
   };

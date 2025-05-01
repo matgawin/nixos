@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   hardware.firmware = [
     (
       let
@@ -11,10 +10,10 @@
           hash = "sha256-DInj6Ee+NXdDjamngUda5KUg4jePtxXenqxD5rwnU/s=";
         };
       in
-      pkgs.runCommand "intel-vpu-firmware-${model}-${version}" { } ''
-        mkdir -p "$out/lib/firmware/intel/vpu"
-        cp '${firmware}' "$out/lib/firmware/intel/vpu/vpu_${model}_v${version}.bin"
-      ''
+        pkgs.runCommand "intel-vpu-firmware-${model}-${version}" {} ''
+          mkdir -p "$out/lib/firmware/intel/vpu"
+          cp '${firmware}' "$out/lib/firmware/intel/vpu/vpu_${model}_v${version}.bin"
+        ''
     )
   ];
 

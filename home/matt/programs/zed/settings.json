@@ -97,7 +97,7 @@
             "initialization_options": {
                 "formatting": {
                     "command": [
-                        "nixfmt"
+                        "alejandra"
                     ]
                 }
             }

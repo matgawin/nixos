@@ -3,8 +3,7 @@
   outputs,
   lib,
   ...
-}:
-{
+}: {
   imports = [
     ./packages.nix
     ./nix.nix
@@ -32,7 +31,7 @@
 
     config = {
       allowUnfree = true;
-      allowUnfreePredicate = (_: true);
+      allowUnfreePredicate = _: true;
     };
   };
 

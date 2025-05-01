@@ -3,12 +3,13 @@
   lib,
   outputs,
   ...
-}:
-{
-  imports = [
+}: {
+  imports =
+    [
       # ./desktop
       ./programs
-  ] ++ (builtins.attrValues outputs.homeManagerModules);
+    ]
+    ++ (builtins.attrValues outputs.homeManagerModules);
 
   home = {
     username = lib.mkDefault "matt";

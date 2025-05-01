@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   xserver = {
     displayManager = {
       lightdm.enable = true;

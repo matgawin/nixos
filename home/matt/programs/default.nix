@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./atuin.nix
     ./broot.nix
@@ -20,11 +19,13 @@
         rev = "refs/heads/main";
         sha256 = "sha256-wohkmDsm26kqFGQKuY6NuBQsifT7nZNgrLqLFsU+Vog=";
       };
-      buildInputs = oldAttrs.buildInputs ++ [
-        glib
-        harfbuzz
-        gd
-      ];
+      buildInputs =
+        oldAttrs.buildInputs
+        ++ [
+          glib
+          harfbuzz
+          gd
+        ];
     }))
     bitwarden
     bitwarden-cli
