@@ -6,9 +6,7 @@
   home.packages = [
     inputs.zed-editor.packages.${pkgs.system}.default
   ];
-  # programs.zed-editor = {
-  #   enable = true;
-  # };
+
   home.activation = {
     copyZedConfig = ''
       destDir="$HOME/.config/zed"

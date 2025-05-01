@@ -4,9 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Build Commands
 - `nix develop` or `nix-shell` - Bootstrap development environment
-- `nixos-rebuild --flake .#nixos` - Build main system configuration
-- `nixos-rebuild --flake .#nixpi` - Build Raspberry Pi configuration
-- `home-manager --flake .#matt@nix` - Build home-manager configuration
+- `nixos-rebuild --flake .#atom` - Build main system configuration
+- `home-manager --flake .#matt@atom` - Build home-manager configuration
 - `nix flake update` - Update flake inputs
 - `nix flake check` - Verify flake integrity
 
@@ -23,6 +22,5 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Structure
 - `flake.nix` - Main entry point defining inputs and outputs
-- `nixos/` - System configuration for main machine
-- `nixpi/` - System configuration for Raspberry Pi
-- `home-manager/` - User environment configuration
+- `hosts/atom/` - System configuration for main machine
+- `home/` - User environment configuration

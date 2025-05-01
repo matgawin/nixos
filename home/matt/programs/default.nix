@@ -13,20 +13,22 @@
   ];
 
   home.packages = with pkgs; [
-    (st.overrideAttrs (oldAttrs: {
-      src = pkgs.fetchgit {
-        url = "https://github.com/siduck/st.git";
-        rev = "refs/heads/main";
-        sha256 = "sha256-wohkmDsm26kqFGQKuY6NuBQsifT7nZNgrLqLFsU+Vog=";
-      };
-      buildInputs =
-        oldAttrs.buildInputs
-        ++ [
-          glib
-          harfbuzz
-          gd
-        ];
-    }))
+    st
+    # (st.overrideAttrs (oldAttrs: {
+    #   src = pkgs.fetchgit {
+    #     url = "https://github.com/siduck/st.git";
+    #     rev = "refs/heads/main";
+    #     sha256 = "sha256-wohkmDsm26kqFGQKuY6NuBQsifT7nZNgrLqLFsU+Vog=";
+    #   };
+    #   buildInputs =
+    #     oldAttrs.buildInputs
+    #     ++ [
+    #       glib
+    #       harfbuzz
+    #       gd
+    #     ];
+    # }))
+    alejandra
     bitwarden
     bitwarden-cli
     bottom
@@ -51,7 +53,6 @@
     nextdns
     nil
     nixd
-    nixfmt-rfc-style
     nodejs
     podman
     podman-compose
@@ -72,7 +73,6 @@
     vale
     veracrypt
     virt-manager
-    vlc
     vscode
     wine64
     wireshark

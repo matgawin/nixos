@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    # slstatus
     ack
     bat
     cowsay
     curl
+    dunst
     fd
     firefox
     fortune
@@ -15,7 +15,9 @@
     kdePackages.kdeconnect-kde
     libva
     libva-utils
+    picom
     ripgrep
+    rofi
     unzip
     usbutils
     vim

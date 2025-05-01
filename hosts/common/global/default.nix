@@ -50,6 +50,10 @@
         to = 1764;
       }
     ];
+    # Allow SSH and XRDP
+    allowedTCPPorts = [ 22 3389 ];
+    allowPing = true;
+    logReversePathDrops = true;
   };
 
   services.speechd.enable = lib.mkForce false;
