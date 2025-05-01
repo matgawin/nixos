@@ -4,6 +4,9 @@
       greetingLine = "";
       helpLine = lib.mkForce ''<<< \l >>>'';
     };
+    blueman.enable = true;
+    tailscale.enable = true;
+    nextdns.enable = true;
     flatpak.enable = true;
     xserver = {
       enable = true;

@@ -1,20 +1,23 @@
 {pkgs, ...}: {
   fonts = {
     packages = with pkgs; [
-      nerd-fonts.fira-code
       nerd-fonts.meslo-lg
+      nerd-fonts.fira-code
     ];
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = ["Meslo LG M Regular Nerd Font Complete Mono"];
+        monospace = [
+          "MesloLGS Nerd Font Mono"
+          "Fira Code Nerd Font Mono"
+        ];
         serif = [
-          "Noto Serif"
-          "Source Han Serif"
+          "MesloLGS Nerd Font"
+          "Fira Code Nerd Font"
         ];
         sansSerif = [
-          "Noto Sans"
-          "Source Han Sans"
+          "MesloLGS Nerd Font"
+          "Fira Code Nerd Font"
         ];
       };
     };

@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./alacritty.nix
     ./atuin.nix
     ./broot.nix
     ./git.nix
@@ -12,22 +13,11 @@
     ./zed
   ];
 
+  programs = {
+    home-manager.enable = true;
+  };
+
   home.packages = with pkgs; [
-    st
-    # (st.overrideAttrs (oldAttrs: {
-    #   src = pkgs.fetchgit {
-    #     url = "https://github.com/siduck/st.git";
-    #     rev = "refs/heads/main";
-    #     sha256 = "sha256-wohkmDsm26kqFGQKuY6NuBQsifT7nZNgrLqLFsU+Vog=";
-    #   };
-    #   buildInputs =
-    #     oldAttrs.buildInputs
-    #     ++ [
-    #       glib
-    #       harfbuzz
-    #       gd
-    #     ];
-    # }))
     alejandra
     bitwarden
     bitwarden-cli
@@ -39,8 +29,8 @@
     distrobox
     duf
     dust
-    eza
     easyeffects
+    eza
     fastfetch
     flameshot
     freerdp
@@ -50,7 +40,6 @@
     hyperfine
     lazygit
     lutris
-    nextdns
     nil
     nixd
     nodejs
@@ -67,7 +56,7 @@
     scrcpy
     sioyek
     spotify
-    tailscale
+    st
     telegram-desktop
     thunderbird
     vale

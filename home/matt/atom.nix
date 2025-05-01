@@ -6,7 +6,9 @@
 }: {
   imports =
     [
-      # ./desktop
+      ./services.nix
+
+      ./desktop
       ./programs
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
@@ -18,10 +20,6 @@
       layout = "pl";
       variant = "";
     };
-  };
-
-  programs = {
-    home-manager.enable = true;
   };
 
   systemd.user.startServices = "sd-switch";

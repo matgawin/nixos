@@ -6,16 +6,20 @@
     curl
     dunst
     fd
+    feh
     firefox
+    flameshot
     fortune
     fzf
     gcc
     git
     jujutsu
+    jq
     kdePackages.kdeconnect-kde
     libva
     libva-utils
     picom
+    polybar
     ripgrep
     rofi
     unzip

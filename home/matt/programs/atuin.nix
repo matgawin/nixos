@@ -7,6 +7,10 @@
       keymap_mode = "vim-normal";
       enter_accept = true;
       style = "compact";
+      history_filter = [
+        "^fortune"
+        "^cowsay"
+      ];
     };
   };
 }

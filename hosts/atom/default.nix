@@ -15,8 +15,6 @@
     ../common/global
     ../common/users/matt
 
-    # ../common/optional/greetd.nix
-    ../common/optional/kde.nix
     ../common/optional/i3.nix
   ];
 
@@ -53,7 +51,11 @@
     config.common.default = "gtk";
   };
 
-  console.keyMap = "pl2";
+  console = {
+    keyMap = "pl2";
+    font = "ter-powerline-v16b";
+    packages = [pkgs.powerline-fonts];
+  };
 
   security = {
     rtkit.enable = true;
@@ -61,6 +63,7 @@
   };
 
   programs.zsh.enable = true;
+  programs.nm-applet.enable = true;
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
