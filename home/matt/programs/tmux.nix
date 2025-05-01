@@ -45,6 +45,8 @@
 
         set -g @continuum-restore 'on'
 
+        set -sg escape-time 0
+
         set-hook -g after-new-session '
           selectp -t 0
           send-keys -t 0 "fortune | cowsay -W 80 -s" ENTER

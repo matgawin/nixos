@@ -44,6 +44,7 @@
     freetube
     gimp
     hurl
+    hyperfine
     lazygit
     lutris
     nextdns
