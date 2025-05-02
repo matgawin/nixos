@@ -49,5 +49,6 @@
       };
     };
     picom.enable = true;
+    upower.enable = true;
   };
 }

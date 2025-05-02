@@ -85,12 +85,13 @@
           "${mod}+s" = "layout stacking";
           "${mod}+t" = "layout tabbed";
           "${mod}+e" = "layout toggle split";
-          "${mod}+Shift+space" = "floating toggle";
+          "${mod}+m" = "floating toggle";
           "${mod}+space" = "focus mode_toggle";
           "${mod}+a" = "focus parent";
           "${mod}+v" = "split v";
           "${mod}+b" = "split h";
 
+          "${mod}+Shift+x" = "exec ${pkgs.betterlockscreen}/bin/betterlockscreen -l blur";
           "${mod}+Shift+c" = "reload";
           "${mod}+Shift+r" = "restart";
 

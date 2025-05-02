@@ -15,7 +15,6 @@
     git
     jujutsu
     jq
-    kdePackages.kdeconnect-kde
     libva
     libva-utils
     picom

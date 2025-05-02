@@ -15,7 +15,6 @@
     ../common/global
     ../common/users/matt
 
-    ../common/optional/kde.nix
     ../common/optional/i3.nix
   ];
 
@@ -61,6 +60,16 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+  };
+  security.pam.services = {
+    i3lock = {
+      enable = true;
+      text = ''
+        auth    include login
+        account include login
+        session include login
+      '';
+    };
   };
 
   programs.zsh.enable = true;

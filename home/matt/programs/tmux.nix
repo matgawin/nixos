@@ -46,10 +46,7 @@
 
       set -sg escape-time 0
 
-      set-hook -g after-new-session '
-        selectp -t 0
-        send-keys -t 0 "fortune | cowsay -W 80 -s" ENTER
-      '
+      set-hook -g after-new-session 'send-keys fastfetch ENTER'
     '';
   };
 }

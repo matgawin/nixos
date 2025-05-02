@@ -24,6 +24,8 @@
     powerOnBoot = true;
   };
 
+  hardware.steam-hardware.enable = true;
+
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [

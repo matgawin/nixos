@@ -3,8 +3,11 @@
     ./alacritty.nix
     ./atuin.nix
     ./broot.nix
+    ./gammastep.nix
     ./git.nix
     ./jj.nix
+    ./kdeconnect.nix
+    ./nm-applet.nix
     ./tmux.nix
     ./zoxide.nix
     ./zsh.nix
@@ -43,6 +46,7 @@
     nil
     nixd
     nodejs
+    pavucontrol
     podman
     podman-compose
     podman-desktop

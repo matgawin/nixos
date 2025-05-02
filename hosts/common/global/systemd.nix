@@ -20,6 +20,20 @@
       MemoryHigh = "50%";
       MemoryMax = "75%";
     };
+
+    services.dbus.enable = true;
+    services."trigger-lockscreen@matt" = {
+      description = "Lock screen when going to sleep/suspend";
+      before = ["sleep.target" "suspend.target"];
+      wantedBy = ["sleep.target" "suspend.target"];
+      serviceConfig = {
+        Type = "simple";
+        User = "matt";
+        ExecStart = "${pkgs.betterlockscreen}/bin/betterlockscreen --lock";
+        TimeoutSec = "infinity";
+        Environment = "DISPLAY=:0";
+      };
+    };
     services = {
       nix-daemon.serviceConfig.Slice = "anti-hungry.slice";
       nixos-upgrade.serviceConfig.Slice = "anti-hungry.slice";

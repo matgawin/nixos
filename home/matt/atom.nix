@@ -6,8 +6,6 @@
 }: {
   imports =
     [
-      ./services.nix
-
       ./desktop
       ./programs
     ]
