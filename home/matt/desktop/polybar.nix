@@ -126,7 +126,7 @@
       "module/date" = {
         type = "internal/date";
         interval = 1;
-        date = "%Y-%m-%d %H:%M:%S";
+        date = "%Y-%m-%d %H:%M";
         label = "%date%";
         label-foreground = "\${colors.primary}";
       };
