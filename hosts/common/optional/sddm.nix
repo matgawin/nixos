@@ -2,24 +2,27 @@
   astronaut-theme = pkgs.callPackage ./sddm-theme.nix {
     inherit pkgs;
   };
-in {
+in with pkgs; {
   services.displayManager = {
     sddm = {
       enable = true;
       theme = "astronaut";
-      package = pkgs.kdePackages.sddm;
+      package = kdePackages.sddm;
       extraPackages = [
         astronaut-theme
-        pkgs.kdePackages.qtmultimedia
-        pkgs.kdePackages.qtvirtualkeyboard
+        kdePackages.qtmultimedia
+        kdePackages.qtvirtualkeyboard
+        catppuccin-cursors.mochaDark
       ];
       settings = {
         Theme = {
           ThemeDir = "${astronaut-theme}/share/sddm/themes";
+          CursorTheme = "catppuccin-mocha-dark-cursors";
+          CursorSize = "24";
         };
         General = {
           DisplayServer = "x11";
-          Greeter = "${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6";
+          Greeter = "${kdePackages.sddm}/bin/sddm-greeter-qt6";
         };
       };
     };

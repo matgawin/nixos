@@ -58,6 +58,16 @@
             always = false;
             notification = false;
           }
+          {
+            command = "${pkgs.fcitx5}/bin/fcitx5";
+            always = true;
+            notification = false;
+          }
+          {
+              command = "sleep 5 && ${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator";
+              always = true;
+              notification = false;
+          }
         ];
 
         workspaceOutputAssign = [

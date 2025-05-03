@@ -14,10 +14,6 @@
   home = {
     username = lib.mkDefault "matt";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    keyboard = {
-      layout = "pl";
-      variant = "";
-    };
   };
 
   systemd.user.startServices = "sd-switch";

@@ -32,7 +32,7 @@
 
         background = "\${colors.dark_bg}";
         background-alt = "$\{colors.light_bg}";
-        foreground = "a\${colors.light_fg}";
+        foreground = "\${colors.light_fg}";
         primary = "\${colors.light_blue}";
         secondary = "\${colors.medium_blue}";
         alert = "\${colors.red}";
@@ -58,9 +58,9 @@
         separator-foreground = "\${colors.darkest_fg}";
         modules-left = "xworkspaces xwindow";
         modules-center = "date";
-        modules-right = "pulseaudio tray xkeyboard memory cpu";
+        modules-right = "pulseaudio tray memory cpu";
         cursor-click = "pointer";
-        cursor-scroll = "ns-resize";
+        cursor-scroll = "pointer";
         enable-ipc = true;
         font-0 = "${mono.name}:size=${toString mono.size};2";
       };
@@ -96,16 +96,16 @@
         label-muted-foreground = "\${colors.disabled}";
       };
 
-      "module/xkeyboard" = {
-        type = "internal/xkeyboard";
-        blacklist-0 = "num lock";
-        label-layout = "%layout%";
-        label-layout-foreground = "\${colors.primary}";
-        label-indicator-padding = 2;
-        label-indicator-margin = 1;
-        label-indicator-foreground = "\${colors.background}";
-        label-indicator-background = "\${colors.secondary}";
-      };
+      # "module/xkeyboard" = {
+      #   type = "internal/xkeyboard";
+      #   blacklist-0 = "num lock";
+      #   label-layout = "%{A1:${pkgs.xorg.setxkbmap}/bin/setxkbmap pl:}%layout%%{A}";
+      #   label-layout-foreground = "\${colors.primary}";
+      #   label-indicator-padding = 2;
+      #   label-indicator-margin = 1;
+      #   label-indicator-foreground = "\${colors.background}";
+      #   label-indicator-background = "\${colors.secondary}";
+      # };
 
       "module/memory" = {
         type = "internal/memory";

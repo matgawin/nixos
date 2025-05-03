@@ -7,7 +7,7 @@
     ./git.nix
     ./jj.nix
     ./kdeconnect.nix
-    ./nm-applet.nix
+    # ./keepassxc.nix
     ./tmux.nix
     ./zoxide.nix
     ./zsh.nix
@@ -41,7 +41,9 @@
     gimp
     hurl
     hyperfine
+    keepassxc
     lazygit
+    libsecret
     lutris
     nil
     nixd

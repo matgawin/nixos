@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   xdg.desktopEntries = {
     "org.kde.kdeconnect.sms" = {
@@ -16,10 +15,5 @@
       name = "KDE Connect Settings";
       settings.NoDisplay = "true";
     };
-  };
-  services.kdeconnect = {
-    enable = true;
-    indicator = true;
-    package = pkgs.kdePackages.kdeconnect-kde;
   };
 }

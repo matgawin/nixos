@@ -16,7 +16,10 @@
       "en_US.UTF-8/UTF-8"
       "pl_PL.UTF-8/UTF-8"
     ];
+    inputMethod = {
+      enable = lib.mkDefault true;
+      type = lib.mkDefault "fcitx5";
+    };
   };
-  location.provider = "geoclue2";
   time.timeZone = lib.mkDefault "Europe/Warsaw";
 }

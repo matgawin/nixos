@@ -33,6 +33,8 @@
         ACPI_DEBUG = yes;
       };
     };
+    kernelParams = [ "quiet" "udev.log_level=3" ];
+    consoleLogLevel = 0;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -73,7 +75,12 @@
   };
 
   programs.zsh.enable = true;
-  programs.nm-applet.enable = true;
+  programs.dconf.enable = true;
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.kdePackages.kdeconnect-kde;
+  };
+
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
