@@ -22,8 +22,6 @@
 
   home.packages = with pkgs; [
     alejandra
-    bitwarden
-    bitwarden-cli
     bottom
     brave
     bun

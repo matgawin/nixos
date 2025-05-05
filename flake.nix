@@ -10,7 +10,7 @@
     hardware.url = "github:nixos/nixos-hardware";
 
     zed-editor = {
-      url = "github:zed-industries/zed/v0.184.8";
+      url = "github:zed-industries/zed/v0.185.10";
       inputs.nixpkgs.follows = "nixpkgs";
       flake = true;
     };

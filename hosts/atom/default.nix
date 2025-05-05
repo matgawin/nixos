@@ -16,6 +16,7 @@
     ../common/users/matt
 
     ../common/optional/i3.nix
+    ../common/optional/kwallet.nix
   ];
 
   networking = {
@@ -33,8 +34,24 @@
         ACPI_DEBUG = yes;
       };
     };
-    kernelParams = [ "quiet" "udev.log_level=3" ];
-    consoleLogLevel = 0;
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
+    plymouth = {
+      enable = true;
+      theme = "cuts_alt";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = ["cuts_alt"];
+        })
+      ];
+    };
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;

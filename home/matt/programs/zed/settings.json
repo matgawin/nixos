@@ -5,10 +5,10 @@
         "magnification": 1.0
     },
     "always_treat_brackets_as_autoclosed": true,
-    "assistant": {
+    "agent": {
         "button": true,
         "default_model": {
-            "model": "claude-3.7-sonnet-thought",
+            "model": "claude-3-7-sonnet",
             "provider": "copilot_chat"
         },
         "dock": "right",
