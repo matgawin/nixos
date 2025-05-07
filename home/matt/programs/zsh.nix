@@ -19,7 +19,6 @@
     oh-my-zsh = {
       enable = true;
       plugins = [
-        "z"
         "colored-man-pages"
         "git"
         "tmux"
@@ -30,11 +29,13 @@
       theme = "agnoster";
     };
     initContent = lib.mkOrder 2100 ''
-      alias -g edit=nvim
-      alias -g pf="fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
-      alias -g clip="xclip -sel clip"
-      alias -g reload="source ~/.zshrc"
-      alias -g br=broot
+      alias edit=nvim
+      alias pf="fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+      alias clip="xclip -sel clip"
+      alias reload="source ~/.zshrc"
+      alias br=broot
+      alias cd=z
+
       export EDITOR=nvim
       export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
 

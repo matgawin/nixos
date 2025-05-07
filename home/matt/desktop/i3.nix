@@ -7,6 +7,7 @@
   xsession.windowManager.i3 = {
     enable = true;
     config = let
+      wallpaper = "$HOME/.wallpapers/bing-wallpaper.jpg";
       mod = "Mod4";
     in
       lib.mkOptionDefault {
@@ -64,9 +65,14 @@
             notification = false;
           }
           {
-              command = "sleep 5 && ${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator";
-              always = true;
-              notification = false;
+            command = "sleep 5 && ${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator";
+            always = true;
+            notification = false;
+          }
+          {
+            command = "${pkgs.betterlockscreen}/bin/betterlockscreen -u ${wallpaper}";
+            always = true;
+            notification = false;
           }
         ];
 
@@ -102,6 +108,8 @@
           "${mod}+b" = "split h";
 
           "${mod}+Shift+x" = "exec ${pkgs.betterlockscreen}/bin/betterlockscreen -l blur";
+          "${mod}+Shift+s" = "exec \"$(${pkgs.betterlockscreen}/bin/betterlockscreen -l blur & systemctl suspend)\"";
+
           "${mod}+Shift+c" = "reload";
           "${mod}+Shift+r" = "restart";
 

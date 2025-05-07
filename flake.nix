@@ -9,8 +9,13 @@
 
     hardware.url = "github:nixos/nixos-hardware";
 
+    # zed-binary = {
+    #   url = "tarball+https://github.com/zed-industries/zed/releases/latest/download/zed-linux-x86_64.tar.gz";
+    #   flake = false;
+    # };
+
     zed-editor = {
-      url = "github:zed-industries/zed/v0.185.10";
+      url = "github:zed-industries/zed/v0.185.14";
       inputs.nixpkgs.follows = "nixpkgs";
       flake = true;
     };
