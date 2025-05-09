@@ -58,7 +58,7 @@
         separator-foreground = "\${colors.darkest_fg}";
         modules-left = "xworkspaces xwindow";
         modules-center = "date";
-        modules-right = "pulseaudio tray memory cpu";
+        modules-right = "playerctl tray volume memory cpu";
         cursor-click = "pointer";
         cursor-scroll = "pointer";
         enable-ipc = true;
@@ -86,26 +86,17 @@
         label = "%title:0:60:...%";
       };
 
-      "module/pulseaudio" = {
-        type = "internal/pulseaudio";
-        format-volume-prefix = "VOL ";
-        format-volume-prefix-foreground = "\${colors.primary}";
-        format-volume = "<label-volume>";
+      "module/volume" = {
         label-volume = "%percentage%%";
-        label-muted = "muted";
-        label-muted-foreground = "\${colors.disabled}";
+        type = "internal/alsa";
+        format-volume = "<ramp-volume><label-volume>";
+        label-muted-foreground = "#666";
+        label-muted = " ";
+        ramp-volume-0 = " ";
+        ramp-volume-1 = " ";
+        ramp-volume-2 = " ";
+        click-right = "pavucontrol &";
       };
-
-      # "module/xkeyboard" = {
-      #   type = "internal/xkeyboard";
-      #   blacklist-0 = "num lock";
-      #   label-layout = "%{A1:${pkgs.xorg.setxkbmap}/bin/setxkbmap pl:}%layout%%{A}";
-      #   label-layout-foreground = "\${colors.primary}";
-      #   label-indicator-padding = 2;
-      #   label-indicator-margin = 1;
-      #   label-indicator-foreground = "\${colors.background}";
-      #   label-indicator-background = "\${colors.secondary}";
-      # };
 
       "module/memory" = {
         type = "internal/memory";
@@ -128,12 +119,25 @@
         interval = 1;
         date = "%Y-%m-%d %H:%M";
         label = "%date%";
-        label-foreground = "\${colors.primary}";
+        label-foreground = "\${colors.foreground}";
       };
 
       "module/tray" = {
         type = "internal/tray";
         tray-spacing = 10;
+      };
+
+      "module/playerctl" = let
+        player = "${pkgs.playerctl}/bin/playerctl";
+      in {
+        type = "custom/script";
+        interval = 3;
+        interval-if = "2.75";
+        exec = "polybar-music-info &";
+        execif = "playerctl-status &";
+        format-prefix = "  ";
+        format-prefix-foreground = "\${colors.primary}";
+        label = "%{A1:${player} play-pause &:}󰐎%{A} %output:0:25:% %{A1:${player} previous &:}󰒮%{A} %{A1:${player} next &:}󰒭%{A}";
       };
 
       "settings" = {

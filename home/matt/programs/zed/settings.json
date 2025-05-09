@@ -42,7 +42,14 @@
     "confirm_quit": true,
     "cursor_blink": false,
     "diagnostics": {
-        "include_warnings": false
+        "include_warnings": false,
+        "inline": {
+            "enabled": true,
+            "update_debounce_ms": 1000,
+            "padding": 4,
+            "min_column": 80,
+            "max_severity": null
+        }
     },
     "double_click_in_multibuffer": "open",
     "ensure_final_newline_on_save": false,
@@ -103,7 +110,7 @@
             }
         }
     },
-    "max_tabs": 5,
+    "max_tabs": 10,
     "project_panel": {
         "auto_reveal_entries": false,
         "default_width": 220,

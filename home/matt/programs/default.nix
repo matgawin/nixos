@@ -3,11 +3,15 @@
     ./alacritty.nix
     ./atuin.nix
     ./broot.nix
+    ./easyeffects.nix
+    ./flameshot.nix
     ./gammastep.nix
     ./git.nix
+    ./glance.nix
     ./jj.nix
     ./kdeconnect.nix
-    # ./keepassxc.nix
+    ./playerctl.nix
+    ./syncthing.nix
     ./tmux.nix
     ./zoxide.nix
     ./zsh.nix
@@ -30,10 +34,8 @@
     distrobox
     duf
     dust
-    easyeffects
     eza
     fastfetch
-    flameshot
     freerdp
     freetube
     gimp

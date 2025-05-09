@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    inputs.home-manager.nixosModules.home-manager
     ./packages.nix
     ./nix.nix
     ./locale.nix
@@ -51,7 +52,7 @@
       }
     ];
     # Allow SSH and XRDP
-    allowedTCPPorts = [ 22 3389 ];
+    allowedTCPPorts = [22 3389];
     allowPing = true;
     logReversePathDrops = true;
   };

@@ -19,6 +19,7 @@
     libva-utils
     picom
     polybar
+    pulseaudio
     ripgrep
     rofi
     unzip

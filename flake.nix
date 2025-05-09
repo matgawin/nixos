@@ -15,7 +15,7 @@
     # };
 
     zed-editor = {
-      url = "github:zed-industries/zed/v0.185.14";
+      url = "github:zed-industries/zed/v0.186.9";
       inputs.nixpkgs.follows = "nixpkgs";
       flake = true;
     };
@@ -52,19 +52,20 @@
 
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    # NixOS configuration entrypoint
-    # 'nixos-rebuild --flake .#atom'
     nixosConfigurations = {
       atom = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/atom
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              users.matt = import ./home/matt/atom.nix;
-            };
-          }
+        ];
+      };
+    };
+    homeConfigurations = {
+      "matt@atom" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          ./home/matt/atom.nix
         ];
       };
     };

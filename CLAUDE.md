@@ -12,9 +12,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Code Style Guidelines
 - Use attribute sets consistently for configurations
 - Separate hardware-specific configuration from system configuration
-- Organize imports with descriptive comments
 - Keep related configurations together in logical sections
-- Use descriptive variable names (e.g., `networking.hostName` not `hn`)
+- Use descriptive variable names
 - Mark work-in-progress with TODO comments
 - Maintain separation between system packages and user packages
 - Use overlays for custom package modifications

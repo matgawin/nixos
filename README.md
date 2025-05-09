@@ -4,8 +4,18 @@
 To switch to a host configuration (e.g., "atom"):
 ```bash
 sudo nixos-rebuild switch --flake .#atom
+# or with nh
+nh os switch -a -H atom . # add -u to update flake inputs
 ```
 This will apply the NixOS configuration defined for the "atom" host.
+
+### Switching Home Configuration
+To switch home manager configuration for the user "matt":
+```bash
+home-manager switch --flake .#matt@atom
+# or with nh
+nh home switch -a -c matt@atom . # add -u to update flake inputs
+```
 
 ---
 
@@ -18,12 +28,16 @@ nix flake check
 To test a configuration without switching to it:
 ```bash
 nixos-rebuild test --flake .#atom
+# or with nh
+nh os test -a -H atom . # add -u to update flake inputs
 ```
 
 ### Building Configuration
 To build a configuration without applying it (will be applied on next boot):
 ```bash
 nixos-rebuild build --flake .#atom
+# or with nh
+nh os build -a -H atom . # add -u to update flake inputs
 ```
 Or to build vm for testing:
 ```bash

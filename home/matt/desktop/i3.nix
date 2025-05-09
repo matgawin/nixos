@@ -7,7 +7,6 @@
   xsession.windowManager.i3 = {
     enable = true;
     config = let
-      wallpaper = "$HOME/.wallpapers/bing-wallpaper.jpg";
       mod = "Mod4";
     in
       lib.mkOptionDefault {
@@ -17,7 +16,6 @@
           {
             id = "top";
             command = "pkill polybar || sleep 0.5 && ${pkgs.polybar}/bin/polybar -l error -r top &";
-            position = "top";
             mode = "dock";
           }
         ];
@@ -33,7 +31,7 @@
         gaps = {
           inner = 2;
           outer = 2;
-          smartGaps = true;
+          smartGaps = false;
           smartBorders = "no_gaps";
         };
 
@@ -41,6 +39,15 @@
           border = 1;
           hideEdgeBorders = "smart";
           titlebar = false;
+        };
+
+        assigns = {
+          "1" = [{class = "^Zed$";}];
+          "2" = [{class = "^Brave-browser$";}];
+          "3" = [{class = "^Alacritty$";}];
+          "4" = [{class = "^FreeTube$";}];
+          "5" = [{class = "^TelegramDesktop$";}];
+          "10" = [{class = "^Spotify$";}];
         };
 
         startup = [
@@ -69,11 +76,6 @@
             always = true;
             notification = false;
           }
-          {
-            command = "${pkgs.betterlockscreen}/bin/betterlockscreen -u ${wallpaper}";
-            always = true;
-            notification = false;
-          }
         ];
 
         workspaceOutputAssign = [
@@ -82,7 +84,7 @@
         ];
 
         keybindings = {
-          "${mod}+Return" = "exec \"$(NO_TMUX=1 alacritty)\"";
+          "${mod}+Return" = "exec \"$(NO_TMUX=1 alacritty --class QuickShell)\"";
           "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
           "${mod}+x" = "kill";
           "${mod}+h" = "focus left";
@@ -141,6 +143,15 @@
           "${mod}+Shift+8" = "move container to workspace number 8";
           "${mod}+Shift+9" = "move container to workspace number 9";
           "${mod}+Shift+0" = "move container to workspace number 10";
+
+          # media keys
+          "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+          "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+          "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+
+          "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
         };
 
         modes = {

@@ -8,8 +8,16 @@
     [
       ./desktop
       ./programs
+      ./scripts
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+    };
+  };
 
   home = {
     username = lib.mkDefault "matt";
