@@ -4,8 +4,8 @@
 To switch to a host configuration (e.g., "atom"):
 ```bash
 sudo nixos-rebuild switch --flake .#atom
-# or with nh
-nh os switch -a -H atom . # add -u to update flake inputs
+# or with nh, add -u to update flake inputs
+nh os switch -a -H atom .
 ```
 This will apply the NixOS configuration defined for the "atom" host.
 
@@ -13,8 +13,8 @@ This will apply the NixOS configuration defined for the "atom" host.
 To switch home manager configuration for the user "matt":
 ```bash
 home-manager switch --flake .#matt@atom
-# or with nh
-nh home switch -a -c matt@atom . # add -u to update flake inputs
+# or with nh, add -u to update flake inputs
+nh home switch -a -c matt@atom .
 ```
 
 ---
@@ -29,7 +29,7 @@ To test a configuration without switching to it:
 ```bash
 nixos-rebuild test --flake .#atom
 # or with nh
-nh os test -a -H atom . # add -u to update flake inputs
+nh os test -a -H atom .
 ```
 
 ### Building Configuration
@@ -37,7 +37,7 @@ To build a configuration without applying it (will be applied on next boot):
 ```bash
 nixos-rebuild build --flake .#atom
 # or with nh
-nh os build -a -H atom . # add -u to update flake inputs
+nh os build -a -H atom .
 ```
 Or to build vm for testing:
 ```bash
@@ -85,12 +85,18 @@ nixosConfigurations = {
     specialArgs = { inherit inputs outputs; };
     modules = [
       ./hosts/newhost
-      home-manager.nixosModules.home-manager
-      {
-        home-manager = {
-          users.yourusername = import ./home/yourusername/newhost.nix;
-        };
-      }
+    ];
+  };
+};
+
+homeConfigurations = {
+  "matt@atom" = home-manager.lib.homeManagerConfiguration { ... };
+
+  "newuser@newhost" = home-manager.lib.homeManagerConfiguration {
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs outputs;};
+    modules = [
+      ./home/newuser/newhost.nix
     ];
   };
 };
@@ -99,7 +105,7 @@ nixosConfigurations = {
 ### Adding a New User Configuration
 
 1. Create a new directory under `home/` for your user if it doesn't exist
-2. Create a configuration file for your user and host (e.g., `home/yourusername/newhost.nix`)
+2. Create a configuration file for your user and host (e.g., `home/newuser/newhost.nix`)
 3. Import the necessary modules and configure your home environment
 4. Make sure to reference your home configuration in the host's entry in `flake.nix`
 
@@ -111,9 +117,7 @@ nixosConfigurations = {
 
 ### Working with Programs
 
-Many programs are configured in the `home/matt/programs/` directory. To modify a program's configuration:
-
-1. Edit the relevant file in `home/matt/programs/` or create prog directory for new user
+1. Add the relevant file in `home/<user>/programs/`
 2. For adding a new program, create a new file and import it in `home/<user>/programs/default.nix`
 
 ## Structure
@@ -127,8 +131,9 @@ nixos-flake/
 ├── home/                # Home-manager configurations
 │   └── matt/            # Configuration for user 'matt'
 │       ├── atom.nix
-│       ├── desktop/
+│       ├── desktop/     # Desktop-specific configurations (i3, rofi, etc.)
 │       └── programs/    # Program-specific configurations
+│       └── scripts/     # Scripts for user-specific tasks
 └── modules/             # Custom modules
     └── home-manager/    # Home-manager modules
 ```
@@ -138,7 +143,7 @@ nixos-flake/
 You can format the Nix code with:
 
 ```bash
-nix fmt
+alejandra .
 ```
 
 This uses the formatter configured in `flake.nix`.
@@ -146,5 +151,4 @@ This uses the formatter configured in `flake.nix`.
 ## Notes
 
 - This configuration uses the unstable channel of NixOS
-- Home Manager is integrated directly into the system configuration
 - Several custom modules are provided for home-manager
