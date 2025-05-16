@@ -15,7 +15,7 @@
         bars = [
           {
             id = "top";
-            command = "pkill polybar || sleep 0.5 && ${pkgs.polybar}/bin/polybar -l error -r top &";
+            command = "pkill polybar || sleep 1 && polybar-multi-monitor &";
             mode = "dock";
           }
         ];
@@ -43,10 +43,10 @@
 
         assigns = {
           "1" = [{class = "^Zed$";}];
-          "2" = [{class = "^Brave-browser$";}];
-          "3" = [{class = "^Alacritty$";}];
+          "2" = [{class = "^Alacritty$";}];
+          "3" = [{class = "^TelegramDesktop$";}];
           "4" = [{class = "^FreeTube$";}];
-          "5" = [{class = "^TelegramDesktop$";}];
+          "5" = [{class = "^Brave-browser$";}];
           "10" = [{class = "^Spotify$";}];
         };
 
@@ -79,8 +79,26 @@
         ];
 
         workspaceOutputAssign = [
-          # { workspace = "1"; output = "primary"; }
-          # { workspace = "2"; output = "primary"; }
+          {
+            workspace = "1";
+            output = "HDMI-1";
+          }
+          {
+            workspace = "2";
+            output = "HDMI-1";
+          }
+          {
+            workspace = "3";
+            output = "HDMI-1";
+          }
+          {
+            workspace = "4";
+            output = "HDMI-1";
+          }
+          {
+            workspace = "5";
+            output = "DP-2";
+          }
         ];
 
         keybindings = {

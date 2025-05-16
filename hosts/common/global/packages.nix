@@ -13,6 +13,7 @@
     fzf
     gcc
     git
+    inotify-tools
     jujutsu
     jq
     libva

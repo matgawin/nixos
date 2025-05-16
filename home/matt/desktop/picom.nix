@@ -3,11 +3,14 @@
     enable = true;
     backend = "glx";
     vSync = true;
+    activeOpacity = 1.0;
+    inactiveOpacity = 0.98;
+    opacityRules = [
+      "100:fullscreen"
+      "100:name *= 'FreeTube'"
+    ];
+    shadow = false;
     settings = {
-      inactive-opacity = 0.98;
-      active-opacity = 1;
-      frame-opacity = 0.8;
-      shadow = false;
       dbe = false;
     };
   };

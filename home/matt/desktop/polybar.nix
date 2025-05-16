@@ -79,6 +79,7 @@
         label-empty = "%name%";
         label-empty-foreground = "\${colors.disabled}";
         label-empty-padding = 1;
+        pin-workspaces = true;
       };
 
       "module/xwindow" = {
