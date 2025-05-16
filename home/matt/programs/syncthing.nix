@@ -5,15 +5,24 @@
 
     settings = let
       thinkpad = "thinkpad";
+      pixel6a = "Pixel 6a";
+
       docs = "Documents";
       down = "Downloads";
       pict = "Pictures";
+      vault = "Pixel6Vault";
     in {
       devices = {
         ${thinkpad} = {
           id = "WJ4BVKT-PURATQS-XSKFK22-RXIHKRB-GWEOUJ7-U3FSBH7-HTD75QK-IMT43AS";
           addresses = [
-            "tcp://192.168.0.8:22000"
+            "dynamic"
+          ];
+        };
+        ${pixel6a} = {
+          id = "HNFI7RW-SH2EFAD-6RTWAKI-PE3DMMD-CEGZ3RD-DXGBQW3-Q5VXUI5-B6IJ2QS";
+          addresses = [
+            "dynamic"
           ];
         };
       };
@@ -57,11 +66,20 @@
           ];
           versioning = versioning;
         };
+        ${vault} = {
+          id = "0cami-x2wjp";
+          label = "${vault}";
+          path = "/storage/quark/Pixel6a/vault";
+          type = "receiveonly";
+          devives = [
+            "${pixel6a}"
+          ];
+        };
       };
       options = {
         localAnnounceEnabled = true;
-        globalAnnounceEnabled = false;
-        relaysEnabled = false;
+        globalAnnounceEnabled = true;
+        relaysEnabled = true;
         urAccepted = -1;
       };
     };

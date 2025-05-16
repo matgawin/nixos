@@ -97,7 +97,7 @@
           }
           {
             workspace = "5";
-            output = "DP-2";
+            output = "DP-3";
           }
         ];
 
@@ -222,10 +222,11 @@
           background = "#2E3440";
         };
       };
-    extraConfig = ''
-      for_window [urgent="latest" class="Brave"] focus
-      for_window [urgent="latest" class="alacritty"] focus
-      for_window [urgent="latest" class="Zed"] focus
-    '';
+      extraConfig = ''
+        for_window [urgent="latest" class="Brave"] focus
+        for_window [urgent="latest" class="alacritty"] focus
+        for_window [urgent="latest" class="Zed"] focus
+        for_window [class=".*"] focus
+      '';
   };
 }

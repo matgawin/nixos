@@ -22,7 +22,17 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+      };
+    };
   };
+
+  hardware.sane.enable = true;
+  hardware.sane.extraBackends = with pkgs; [
+    epsonscan2
+  ];
 
   hardware.steam-hardware.enable = true;
 

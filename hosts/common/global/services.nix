@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   services = {
     getty = {
       greetingLine = "";
@@ -17,7 +21,12 @@
     };
     qemuGuest.enable = true;
     spice-vdagentd.enable = true;
-    printing.enable = true;
+    printing = {
+      drivers = with pkgs; [
+        epson-escpr2
+      ];
+      enable = true;
+    };
     pulseaudio.enable = false;
     pipewire = {
       enable = true;

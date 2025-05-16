@@ -92,6 +92,7 @@
     };
   };
 
+  # programs.nm-applet.enable = true;
   programs.zsh.enable = true;
   programs.dconf.enable = true;
   programs.kdeconnect = {

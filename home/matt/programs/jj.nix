@@ -12,6 +12,7 @@
         h = ["help"];
         c = ["commit"];
         d = ["diff"];
+        ds = ["describe"];
         s = ["st"];
         p = ["git" "push"];
         pu = ["git" "pull"];

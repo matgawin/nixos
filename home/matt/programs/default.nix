@@ -4,15 +4,18 @@
     ./atuin.nix
     ./broot.nix
     ./easyeffects.nix
+    ./espanso.nix
     ./flameshot.nix
     ./gammastep.nix
     ./git.nix
     ./glance.nix
     ./jj.nix
     ./kdeconnect.nix
+    ./nm-applet.nix
     ./playerctl.nix
     ./syncthing.nix
     ./tmux.nix
+    ./visidata.nix
     ./zoxide.nix
     ./zsh.nix
 
@@ -26,7 +29,7 @@
 
   home.packages = with pkgs; [
     alejandra
-    bottom
+    btop
     brave
     bun
     cargo-binstall
@@ -41,7 +44,6 @@
     gimp
     hurl
     hyperfine
-    keepassxc
     lazygit
     libsecret
     lutris
@@ -60,12 +62,12 @@
     qbittorrent
     rustup
     scrcpy
+    simple-scan
     sioyek
     spotify
-    st
+    streamlink
     telegram-desktop
     thunderbird
-    vale
     veracrypt
     virt-manager
     vscode

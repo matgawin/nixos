@@ -22,6 +22,8 @@ in {
         "docker"
         "wireshark"
         "libvirtd"
+        "scanner"
+        "lp"
       ];
     };
   };
