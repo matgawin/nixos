@@ -2,14 +2,13 @@
   environment.systemPackages = with pkgs; [
     ack
     bat
-    cowsay
+    bash
     curl
     dunst
     fd
     feh
     firefox
     flameshot
-    fortune
     fzf
     gcc
     git

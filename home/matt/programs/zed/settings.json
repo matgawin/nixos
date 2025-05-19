@@ -13,7 +13,6 @@
         },
         "dock": "right",
         "enabled": true,
-        "provider": null,
         "version": "2"
     },
     "auto_update": false,

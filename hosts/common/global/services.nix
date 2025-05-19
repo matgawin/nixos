@@ -4,6 +4,13 @@
   ...
 }: {
   services = {
+    btrfs = {
+      autoScrub = {
+        enable = true;
+        interval = "weekly";
+        fileSystems = ["/"];
+      };
+    };
     getty = {
       greetingLine = "";
       helpLine = lib.mkForce ''<<< \l >>>'';

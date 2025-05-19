@@ -21,6 +21,8 @@
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
       warn-dirty = false;
+      cores = 0;
+      max-jobs = 32;
 
       substituters = [
         "https://nix-community.cachix.org"

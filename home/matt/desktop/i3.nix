@@ -222,11 +222,11 @@
           background = "#2E3440";
         };
       };
-      extraConfig = ''
-        for_window [urgent="latest" class="Brave"] focus
-        for_window [urgent="latest" class="alacritty"] focus
-        for_window [urgent="latest" class="Zed"] focus
-        for_window [class=".*"] focus
-      '';
+    extraConfig = ''
+      for_window [urgent="latest" class="Brave"] focus
+      for_window [urgent="latest" class="alacritty"] focus
+      for_window [urgent="latest" class="Zed"] focus
+      for_window [class=".*"] focus
+    '';
   };
 }
