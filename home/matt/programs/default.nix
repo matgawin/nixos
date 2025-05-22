@@ -3,6 +3,7 @@
     ./alacritty.nix
     ./atuin.nix
     ./broot.nix
+    ./cj.nix
     ./easyeffects.nix
     ./espanso.nix
     ./flameshot.nix

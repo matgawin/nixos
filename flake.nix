@@ -10,7 +10,7 @@
     hardware.url = "github:nixos/nixos-hardware";
 
     zed-editor = {
-      url = "github:zed-industries/zed/v0.187.5";
+      url = "github:zed-industries/zed/v0.187.8";
       inputs.nixpkgs.follows = "nixpkgs";
       flake = true;
     };
@@ -21,6 +21,10 @@
     };
     nix-gl = {
       url = "github:nix-community/nixgl";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    journal-management = {
+      url = "git+ssh://git@github.com/matgawin/cj";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

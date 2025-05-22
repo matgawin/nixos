@@ -31,6 +31,24 @@
       }
     },
     "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
       "locked": {
         "lastModified": 1659877975,
         "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
@@ -81,9 +99,30 @@
         "type": "github"
       }
     },
-    "nix-gl": {
+    "journal-management": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1748039300,
+        "narHash": "sha256-4KrQ9xVR5OwczFrTXf0G+Dev1diYmsU8nL2FMf4ndRo=",
+        "ref": "refs/heads/main",
+        "rev": "63e39178ceec139d328903a15603141a73602c17",
+        "revCount": 15,
+        "type": "git",
+        "url": "ssh://git@github.com/matgawin/cj"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/matgawin/cj"
+      }
+    },
+    "nix-gl": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -122,6 +161,7 @@
       "inputs": {
         "hardware": "hardware",
         "home-manager": "home-manager",
+        "journal-management": "journal-management",
         "nix-gl": "nix-gl",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix",
@@ -169,6 +209,21 @@
         "type": "github"
       }
     },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "zed-editor": {
       "inputs": {
         "crane": "crane",
@@ -179,16 +234,16 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1747858177,
-        "narHash": "sha256-hz6DhVqsbRuCUQIZKzNFez/37keIh9wgpwyx09rY1Y8=",
+        "lastModified": 1748009428,
+        "narHash": "sha256-5bmE4QI3kmX/67O9jkEl2xstE3G+hsJ3H8gFkj146ao=",
         "owner": "zed-industries",
         "repo": "zed",
-        "rev": "f6f18968b8aab2ad2940e1332b751e28a24c03ed",
+        "rev": "18d383fcbbd3cd7cc85b9388270d54345ec9a40c",
         "type": "github"
       },
       "original": {
         "owner": "zed-industries",
-        "ref": "v0.187.5",
+        "ref": "v0.187.8",
         "repo": "zed",
         "type": "github"
       }

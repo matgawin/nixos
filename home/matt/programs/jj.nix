@@ -6,9 +6,13 @@
         name = "";
         email = "";
       };
+      revset-aliases = {
+          "immutable_heads()" = "none()";
+      };
       aliases = {
         bk = ["bookmark"];
         l = ["log"];
+        lf = ["log" "-T" "builtin_log_compact_full_description"];
         h = ["help"];
         c = ["commit"];
         d = ["diff"];
@@ -34,6 +38,7 @@
       templates = {
         draft_commit_description = ''
           concat(
+            coalesce(description, default_commit_description, "\n"),
             surround(
                 "\nJJ: This commit contains the following changes:\n", "",
                 indent("JJ:     ", diff.stat(72)),

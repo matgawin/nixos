@@ -42,11 +42,11 @@
         };
 
         assigns = {
-          "1" = [{class = "^Zed$";}];
-          "2" = [{class = "^Alacritty$";}];
-          "3" = [{class = "^TelegramDesktop$";}];
-          "4" = [{class = "^FreeTube$";}];
-          "5" = [{class = "^Brave-browser$";}];
+          "6" = [{class = "^Zed$";}];
+          "7" = [{class = "^Alacritty$";}];
+          "8" = [{class = "^TelegramDesktop$";}];
+          "9" = [{class = "^FreeTube$";}];
+          "1" = [{class = "^Brave-browser$";}];
           "10" = [{class = "^Spotify$";}];
         };
 
@@ -81,23 +81,43 @@
         workspaceOutputAssign = [
           {
             workspace = "1";
-            output = "HDMI-1";
+            output = "DP-3";
           }
           {
             workspace = "2";
-            output = "HDMI-1";
+            output = "DP-3";
           }
           {
             workspace = "3";
-            output = "HDMI-1";
+            output = "DP-3";
           }
           {
             workspace = "4";
-            output = "HDMI-1";
+            output = "DP-3";
           }
           {
             workspace = "5";
             output = "DP-3";
+          }
+          {
+            workspace = "6";
+            output = "HDMI-1";
+          }
+          {
+            workspace = "7";
+            output = "HDMI-1";
+          }
+          {
+            workspace = "8";
+            output = "HDMI-1";
+          }
+          {
+            workspace = "9";
+            output = "HDMI-1";
+          }
+          {
+            workspace = "10";
+            output = "HDMI-1";
           }
         ];
 
@@ -145,11 +165,11 @@
           "${mod}+0" = "workspace number 10";
 
           # Keychron additional keys
-          "Ctrl+F1" = "workspace number 1";
-          "Ctrl+F2" = "workspace number 2";
-          "Ctrl+F3" = "workspace number 3";
-          "Ctrl+F4" = "workspace number 4";
-          "Ctrl+F5" = "workspace number 5";
+          "Ctrl+F1" = "workspace number 6";
+          "Ctrl+F2" = "workspace number 7";
+          "Ctrl+F3" = "workspace number 8";
+          "Ctrl+F4" = "workspace number 9";
+          "Ctrl+F5" = "workspace number 10";
 
           "${mod}+Shift+1" = "move container to workspace number 1";
           "${mod}+Shift+2" = "move container to workspace number 2";

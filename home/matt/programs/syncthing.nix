@@ -78,7 +78,7 @@
       };
       options = {
         localAnnounceEnabled = true;
-        globalAnnounceEnabled = true;
+        globalAnnounceEnabled = false;
         relaysEnabled = true;
         urAccepted = -1;
       };
