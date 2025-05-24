@@ -117,6 +117,11 @@
         sort = "version:refname";
       };
     };
+    ignores = [
+      ".jj"
+      ".direnv"
+      "result"
+    ];
   };
   programs.git-cliff.enable = true;
 }

@@ -107,11 +107,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748039300,
-        "narHash": "sha256-4KrQ9xVR5OwczFrTXf0G+Dev1diYmsU8nL2FMf4ndRo=",
+        "lastModified": 1748101518,
+        "narHash": "sha256-N4vf35vc04R7ddL7xefulOJlvsvQbku3c35PG1MQrNs=",
         "ref": "refs/heads/main",
-        "rev": "63e39178ceec139d328903a15603141a73602c17",
-        "revCount": 15,
+        "rev": "635c165edb4899a0dbfc049aa338604e84badfb0",
+        "revCount": 17,
         "type": "git",
         "url": "ssh://git@github.com/matgawin/cj"
       },

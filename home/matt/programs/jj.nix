@@ -7,7 +7,7 @@
         email = "";
       };
       revset-aliases = {
-          "immutable_heads()" = "none()";
+        "immutable_heads()" = "none()";
       };
       aliases = {
         bk = ["bookmark"];

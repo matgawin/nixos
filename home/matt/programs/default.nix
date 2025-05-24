@@ -4,6 +4,7 @@
     ./atuin.nix
     ./broot.nix
     ./cj.nix
+    ./direnv.nix
     ./easyeffects.nix
     ./espanso.nix
     ./flameshot.nix
