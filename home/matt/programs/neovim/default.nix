@@ -9,6 +9,8 @@
     };
     patches = [
       ./lazy.patch
+      ./autocmds.patch
+      ./options.patch
     ];
     installPhase = ''
       cp -R . $out

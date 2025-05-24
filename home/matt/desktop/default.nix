@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./dunst.nix
     ./gtk.nix
     ./i3.nix
     ./picom.nix

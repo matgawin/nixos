@@ -1,37 +1,23 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     ack
-    bat
     bash
     curl
-    dunst
-    fd
-    feh
     firefox
-    flameshot
     fzf
     gcc
     git
-    inotify-tools
-    jujutsu
-    jq
     libva
     libva-utils
-    picom
-    polybar
-    pulseaudio
-    ripgrep
-    rofi
     unzip
     usbutils
     vim
-    vlc
     vulkan-extension-layer
     vulkan-loader
     vulkan-tools
     vulkan-validation-layers
     wget
+    xarchiver
     xclip
-    xfce.thunar
   ];
 }

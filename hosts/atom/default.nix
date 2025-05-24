@@ -19,6 +19,7 @@
     ../common/optional/i3.nix
     ../common/optional/kwallet.nix
     ../common/optional/nh.nix
+    ../common/optional/thunar.nix
   ];
 
   networking = {

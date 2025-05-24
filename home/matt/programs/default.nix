@@ -16,6 +16,7 @@
     ./nm-applet.nix
     ./playerctl.nix
     ./syncthing.nix
+    ./television.nix
     ./tmux.nix
     ./visidata.nix
     ./zoxide.nix
@@ -31,6 +32,7 @@
 
   home.packages = with pkgs; [
     alejandra
+    bat
     btop
     brave
     bun
@@ -41,11 +43,14 @@
     dust
     eza
     fastfetch
+    fd
     freerdp
     freetube
     gimp
     hurl
     hyperfine
+    inotify-tools
+    jq
     lazygit
     libsecret
     lutris
@@ -62,6 +67,7 @@
     protonvpn-cli
     protonvpn-gui
     qbittorrent
+    ripgrep
     rustup
     scrcpy
     simple-scan
@@ -72,6 +78,7 @@
     thunderbird
     veracrypt
     virt-manager
+    vlc
     vscode
     wine64
     wireshark
