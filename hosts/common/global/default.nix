@@ -51,6 +51,8 @@
         to = 1764;
       }
     ];
+    trustedInterfaces = ["tailscale0"];
+    checkReversePath = "loose";
     # Allow SSH and XRDP
     allowedTCPPorts = [22 3389];
     allowPing = true;

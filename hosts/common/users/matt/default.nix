@@ -15,15 +15,16 @@ in {
       isNormalUser = true;
       shell = pkgs.zsh;
       extraGroups = ifTheyExist [
-        "networkmanager"
-        "wheel"
-        "git"
-        "podman"
         "docker"
-        "wireshark"
+        "gamemode"
+        "git"
         "libvirtd"
-        "scanner"
         "lp"
+        "networkmanager"
+        "podman"
+        "scanner"
+        "wheel"
+        "wireshark"
       ];
     };
   };

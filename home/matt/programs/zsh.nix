@@ -25,6 +25,7 @@
         "docker"
         "node"
         "aliases"
+        "direnv"
       ];
       theme = "agnoster";
     };

@@ -1,9 +1,0 @@
---- a/lua/config/autocmds.lua	2025-05-24 02:01:21.353372237 +0200
-+++ b/lua/config/autocmds.lua	1970-01-01 01:00:01.000000000 +0100
-@@ -0,0 +1,6 @@
-+vim.o.autoread = true
-+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-+  command = "if mode() != 'c' | checktime | endif",
-+  pattern = { "*" },
-+})
-+vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")

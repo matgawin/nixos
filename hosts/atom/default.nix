@@ -20,6 +20,7 @@
     ../common/optional/kwallet.nix
     ../common/optional/nh.nix
     ../common/optional/thunar.nix
+    ../common/optional/steam.nix
   ];
 
   networking = {
@@ -81,7 +82,7 @@
 
   security = {
     rtkit.enable = true;
-    polkit.enable = true;
+    polkit.enable = lib.mkDefault false;
   };
   security.pam.services = {
     i3lock = {

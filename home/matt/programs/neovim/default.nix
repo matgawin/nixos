@@ -8,9 +8,7 @@
       sha256 = "sha256-QrpnlDD4r1X4C8PqBhQ+S3ar5C+qDrU1Jm/lPqyMIFM=";
     };
     patches = [
-      ./lazy.patch
-      ./autocmds.patch
-      ./options.patch
+      ./lazyvim-custom.patch
     ];
     installPhase = ''
       cp -R . $out

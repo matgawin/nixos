@@ -6,6 +6,7 @@
     ./cj.nix
     ./direnv.nix
     ./easyeffects.nix
+    ./emacs.nix
     ./espanso.nix
     ./flameshot.nix
     ./gammastep.nix
@@ -18,6 +19,7 @@
     ./syncthing.nix
     ./television.nix
     ./tmux.nix
+    ./udiskie.nix
     ./visidata.nix
     ./zoxide.nix
     ./zsh.nix
@@ -63,6 +65,7 @@
     podman-desktop
     podman-tui
     polkit_gnome
+    protontricks
     protonup-qt
     protonvpn-cli
     protonvpn-gui

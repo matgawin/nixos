@@ -1,0 +1,72 @@
+--- a/lua/config/lazy.lua	2025-05-01 02:01:21.353372237 +0200
++++ b/lua/config/lazy.lua	1970-01-01 01:00:01.000000000 +0100
+@@ -32,7 +32,7 @@
+   },
+   install = { colorscheme = { "tokyonight", "habamax" } },
+   checker = {
+-    enabled = true, -- check for plugin updates periodically
++    enabled = false, -- check for plugin updates periodically
+     notify = false, -- notify on update
+   }, -- automatically check for plugin updates
+   performance = {
+--- a/lua/config/autocmds.lua	2025-05-24 02:01:21.353372237 +0200
++++ b/lua/config/autocmds.lua	1970-01-01 01:00:01.000000000 +0100
+@@ -0,0 +1,6 @@
++vim.o.autoread = true
++vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
++  command = "if mode() != 'c' | checktime | endif",
++  pattern = { "*" },
++})
++vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+--- a/lua/config/options.lua	2025-05-24 02:01:21.353372237 +0200
++++ b/lua/config/options.lua	1970-01-01 01:00:01.000000000 +0100
+@@ -0,0 +1,7 @@
++vim.g.autoformat = false
++vim.g.snacks_animate = false
++vim.opt.wrap = false
++vim.lsp.inlay_hint.enable(false)
++vim.opt.list = false
++vim.opt.fixendofline = false
++vim.opt.colorcolumn = { 120 }
+--- /dev/null	1970-01-01 01:00:01.000000000 +0100
++++ b/lua/plugins/blink-override.lua	2025-05-24 02:01:21.353372237 +0200
+@@ -0,0 +1,10 @@
++return {
++  "saghen/blink.cmp",
++  opts = function(_, opts)
++    opts.completion = opts.completion or {}
++    opts.completion.trigger = opts.completion.trigger or {}
++    opts.completion.trigger.show_on_insert_on_trigger_character = false
++    opts.completion.trigger.show_on_keyword = false
++    return opts
++  end,
++}
+--- /dev/null	1970-01-01 01:00:01.000000000 +0100
++++ b/lua/plugins/zen-mode.lua	2025-05-24 02:01:21.353372237 +0200
+@@ -0,0 +1,14 @@
++return {
++  "folke/zen-mode.nvim",
++  cmd = "ZenMode",
++  keys = {
++    { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" },
++  },
++  opts = {
++    window = {
++      backdrop = 1,
++      width = 0.6,
++      height = 1,
++    },
++  },
++}
+--- /dev/null	1970-01-01 01:00:01.000000000 +0100
++++ b/lua/plugins/snacks-override.lua	2025-05-24 02:01:21.353372237 +0200
+@@ -0,0 +1,9 @@
++return {
++  "folke/snacks.nvim",
++  opts = function(_, opts)
++    opts.indent = opts.indent or {}
++    opts.indent.enabled = false
++    opts.scope = { enabled = false }
++    return opts
++  end,
++}

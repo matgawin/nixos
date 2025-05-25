@@ -13,5 +13,6 @@
     enableTimestampMonitor = true;
     enableAutoCreation = true;
     autoCreationTime = "22:00";
+    startDate = "2022-10-21";
   };
 }

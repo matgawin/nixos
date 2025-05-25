@@ -22,7 +22,7 @@
       auto-optimise-store = true;
       warn-dirty = false;
       cores = 0;
-      max-jobs = 32;
+      max-jobs = 22;
 
       substituters = [
         "https://nix-community.cachix.org"

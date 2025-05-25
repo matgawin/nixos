@@ -16,9 +16,12 @@
       helpLine = lib.mkForce ''<<< \l >>>'';
     };
     blueman.enable = true;
-    tailscale.enable = true;
     nextdns.enable = true;
     flatpak.enable = true;
+    tailscale = {
+      enable = true;
+      openFirewall = true;
+    };
     xserver = {
       enable = true;
       xkb = {
