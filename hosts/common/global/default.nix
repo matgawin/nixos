@@ -6,12 +6,14 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    ./packages.nix
-    ./nix.nix
-    ./locale.nix
-    ./systemd.nix
-    ./services.nix
+    inputs.sops-nix.nixosModules.sops
     ./fonts.nix
+    ./locale.nix
+    ./nix.nix
+    ./packages.nix
+    ./services.nix
+    ./sops.nix
+    ./systemd.nix
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -21,15 +23,6 @@
   home-manager.backupFileExtension = "home-manager-backup";
 
   nixpkgs = {
-    overlays = [
-      # (final: prev: {
-      #   dwm = prev.dwm.overrideAttrs (old: { src = /home/matt/dwm ;});
-      # })
-      # (final: prev: {
-      #   slstatus = prev.slstatus.overrideAttrs (old: { src = /home/matt/slstatus ;});
-      # })
-    ];
-
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;

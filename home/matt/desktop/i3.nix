@@ -124,7 +124,7 @@
         keybindings = {
           "${mod}+Return" = "exec \"$(NO_TMUX=1 alacritty --class QuickShell)\"";
           "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
-          "${mod}+x" = "kill";
+          "${mod}+x" = "exec kill-with-confirm";
           "${mod}+h" = "focus left";
           "${mod}+j" = "focus down";
           "${mod}+k" = "focus up";

@@ -3,19 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     hardware.url = "github:nixos/nixos-hardware";
-
-    zed-editor = {
-      url = "github:zed-industries/zed/v0.188.5";
-      inputs.nixpkgs.follows = "nixpkgs";
-      flake = true;
-    };
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +18,10 @@
     };
     journal-management = {
       url = "git+ssh://git@github.com/matgawin/cj";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

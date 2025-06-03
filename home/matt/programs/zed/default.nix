@@ -1,10 +1,6 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
-  home.packages = [
-    inputs.zed-editor.packages.${pkgs.system}.default
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    zed-editor
   ];
 
   home.activation = {

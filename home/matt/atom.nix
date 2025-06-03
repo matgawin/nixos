@@ -2,10 +2,14 @@
   config,
   lib,
   outputs,
+  inputs,
   ...
 }: {
   imports =
     [
+      inputs.sops-nix.homeManagerModules.sops
+      ./secrets/sops.nix
+
       ./desktop
       ./programs
       ./scripts

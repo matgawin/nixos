@@ -1,0 +1,14 @@
+keys:
+    - &admin_key age15np4smjx00v4k4uckkx4kn8c9rcrt6hjkkz09d9glt7uac9edfcsvrklhg
+    - &atom_key age19dqned5550j08wrzlegnfscjlu30w56k5crk47uup5df6kh2cggqw3wajm
+creation_rules:
+    - path_regex: hosts/secrets/secrets.yaml$
+      key_groups:
+          - age:
+                - *admin_key
+                - *atom_key
+    - path_regex: home/matt/secrets/secrets.yaml$
+      key_groups:
+          - age:
+                - *admin_key
+                - *atom_key

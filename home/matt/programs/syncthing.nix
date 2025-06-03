@@ -69,9 +69,9 @@
         ${vault} = {
           id = "0cami-x2wjp";
           label = "${vault}";
-          path = "/storage/quark/Pixel6a/vault";
+          path = "/storage/quark/Pixel6a/seed_vault";
           type = "receiveonly";
-          devives = [
+          devices = [
             "${pixel6a}"
           ];
         };

@@ -10,12 +10,11 @@ in {
     defaultUserShell = pkgs.zsh;
     users.matt = {
       # mkpasswd -m yescrypt
-      hashedPassword = "$y$j9T$YrHIMO2Drso6fg6xJTSan1$PULS1MCCH4HmwWRJCVMZCE1bp.PU/HDZFkG.440vw/6";
+      hashedPasswordFile = "${config.sops.secrets."user/matt_password".path}";
       packages = [pkgs.home-manager];
       isNormalUser = true;
       shell = pkgs.zsh;
       extraGroups = ifTheyExist [
-        "docker"
         "gamemode"
         "git"
         "libvirtd"

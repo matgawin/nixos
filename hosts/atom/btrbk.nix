@@ -7,14 +7,16 @@
     ];
     instances = {
       "home" = {
-        onCalendar = "daily";
+        onCalendar = "Mon,Wed,Sat 00:00";
 
         settings = {
           timestamp_format = "long";
           stream_compress = "zstd";
 
-          snapshot_preserve = "14d";
-          snapshot_preserve_min = "7d";
+          snapshot_preserve = "8d";
+          snapshot_preserve_min = "4d";
+          target_preserve = "8d";
+          target_preserve_min = "4d";
 
           volume = {
             "/" = {

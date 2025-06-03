@@ -8,15 +8,20 @@
         }
     },
     {
+        "context": "Editor && vim_mode == insert",
+        "bindings": {
+            "ctrl-h": "editor::Backspace",
+            "ctrl-c": "editor::ShowEditPrediction"
+        }
+    },
+    {
         "bindings": {
             "alt-.": "editor::AcceptEditPrediction",
-            "ctrl-c": "editor::ShowEditPrediction",
-            "ctrl-h": "editor::Backspace",
             "ctrl-j": "editor::NextEditPrediction",
             "ctrl-k": "editor::PreviousEditPrediction",
             "ctrl-l": "editor::AcceptPartialEditPrediction"
         },
-        "context": "Editor && vim_mode == insert"
+        "context": "Editor && edit_prediction"
     },
     {
         "bindings": {

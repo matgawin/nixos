@@ -40,7 +40,7 @@
       # set-window-option -g window-status-current-style bg=yellow
       set -g mouse on
 
-      set -g @catppuccin_flavour 'mocha'
+      # set -g @catppuccin_flavour 'mocha'
 
       set -g @continuum-restore 'on'
 

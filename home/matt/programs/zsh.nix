@@ -36,6 +36,7 @@
       alias reload="source ~/.zshrc"
       alias br=broot
       alias cd=z
+      alias cjo="cj --open"
 
       export EDITOR=nvim
       export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'

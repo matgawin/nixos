@@ -3,21 +3,20 @@
     ./alacritty.nix
     ./atuin.nix
     ./broot.nix
+    ./caffeine.nix
     ./cj.nix
     ./direnv.nix
     ./easyeffects.nix
-    ./emacs.nix
     ./espanso.nix
     ./flameshot.nix
     ./gammastep.nix
     ./git.nix
-    ./glance.nix
     ./jj.nix
     ./kdeconnect.nix
     ./nm-applet.nix
     ./playerctl.nix
+    ./ssh.nix
     ./syncthing.nix
-    ./television.nix
     ./tmux.nix
     ./udiskie.nix
     ./visidata.nix
@@ -33,6 +32,7 @@
   };
 
   home.packages = with pkgs; [
+    age
     alejandra
     bat
     btop
@@ -41,6 +41,8 @@
     cargo-binstall
     claude-code
     distrobox
+    docker
+    docker-compose
     duf
     dust
     eza
@@ -49,6 +51,7 @@
     freerdp
     freetube
     gimp
+    heroic
     hurl
     hyperfine
     inotify-tools
@@ -59,6 +62,8 @@
     nil
     nixd
     nodejs
+    obs-studio
+    parallel
     pavucontrol
     podman
     podman-compose
@@ -75,6 +80,7 @@
     scrcpy
     simple-scan
     sioyek
+    sops
     spotify
     streamlink
     telegram-desktop

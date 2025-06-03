@@ -18,6 +18,7 @@
   ];
 
   hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
 
   hardware.bluetooth = {
     enable = true;
@@ -25,6 +26,7 @@
     settings = {
       General = {
         Experimental = true;
+        Enable = "Source,Sink,Media,Socket";
       };
     };
   };

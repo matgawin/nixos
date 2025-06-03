@@ -1,6 +1,6 @@
 {
   programs.visidata = {
-    enable = true;
+    enable = false;
     visidatarc = '''';
   };
 }
