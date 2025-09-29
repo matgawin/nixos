@@ -9,6 +9,12 @@
     enable = true;
     autoEnable = false;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/material-palenight.yaml";
+    icons = {
+      enable = true;
+      package = pkgs.papirus-icon-theme;
+      dark = "Papirus-Dark";
+      light = "Papirus-Light";
+    };
 
     cursor = {
       name = "Bibata-Modern-Classic";
