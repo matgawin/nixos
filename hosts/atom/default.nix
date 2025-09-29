@@ -21,6 +21,7 @@
     ../common/optional/i3.nix
     ../common/optional/kwallet.nix
     ../common/optional/nh.nix
+    ../common/optional/niri.nix
     ../common/optional/thunar.nix
     ../common/optional/steam.nix
   ];

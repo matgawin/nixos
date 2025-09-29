@@ -9,7 +9,13 @@
         time_diff=$((current_time - last_time))
 
         if [[ $time_diff -le 500 && $time_diff -ge 0 ]]; then
-          ${pkgs.i3}/bin/i3-msg kill
+          if ${pkgs.procps}/bin/pgrep -x niri > /dev/null; then
+            ${pkgs.niri}/bin/niri msg action close-window
+          elif ${pkgs.procps}/bin/pgrep -x i3 > /dev/null; then
+            ${pkgs.i3}/bin/i3-msg kill
+          else
+            ${pkgs.i3}/bin/i3-msg kill
+          fi
           ${pkgs.coreutils}/bin/rm -f "$timestamp_file"
           exit 0
         fi

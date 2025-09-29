@@ -4,7 +4,9 @@
     curl = "${pkgs.curl}/bin/curl";
     jq = "${pkgs.jq}/bin/jq";
     feh = "${pkgs.feh}/bin/feh";
+    swaybg = "${pkgs.swaybg}/bin/swaybg";
     btlscr = "${pkgs.betterlockscreen}/bin/betterlockscreen";
+    pgrep = "${pkgs.procps}/bin/pgrep";
 
     url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
     dir = "$HOME/.wallpapers";
@@ -19,7 +21,15 @@
         touch ${file}
       fi
 
-      ${feh} --bg-scale ${file}
+      if ${pgrep} -x niri > /dev/null; then
+        ${pkgs.procps}/bin/pkill swaybg
+        ${swaybg} -i ${file} -m fill &
+      elif ${pgrep} -x i3 > /dev/null; then
+        ${feh} --bg-scale ${file}
+      else
+        ${feh} --bg-scale ${file}
+      fi
+
       ${btlscr} -u ${file}
     '';
   in [

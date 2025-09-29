@@ -29,9 +29,6 @@
     "calls": {
         "mute_on_join": true
     },
-    "chat_panel": {
-        "button": "never"
-    },
     "collaboration_panel": {
         "button": false
     },
@@ -51,7 +48,7 @@
     "double_click_in_multibuffer": "open",
     "ensure_final_newline_on_save": false,
     "features": {
-        "edit_prediction_provider": "copilot"
+        "edit_prediction_provider": "zed"
     },
     "file_finder": {
         "modal_max_width": "large"
