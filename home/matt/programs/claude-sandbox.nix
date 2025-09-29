@@ -6,11 +6,11 @@
 }: let
   bwc = inputs.bubblewrap-claude.lib.${pkgs.system};
 
-  baseProfile = {
+  baseProfile = rec {
     url = "api.z.ai";
     ips = ["47.254.137.170"];
     env = {
-      ANTHROPIC_BASE_URL = "https://api.z.ai/api/anthropic";
+      ANTHROPIC_BASE_URL = "https://${url}/api/anthropic";
       API_TIMEOUT_MS = "3000000";
       ANTHROPIC_DEFAULT_HAIKU_MODEL = "glm-4.5-air";
       ANTHROPIC_DEFAULT_SONNET_MODEL = "glm-4.6";
@@ -24,14 +24,31 @@
     ];
   };
   mkProfile = name: {inherit name;} // baseProfile;
+  sveltePackages = with pkgs; [
+    nodejs
+    bun
+    supabase-cli
+    typescript
+    nodePackages.eslint
+    nodePackages.prettier
+    pgcli
+    postgresql
+    docker
+    docker-compose
+  ];
 
   claude-sandbox = bwc.mkSandbox (bwc.deriveProfile bwc.base (mkProfile "claude-sandbox"));
   claude-sandbox-nix = bwc.mkSandbox (bwc.deriveProfile bwc.profiles.nix (mkProfile "claude-sandbox-nix"));
   claude-sandbox-go = bwc.mkSandbox (bwc.deriveProfile bwc.profiles.go (mkProfile "claude-sandbox-go"));
+  svelte-sandbox = bwc.mkSandbox (bwc.deriveProfile bwc.base ((mkProfile "svelte-sandbox")
+    // {
+      packages = sveltePackages;
+    }));
 in {
   home.packages = [
     claude-sandbox
     claude-sandbox-nix
     claude-sandbox-go
+    svelte-sandbox
   ];
 }

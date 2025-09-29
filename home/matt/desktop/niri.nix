@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   home.file.".config/niri/config.kdl".text = ''
-      hotkey-overlay {
-          skip-at-startup
-      }
+    hotkey-overlay {
+        skip-at-startup
+    }
 
-      input {
+    input {
         focus-follows-mouse max-scroll-amount="10%"
         workspace-auto-back-and-forth
 
@@ -26,10 +26,23 @@
         focus-at-startup
     }
 
+    layer-rule {
+        match namespace="^wallpaper$"
+        place-within-backdrop true
+    }
+
+    layer-rule {
+        match namespace="^rofi$"
+        shadow {
+            on
+        }
+    }
+
     layout {
         gaps 6
 
         center-focused-column "never"
+        background-color "transparent"
 
         preset-column-widths {
             proportion 0.33333
@@ -131,19 +144,19 @@
 
     window-rule {
         open-focused true
-     }
+    }
 
-     window-rule {
-         match is-window-cast-target=true
+    window-rule {
+        match is-window-cast-target=true
 
-         focus-ring {
-             active-color "#f38ba8"
-             inactive-color "#7d0d2d"
-         }
+        focus-ring {
+            active-color "#f38ba8"
+            inactive-color "#7d0d2d"
+        }
 
-         border {
-             inactive-color "#7d0d2d"
-         }
+        border {
+            inactive-color "#7d0d2d"
+        }
      }
 
      window-rule {

@@ -50,6 +50,7 @@
     fd
     freerdp
     freetube
+    geeqie
     gimp
     heroic
     hurl
