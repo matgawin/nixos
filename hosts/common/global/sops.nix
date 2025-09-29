@@ -18,9 +18,13 @@
         "hetzner/hostname"
         "hetzner/username"
         "hetzner/port"
-        "user/matt_password"
       ];
       customSecrets = {
+        "user/matt_password" =
+          defaultConf
+          // {
+            neededForUsers = true;
+          };
         "hetzner/ssh_public_key" =
           defaultConf
           // {

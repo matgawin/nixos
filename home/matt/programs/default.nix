@@ -5,6 +5,7 @@
     ./broot.nix
     ./caffeine.nix
     ./cj.nix
+    ./claude-sandbox.nix
     ./direnv.nix
     ./easyeffects.nix
     ./espanso.nix
@@ -39,7 +40,6 @@
     brave
     bun
     cargo-binstall
-    claude-code
     distrobox
     docker
     docker-compose

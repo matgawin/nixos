@@ -24,6 +24,10 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    bubblewrap-claude = {
+      url = "github:matgawin/bubblewrap-claude";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
