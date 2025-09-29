@@ -25,6 +25,7 @@
 
     ./neovim
     ./zed
+    ./zen-browser
   ];
 
   programs = {

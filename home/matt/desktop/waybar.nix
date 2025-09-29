@@ -152,7 +152,7 @@
       #cpu,
       #pulseaudio,
       #custom-playerctl {
-        padding: 0 8px;
+        padding: 0 4px;
         color: #ECEFF4;
       }
 
