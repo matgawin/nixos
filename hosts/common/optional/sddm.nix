@@ -9,6 +9,8 @@ in
         enable = true;
         theme = "astronaut";
         package = kdePackages.sddm;
+        wayland.enable = true;
+        autoNumlock = true;
         extraPackages = [
           astronaut-theme
           kdePackages.qtmultimedia
@@ -22,11 +24,11 @@ in
             CursorSize = "24";
           };
           General = {
-            DisplayServer = "x11";
+            DisplayServer = "wayland";
             Greeter = "${kdePackages.sddm}/bin/sddm-greeter-qt6";
           };
         };
       };
-      defaultSession = "none+i3";
+      defaultSession = "niri";
     };
   }

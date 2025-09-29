@@ -44,18 +44,20 @@
         "memory" = {
           format = "RAM {}%";
           interval = 2;
+          on-click = "NO_TMUX=1 ${pkgs.alacritty}/bin/alacritty --class QuickShell -e btop -p 2";
         };
 
         "cpu" = {
           format = "CPU {usage}%";
           interval = 2;
+          on-click = "NO_TMUX=1 ${pkgs.alacritty}/bin/alacritty --class QuickShell -e btop -p 1";
         };
 
         "pulseaudio" = {
           format = "{icon}{volume}%";
-          format-muted = " ";
+          format-muted = " ";
           format-icons = {
-            default = [" " " " " " " "];
+            default = [" " " " " "];
           };
           on-click-right = "${pkgs.pavucontrol}/bin/pavucontrol";
         };

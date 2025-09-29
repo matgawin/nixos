@@ -1,10 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./dunst.nix
-    ./i3.nix
     ./niri.nix
-    ./picom.nix
-    ./polybar.nix
     ./stylix.nix
     ./waybar.nix
 

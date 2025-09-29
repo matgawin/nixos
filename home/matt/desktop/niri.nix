@@ -5,7 +5,7 @@
       }
 
       input {
-        focus-follows-mouse
+        focus-follows-mouse max-scroll-amount="10%"
         workspace-auto-back-and-forth
 
         keyboard {
@@ -72,20 +72,21 @@
     workspace "10" { open-on-output "HDMI-A-1"; }
 
     window-rule {
-        match app-id="^brave-browser$"
+        match app-id=r#"^brave-browser$"#
         open-on-workspace "1"
         default-column-width { proportion 1.0; }
     }
 
     window-rule {
-        match app-id="^Zed$"
+        match app-id=r#"^dev.zed.Zed$"#
         open-on-workspace "6"
         default-column-width { proportion 1.0; }
     }
 
     window-rule {
-        match app-id="^Alacritty$"
+        match app-id=r#"^Alacritty$"#
         open-on-workspace "7"
+        default-column-width { proportion 1.0; }
     }
 
     window-rule {
@@ -94,17 +95,26 @@
     }
 
     window-rule {
-        match app-id=r#"^io\.freetubeapp\.FreeTube$"#
+        match app-id=r#"^FreeTube$"#
         open-on-workspace "9"
         default-column-width { proportion 1.0; }
     }
 
     window-rule {
-        match app-id="^Spotify$"
+        match app-id=r#"^spotify$"#
         open-on-workspace "10"
-        default-column-width { proportion 1.0; }
     }
 
+    window-rule {
+        match app-id=r#"^steam$"#
+        open-on-workspace "9"
+    }
+
+    window-rule {
+        open-focused true
+     }
+
+    spawn-sh-at-startup "sleep 2 && DISPLAY=:0 ${pkgs.xorg.xhost}/bin/xhost +local:"
     spawn-at-startup "${pkgs.waybar}/bin/waybar"
     spawn-at-startup "fetch-bing-wallpaper"
     spawn-at-startup "${pkgs.blueman}/bin/blueman-applet"

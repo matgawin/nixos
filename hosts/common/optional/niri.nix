@@ -1,5 +1,13 @@
 {pkgs, ...}: {
+  imports = [
+    ./sddm.nix
+  ];
   programs.niri.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    xwayland-satellite
+    xwayland
+  ];
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
