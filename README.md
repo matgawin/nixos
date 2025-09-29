@@ -1,3 +1,6 @@
+Originally started with: [nix-starter-configs](https://github.com/Misterio77/nix-starter-configs) by [Misterio77](https://github.com/Misterio77)\
+Highly recommend that repository as a starting point even if it's a bit outdated.
+
 ## Basic Usage
 ### Switching to a Host
 
