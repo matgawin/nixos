@@ -74,8 +74,6 @@
     NIXOS_OZONE_WL = "1";
   };
 
-
-
   console = {
     keyMap = "pl2";
     font = "ter-powerline-v16b";
@@ -97,6 +95,7 @@
     };
   };
 
+  programs.adb.enable = true;
   programs.nix-ld.enable = true;
   programs.zsh.enable = true;
   programs.dconf.enable = true;

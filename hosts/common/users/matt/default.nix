@@ -15,6 +15,7 @@ in {
       isNormalUser = true;
       shell = pkgs.zsh;
       extraGroups = ifTheyExist [
+        "adbusers"
         "gamemode"
         "git"
         "input"

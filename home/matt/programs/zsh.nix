@@ -44,6 +44,14 @@
       COMPLETION_WAITING_DOTS="true"
       HIST_STAMPS="dd/mm/yyyy"
 
+      function ns() {
+        if [ $# -eq 0 ]; then
+          echo "Usage: ns <package>"
+          return 1
+        fi
+        nix shell nixpkgs#$1
+      }
+
       function _show_pkb_doc() {
         doc=~/.config/pkb/doc.md
 

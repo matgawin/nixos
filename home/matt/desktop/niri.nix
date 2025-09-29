@@ -54,7 +54,6 @@
             place-within-column
             gap 2
             width 4
-            length total-proportion=1.0
             position "left"
             gaps-between-tabs 2
             corner-radius 8
@@ -165,6 +164,7 @@
     environment {
         NIXOS_OZONE_WL "1"
         MOZ_ENABLE_WAYLAND "1"
+        ELECTRON_OZONE_PLATFORM_HINT "auto"
     }
 
     binds {

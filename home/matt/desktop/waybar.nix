@@ -19,10 +19,10 @@
           "mpris"
           "custom/separator"
           "tray"
+          "idle_inhibitor"
           "custom/separator"
           "pulseaudio"
           "custom/separator"
-          "idle_inhibitor"
           "memory"
           "cpu"
         ];
@@ -44,13 +44,13 @@
         };
 
         "memory" = {
-          format = "RAM {}%";
+          format = " {}%";
           interval = 2;
           on-click = "NO_TMUX=1 ${pkgs.alacritty}/bin/alacritty --class QuickShell -e btop -p 2";
         };
 
         "cpu" = {
-          format = "CPU {usage}%";
+          format = " {usage}%";
           interval = 2;
           on-click = "NO_TMUX=1 ${pkgs.alacritty}/bin/alacritty --class QuickShell -e btop -p 1";
         };
