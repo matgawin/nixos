@@ -22,6 +22,7 @@
     ../common/optional/kwallet.nix
     ../common/optional/nh.nix
     ../common/optional/niri.nix
+    ../common/optional/nix-ld.nix
     ../common/optional/thunar.nix
     ../common/optional/steam.nix
   ];
@@ -96,7 +97,6 @@
   };
 
   programs.adb.enable = true;
-  programs.nix-ld.enable = true;
   programs.zsh.enable = true;
   programs.dconf.enable = true;
   programs.kdeconnect = {

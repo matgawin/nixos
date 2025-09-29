@@ -187,6 +187,8 @@
         Mod+D { spawn "${pkgs.rofi}/bin/rofi" "-show" "drun"; }
 
         Mod+X { spawn "kill-with-confirm"; }
+        Mod+MouseMiddle { spawn "kill-with-confirm"; }
+
         Mod+O repeat=false { toggle-overview; }
         Mod+T { toggle-column-tabbed-display; }
 
@@ -268,6 +270,8 @@
         Mod+Equal { set-column-width "+10%"; }
         Mod+Shift+Minus { set-window-height "-10%"; }
         Mod+Shift+Equal { set-window-height "+10%"; }
+
+        Mod+Shift+D { spawn-sh "niri msg action set-column-width 50% && niri msg action focus-column-right && niri msg action set-column-width 50% && niri msg action focus-column-left"; }
 
         Print { screenshot; }
 
