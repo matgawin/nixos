@@ -68,7 +68,6 @@
         PasswordAuthentication = false;
       };
     };
-    picom.enable = true;
     upower.enable = true;
   };
 }

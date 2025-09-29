@@ -32,7 +32,7 @@
 
         "niri/window" = {
           format = "{title}";
-          max-length = 120;
+          max-length = 80;
           separate-outputs = true;
         };
 
@@ -59,6 +59,7 @@
           format-icons = {
             default = [" " " " " "];
           };
+          on-click = "${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
           on-click-right = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
 

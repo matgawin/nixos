@@ -11,6 +11,7 @@
         keyboard {
             xkb {
                 layout "pl"
+                options "caps:escape"
             }
             numlock
         }
@@ -26,7 +27,7 @@
     }
 
     layout {
-        gaps 2
+        gaps 6
 
         center-focused-column "never"
 
@@ -47,7 +48,22 @@
         border {
             off
         }
+
+        tab-indicator {
+            hide-when-single-tab
+            place-within-column
+            gap 2
+            width 2
+            length total-proportion=1.0
+            position "left"
+            gaps-between-tabs 2
+            corner-radius 8
+            active-color "#88C0D0"
+            inactive-color "gray"
+            urgent-color "yellow"
+        }
     }
+
 
     animations {
         slowdown 0.2
@@ -74,12 +90,14 @@
     window-rule {
         match app-id=r#"^brave-browser$"#
         open-on-workspace "1"
+        opacity 1.0
         default-column-width { proportion 1.0; }
     }
 
     window-rule {
         match app-id=r#"^dev.zed.Zed$"#
         open-on-workspace "6"
+        tiled-state true
         default-column-width { proportion 1.0; }
     }
 
@@ -98,6 +116,7 @@
         match app-id=r#"^FreeTube$"#
         open-on-workspace "9"
         default-column-width { proportion 1.0; }
+        opacity 1.0
     }
 
     window-rule {
@@ -112,6 +131,24 @@
 
     window-rule {
         open-focused true
+     }
+
+     window-rule {
+         match is-window-cast-target=true
+
+         focus-ring {
+             active-color "#f38ba8"
+             inactive-color "#7d0d2d"
+         }
+
+         border {
+             inactive-color "#7d0d2d"
+         }
+     }
+
+     window-rule {
+         match is-focused=false
+         opacity 0.98
      }
 
     spawn-sh-at-startup "sleep 2 && DISPLAY=:0 ${pkgs.xorg.xhost}/bin/xhost +local:"

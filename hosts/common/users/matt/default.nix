@@ -17,6 +17,7 @@ in {
       extraGroups = ifTheyExist [
         "gamemode"
         "git"
+        "input"
         "libvirtd"
         "lp"
         "networkmanager"

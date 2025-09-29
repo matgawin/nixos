@@ -1,6 +1,6 @@
 {
   services.espanso = {
-    enable = true;
+    enable = false;
     configs = {
       default = {
         show_notifications = false;
@@ -11,6 +11,7 @@
       };
     };
     matches = {};
-    x11Support = true;
+    x11Support = false;
+    waylandSupport = true;
   };
 }

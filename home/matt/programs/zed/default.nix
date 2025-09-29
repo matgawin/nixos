@@ -1,5 +1,7 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
+{pkgs, ...}: let
+  zed-editor = import ./zed.nix {inherit pkgs;};
+in {
+  home.packages = [
     zed-editor
   ];
 
