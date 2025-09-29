@@ -75,11 +75,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759862519,
-        "narHash": "sha256-V/LaoT7UilcgjARLV7tHhkWb8xM1quqSCpDSeDYKRQY=",
+        "lastModified": 1759885303,
+        "narHash": "sha256-bXthhHzBwh9Lwx2OggD+NQbwVmr2Zd7ksriFIDQ8Utg=",
         "owner": "matgawin",
         "repo": "bubblewrap-claude",
-        "rev": "eb6149e1670c50cd247a3748076a91f17f3d3a55",
+        "rev": "2b44a96afe4c396ecd96c81101fae97337b844d2",
         "type": "github"
       },
       "original": {

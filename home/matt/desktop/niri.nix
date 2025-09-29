@@ -34,10 +34,10 @@
         preset-column-widths {
             proportion 0.33333
             proportion 0.5
-            proportion 0.66667
+            proportion 0.75
         }
 
-        default-column-width { proportion 0.5; }
+        default-column-width { proportion 0.75; }
 
         focus-ring {
             width 1
@@ -53,17 +53,16 @@
             hide-when-single-tab
             place-within-column
             gap 2
-            width 2
+            width 4
             length total-proportion=1.0
             position "left"
             gaps-between-tabs 2
             corner-radius 8
-            active-color "#88C0D0"
+            active-color "green"
             inactive-color "gray"
             urgent-color "yellow"
         }
     }
-
 
     animations {
         slowdown 0.2
@@ -91,20 +90,20 @@
         match app-id=r#"^brave-browser$"#
         open-on-workspace "1"
         opacity 1.0
-        default-column-width { proportion 1.0; }
+        default-column-width { proportion 0.8; }
     }
 
     window-rule {
         match app-id=r#"^dev.zed.Zed$"#
         open-on-workspace "6"
         tiled-state true
-        default-column-width { proportion 1.0; }
+        default-column-width { proportion 0.8; }
     }
 
     window-rule {
         match app-id=r#"^Alacritty$"#
         open-on-workspace "7"
-        default-column-width { proportion 1.0; }
+        default-column-width { proportion 0.8; }
     }
 
     window-rule {
@@ -115,18 +114,20 @@
     window-rule {
         match app-id=r#"^FreeTube$"#
         open-on-workspace "9"
-        default-column-width { proportion 1.0; }
+        default-column-width { proportion 0.8; }
         opacity 1.0
     }
 
     window-rule {
         match app-id=r#"^spotify$"#
         open-on-workspace "10"
+        default-column-width { proportion 0.8; }
     }
 
     window-rule {
         match app-id=r#"^steam$"#
         open-on-workspace "9"
+        default-column-width { proportion 0.8; }
     }
 
     window-rule {

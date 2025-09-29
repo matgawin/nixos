@@ -13,14 +13,16 @@
         height = 19;
         spacing = 2;
 
-        modules-left = ["niri/workspaces" "niri/window"];
+        modules-left = ["niri/workspaces" "custom/separator" "niri/window"];
         modules-center = ["clock"];
         modules-right = [
-          "custom/playerctl"
-          "custom/prev"
-          "custom/next"
+          "mpris"
+          "custom/separator"
           "tray"
+          "custom/separator"
           "pulseaudio"
+          "custom/separator"
+          "idle_inhibitor"
           "memory"
           "cpu"
         ];
@@ -84,6 +86,24 @@
           format = "󰒭 ";
           on-click = "${pkgs.playerctl}/bin/playerctl next";
           max-length = 2;
+        };
+
+        "custom/separator" = {
+          format = "|";
+          tooltip = false;
+        };
+        "idle_inhibitor" = {
+          format = "{icon}";
+          format-icons = {
+            activated = " ";
+            deactivated = " ";
+          };
+        };
+        "mpris" = {
+          format = "{artist} | {title}";
+          format-paused = "<i>{artist} | {title}</i>";
+          artist-len = 15;
+          title-len = 25;
         };
       };
     };
@@ -151,6 +171,13 @@
 
       #custom-playerctl {
         color: #88C0D0;
+      }
+
+      #custom-separator {
+        padding: 0;
+        margin: 0;
+        color: #4C566A;
+        font-weight: bold;
       }
     '';
   };

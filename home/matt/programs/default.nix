@@ -3,13 +3,11 @@
     ./alacritty.nix
     ./atuin.nix
     ./broot.nix
-    ./caffeine.nix
     ./cj.nix
     ./claude-sandbox.nix
     ./direnv.nix
     ./easyeffects.nix
     ./espanso.nix
-    ./flameshot.nix
     ./gammastep.nix
     ./git.nix
     ./hyprlock.nix

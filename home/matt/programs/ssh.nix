@@ -50,6 +50,7 @@
         HostName ${config.sops.placeholder."ssh/katana/hostname"}
         Port ${config.sops.placeholder."ssh/katana/port"}
         User ${config.sops.placeholder."ssh/katana/user"}
+        IdentitiesOnly yes
         ServerAliveInterval 60
         ServerAliveCountMax 2
 
