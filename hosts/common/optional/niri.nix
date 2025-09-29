@@ -17,11 +17,12 @@
   xdg.portal = {
     enable = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.kdePackages.xdg-desktop-portal-kde
     ];
     config.niri = {
-      default = ["gnome" "gtk"];
-      "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+      default = ["gtk"];
+      "org.freedesktop.impl.portal.Secret" = ["kwallet"];
     };
   };
 }

@@ -73,11 +73,7 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    config.common.default = "gtk";
-  };
+
 
   console = {
     keyMap = "pl2";
