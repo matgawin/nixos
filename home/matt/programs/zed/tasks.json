@@ -9,21 +9,8 @@
         "use_new_terminal": false,
         "allow_concurrent_runs": false,
         "reveal": "always",
+        "reveal_target": "center",
         "hide": "on_success",
-        "shell": {
-            "program": "zsh"
-        }
-    },
-    {
-        "label": "open_vs_code",
-        "command": "code $ZED_WORKTREE_ROOT $ZED_RELATIVE_FILE",
-        "env": {
-            "NO_TMUX": "1"
-        },
-        "use_new_terminal": false,
-        "allow_concurrent_runs": false,
-        "reveal": "never",
-        "hide": "always",
         "shell": {
             "program": "zsh"
         }

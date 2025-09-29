@@ -33,18 +33,31 @@ in
       xorg.libXext
       xorg.libXfixes
       xorg.libXrandr
+      xorg.libXrender
+      xorg.libXi
+      xorg.libXtst
+      xorg.libxshmfence
       mesa
+      libGL
+      libGLU
+      libglvnd
       alsa-lib
       dbus-glib
       ffmpeg
       libva
+      libva-utils
       pciutils
       systemd
+      fontconfig
+      freetype
     ];
 
     runtimeDependencies = with pkgs; [
       udev
       libva
+      libGL
+      libglvnd
+      vulkan-loader
       mesa
     ];
 
@@ -62,11 +75,22 @@ in
       runHook preInstall
 
       mkdir -p $out/bin
+      libraryPath="${pkgs.lib.makeLibraryPath (buildInputs ++ runtimeDependencies)}"
+
       makeWrapper $out/zen $out/bin/zen-browser \
         --set MOZ_LEGACY_PROFILES 1 \
         --set MOZ_ALLOW_DOWNGRADE 1 \
-        --prefix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath buildInputs}" \
-        --prefix PATH : ${pkgs.lib.makeBinPath [pkgs.ffmpeg]}
+        --set MOZ_ENABLE_WAYLAND 1 \
+        --set MOZ_USE_XINPUT2 1 \
+        --prefix LD_LIBRARY_PATH : "$libraryPath" \
+        --prefix LD_LIBRARY_PATH : "${pkgs.mesa}/lib" \
+        --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib" \
+        --prefix PATH : ${pkgs.lib.makeBinPath [pkgs.ffmpeg pkgs.libva-utils]} \
+        --set LIBVA_DRIVER_NAME "auto" \
+        --set VDPAU_DRIVER "auto" \
+        --set __GL_THREADED_OPTIMIZATIONS 1 \
+        --set MOZ_ACCELERATED 1 \
+        --set MOZ_WEBRENDER 1
 
       mkdir -p $out/share/applications
       cat > $out/share/applications/zen-browser.desktop << EOF
@@ -77,7 +101,7 @@ in
       Icon=$out/browser/chrome/icons/default/default128.png
       Type=Application
       Categories=Network;WebBrowser;
-      MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss +xml;application/rdf    +xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/c    hrome;video/webm;application/x-xpinstall;
+      MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;video/webm;application/x-xpinstall;
       StartupNotify=true
       StartupWMClass=zen-alpha
       EOF
