@@ -16,7 +16,7 @@
     },
     {
         "bindings": {
-            "alt-.": "editor::AcceptEditPrediction",
+            "alt-a": "editor::AcceptEditPrediction",
             "ctrl-j": "editor::NextEditPrediction",
             "ctrl-k": "editor::PreviousEditPrediction",
             "ctrl-l": "editor::AcceptPartialEditPrediction"
@@ -102,5 +102,11 @@
             ]
         },
         "context": "Editor && vim_mode == normal"
+    },
+    {
+      "context": "(Editor && edit_prediction_conflict)",
+      "bindings": {
+        "alt-tab": "editor::AcceptEditPrediction"
+      }
     }
 ]

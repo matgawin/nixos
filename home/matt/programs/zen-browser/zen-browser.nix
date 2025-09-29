@@ -82,6 +82,7 @@ in
         --set MOZ_ALLOW_DOWNGRADE 1 \
         --set MOZ_ENABLE_WAYLAND 1 \
         --set MOZ_USE_XINPUT2 1 \
+        --set GTK_USE_PORTAL 1 \
         --prefix LD_LIBRARY_PATH : "$libraryPath" \
         --prefix LD_LIBRARY_PATH : "${pkgs.mesa}/lib" \
         --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib" \

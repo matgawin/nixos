@@ -49,7 +49,7 @@
           echo "Usage: ns <package>"
           return 1
         fi
-        nix shell nixpkgs#$1
+        NIXPKGS_ALLOW_UNFREE=1 nix shell nixpkgs#$1 --impure
       }
 
       function _show_pkb_doc() {

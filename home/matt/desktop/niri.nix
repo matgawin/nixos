@@ -74,19 +74,19 @@
     }
 
     workspace "1" { open-on-output "DP-3"; }
-    workspace "2" { open-on-output "DP-3"; }
-    workspace "3" { open-on-output "DP-3"; }
-    workspace "4" { open-on-output "DP-3"; }
-    workspace "5" { open-on-output "DP-3"; }
 
     workspace "6" { open-on-output "HDMI-A-1"; }
     workspace "7" { open-on-output "HDMI-A-1"; }
-    workspace "8" { open-on-output "HDMI-A-1"; }
-    workspace "9" { open-on-output "HDMI-A-1"; }
-    workspace "10" { open-on-output "HDMI-A-1"; }
 
     window-rule {
         match app-id=r#"^brave-browser$"#
+        open-on-workspace "1"
+        opacity 1.0
+        default-column-width { proportion 0.8; }
+    }
+
+    window-rule {
+        match app-id="zen"
         open-on-workspace "1"
         opacity 1.0
         default-column-width { proportion 0.8; }
@@ -101,31 +101,31 @@
 
     window-rule {
         match app-id=r#"^Alacritty$"#
-        open-on-workspace "7"
+        open-on-workspace "6"
         default-column-width { proportion 0.8; }
     }
 
     window-rule {
         match app-id=r#"^org\.telegram\.desktop$"#
-        open-on-workspace "8"
+        open-on-workspace "7"
     }
 
     window-rule {
         match app-id=r#"^FreeTube$"#
-        open-on-workspace "9"
+        open-on-workspace "7"
         default-column-width { proportion 0.8; }
         opacity 1.0
     }
 
     window-rule {
         match app-id=r#"^spotify$"#
-        open-on-workspace "10"
+        open-on-workspace "7"
         default-column-width { proportion 0.8; }
     }
 
     window-rule {
         match app-id=r#"^steam$"#
-        open-on-workspace "9"
+        open-on-workspace "7"
         default-column-width { proportion 0.8; }
     }
 
