@@ -4,9 +4,6 @@
   ...
 }: {
   services = {
-    udev.packages = [
-      pkgs.android-udev-rules
-    ];
     btrfs = {
       autoScrub = {
         enable = true;

@@ -1,8 +1,8 @@
 {pkgs}: let
-  version = "0.209.6";
+  version = "0.214.7";
   zedCodeTarball = pkgs.fetchurl {
     url = "https://github.com/zed-industries/zed/releases/download/v${version}/zed-linux-x86_64.tar.gz";
-    hash = "sha256-920Kmrsnr6xl6VIKkqeqCpDPa/LYX+Q2vXd4G5Po0XI=";
+    hash = "sha256-GoUONEjtp5zc6NiAdg4+rnJIZLJHauaR3WX1ycuUe5U=";
   };
 in
   pkgs.stdenv.mkDerivation rec {

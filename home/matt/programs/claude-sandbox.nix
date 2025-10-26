@@ -4,13 +4,12 @@
   config,
   ...
 }: let
-  bwc = inputs.bubblewrap-claude.lib.${pkgs.system};
+  bwc = inputs.bubblewrap-claude.lib.${pkgs.stdenv.hostPlatform.system};
 
   baseProfile = rec {
-    url = "api.z.ai";
-    ips = ["47.254.137.170"];
+    allowList = ["api.z.ai"];
     env = {
-      ANTHROPIC_BASE_URL = "https://${url}/api/anthropic";
+      ANTHROPIC_BASE_URL = "https://api.z.ai/api/anthropic";
       API_TIMEOUT_MS = "3000000";
       ANTHROPIC_DEFAULT_HAIKU_MODEL = "glm-4.5-air";
       ANTHROPIC_DEFAULT_SONNET_MODEL = "glm-4.6";

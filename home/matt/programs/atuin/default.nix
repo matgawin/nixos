@@ -1,4 +1,9 @@
-{
+{pkgs, ...}: let
+  atuin-desktop = import ./desktop.nix {inherit pkgs;};
+in {
+  home.packages = [
+    atuin-desktop
+  ];
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;

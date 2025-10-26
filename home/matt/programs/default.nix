@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./alacritty.nix
-    ./atuin.nix
     ./broot.nix
     ./cj.nix
     ./claude-sandbox.nix
@@ -23,6 +22,7 @@
     ./zoxide.nix
     ./zsh.nix
 
+    ./atuin
     ./neovim
     ./zed
     ./zen-browser
@@ -45,6 +45,7 @@
     docker-compose
     duf
     dust
+    ente-auth
     eza
     fastfetch
     fd
@@ -73,7 +74,6 @@
     polkit_gnome
     protontricks
     protonup-qt
-    protonvpn-cli
     protonvpn-gui
     qbittorrent
     ripgrep

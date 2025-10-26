@@ -25,6 +25,11 @@
           // {
             neededForUsers = true;
           };
+        "slskd-env" =
+          defaultConf
+          // {
+            neededForUsers = true;
+          };
         "hetzner/ssh_public_key" =
           defaultConf
           // {

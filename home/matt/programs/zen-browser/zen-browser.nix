@@ -1,8 +1,8 @@
 {pkgs}: let
-  version = "1.16.4b";
+  version = "1.17.10b";
   zenTarball = pkgs.fetchurl {
     url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.xz";
-    hash = "sha256-H+MIFHnHMyfHCkt0xEeBtCx5a+khS/Klgx+tXmeSxBs=";
+    hash = "sha256-tesKOE57xgltmEgnCEZ5eN6IIuiap+yspFtz9U048R8=";
   };
 in
   pkgs.stdenv.mkDerivation rec {
@@ -13,7 +13,7 @@ in
     nativeBuildInputs = with pkgs; [
       makeWrapper
       autoPatchelfHook
-      wrapGAppsHook
+      wrapGAppsHook3
     ];
 
     buildInputs = with pkgs; [

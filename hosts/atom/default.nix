@@ -16,10 +16,12 @@
 
     ../common/global
     ../common/users/matt
+    ../common/optional/slskd
 
     ../common/optional/borgbackup.nix
     ../common/optional/gamemode.nix
     ../common/optional/kwallet.nix
+    ../common/optional/lidarr.nix
     ../common/optional/nh.nix
     ../common/optional/niri.nix
     ../common/optional/nix-ld.nix

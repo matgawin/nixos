@@ -17,6 +17,9 @@
         ds = ["describe"];
         h = ["help"];
 
+        init = ["git" "init" "--colocate"];
+        clone = ["git" "clone" "--colocate"];
+
         l = ["log"];
         lf = ["log" "-T" "builtin_log_compact_full_description"];
         ll = ["log" "-T" "builtin_log_compact" "-r" "all()"];
@@ -26,7 +29,7 @@
         p = ["git" "push"];
         pa = ["git" "push" "--allow-new"];
         pi = ["git" "push" "--ignore-immutable"];
-        pu = ["git" "pull"];
+        f = ["git" "fetch"];
 
         s = ["st"];
         tug = ["bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-"];

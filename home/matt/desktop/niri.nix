@@ -41,7 +41,7 @@
     layout {
         gaps 6
 
-        center-focused-column "never"
+        center-focused-column "on-overflow"
         background-color "transparent"
 
         preset-column-widths {
@@ -254,8 +254,8 @@
         Mod+Shift+0 { move-column-to-workspace "10"; }
 
         Mod+Shift+F { maximize-column; }
-        Mod+F { fullscreen-window; }
-        Mod+Ctrl+F { expand-column-to-available-width; }
+        Mod+F { expand-column-to-available-width; }
+        Mod+Ctrl+F { fullscreen-window; }
 
         Mod+M { toggle-window-floating; }
         Mod+Space { center-column; }
