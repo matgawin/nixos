@@ -14,7 +14,10 @@ in
 
     soulseek = {
       listen_ip_address = "10.2.0.2";
-      description = "A slskd user. https://github.com/slskd/slskd";
+      description = ''
+        A slskd user. https://github.com/slskd/slskd
+        Leechers are capped at 1 file at a time and 100 kb/s.
+      '';
       diagnostic_level = "Info";
     };
 

@@ -7,9 +7,7 @@
     ./direnv.nix
     ./easyeffects.nix
     ./espanso.nix
-    ./gammastep.nix
     ./git.nix
-    ./hyprlock.nix
     ./jj.nix
     ./kdeconnect.nix
     ./nm-applet.nix

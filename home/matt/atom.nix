@@ -8,6 +8,7 @@
   imports =
     [
       inputs.sops-nix.homeManagerModules.sops
+      inputs.dankMaterialShell.homeModules.dankMaterialShell.default
       ./secrets/sops.nix
 
       ./desktop

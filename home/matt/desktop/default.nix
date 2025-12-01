@@ -1,11 +1,9 @@
 {pkgs, ...}: {
   imports = [
-    ./dunst.nix
     ./niri.nix
     ./stylix.nix
-    ./waybar.nix
 
-    ./rofi
+    ./dank-shell
   ];
 
   fontProfiles = {

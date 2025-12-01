@@ -27,7 +27,7 @@
     }
 
     layer-rule {
-        match namespace="^wallpaper$"
+        match namespace="^quickshell$"
         place-within-backdrop true
     }
 
@@ -144,6 +144,8 @@
 
     window-rule {
         open-focused true
+        geometry-corner-radius 20
+        clip-to-geometry true
     }
 
     window-rule {
@@ -164,10 +166,13 @@
          opacity 0.98
      }
 
+     window-rule {
+         match app-id=r#"org.quickshell$"#
+         open-floating true
+     }
+
+    spawn-at-startup "bash" "-c" "wl-paset --watch cliphist store &"
     spawn-sh-at-startup "sleep 2 && DISPLAY=:0 ${pkgs.xorg.xhost}/bin/xhost +local:"
-    spawn-at-startup "${pkgs.waybar}/bin/waybar"
-    spawn-at-startup "fetch-bing-wallpaper"
-    spawn-at-startup "${pkgs.blueman}/bin/blueman-applet"
     spawn-sh-at-startup "sleep 5 && ${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator"
 
     prefer-no-csd
@@ -177,14 +182,27 @@
     environment {
         NIXOS_OZONE_WL "1"
         MOZ_ENABLE_WAYLAND "1"
+        XDG_CURRENT_DESKTOP "niri"
+        QT_QPA_PLATFORM "wayland"
         ELECTRON_OZONE_PLATFORM_HINT "auto"
+        QT_QPA_PLATFORMTHEME "gtk3"
+        QT_QPA_PLATFORMTHEME_QT6 "gtk3"
+    }
+
+    recent-windows {
+        binds {
+            Mod+Tab         { next-window; }
+            Mod+Shift+Tab   { previous-window; }
+            Mod+grave       { next-window     filter="app-id"; }
+            Mod+Shift+grave { previous-window filter="app-id"; }
+        }
     }
 
     binds {
         Mod+Shift+Slash { show-hotkey-overlay; }
 
         Mod+Return { spawn "sh" "-c" "NO_TMUX=1 alacritty --class QuickShell"; }
-        Mod+D { spawn "${pkgs.rofi}/bin/rofi" "-show" "drun"; }
+        Mod+D { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
 
         Mod+X { spawn "kill-with-confirm"; }
         Mod+MouseMiddle { spawn "kill-with-confirm"; }
@@ -275,18 +293,18 @@
 
         Print { screenshot; }
 
-        Mod+Shift+X { spawn "lock-screen"; }
-        Mod+Shift+S { spawn "lock-and-suspend"; }
+        Mod+Shift+X { spawn "dms" "ipc" "call" "lock" "lock"; }
+        Mod+Shift+S { spawn "systemctl" "suspend"; }
 
         Mod+Shift+E { quit; }
 
-        XF86AudioPlay allow-when-locked=true { spawn "${pkgs.playerctl}/bin/playerctl" "play-pause"; }
-        XF86AudioNext allow-when-locked=true { spawn "${pkgs.playerctl}/bin/playerctl" "next"; }
-        XF86AudioPrev allow-when-locked=true { spawn "${pkgs.playerctl}/bin/playerctl" "previous"; }
+        XF86AudioPlay allow-when-locked=true { spawn "dms" "ipc" "call" "mpris" "playPause"; }
+        XF86AudioNext allow-when-locked=true { spawn "dms" "ipc" "call" "mpris" "next"; }
+        XF86AudioPrev allow-when-locked=true { spawn "dms" "ipc" "call" "mpris" "previous"; }
 
-        XF86AudioMute allow-when-locked=true { spawn-sh "${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle"; }
-        XF86AudioLowerVolume allow-when-locked=true { spawn-sh "${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%"; }
-        XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%"; }
+        XF86AudioMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
+        XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "5"; }
+        XF86AudioRaiseVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "5"; }
     }
   '';
 }

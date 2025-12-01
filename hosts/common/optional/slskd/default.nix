@@ -89,11 +89,7 @@ in {
     description = "Restart slskd when ProtonVPN port changes";
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = pkgs.writeShellScript "slskd-restart-with-port-update" ''
-        sleep 2
-        ${pkgs.systemd}/bin/systemctl restart slskd-update-port.service
-        ${slskdRestartWrapper}
-      '';
+      ExecStart = "${slskdRestartWrapper}";
     };
   };
 }

@@ -5,7 +5,6 @@
     jq = "${pkgs.jq}/bin/jq";
     feh = "${pkgs.feh}/bin/feh";
     swaybg = "${pkgs.swaybg}/bin/swaybg";
-    btlscr = "${pkgs.betterlockscreen}/bin/betterlockscreen";
     pgrep = "${pkgs.procps}/bin/pgrep";
 
     url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
@@ -29,8 +28,6 @@
       else
         ${feh} --bg-scale ${file}
       fi
-
-      ${btlscr} -u ${file}
     '';
   in [
     fetch-bing-wallpaper
