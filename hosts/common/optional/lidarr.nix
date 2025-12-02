@@ -1,11 +1,11 @@
 {
-  config,
-  lib,
   pkgs,
+  config,
   ...
 }: let
-  enableArr = false;
-  enableJellyfin = false;
+  enableArr = true;
+  enableJellyfin = true;
+  enableCloudflared = false;
   enableNavidrome = false;
 in {
   services.jackett = {
@@ -73,17 +73,33 @@ in {
       };
     };
   };
+  services.jellyseerr = {
+    enable = false;
+    port = 7676;
+    openFirewall = false;
+    configDir = "/var/lib/jellyseerr/config";
+  };
   services.jellyfin = {
     enable = enableJellyfin;
-    openFirewall = true;
+    openFirewall = false;
     user = "matt";
     group = "users";
   };
-  # environment.systemPackages = [
-  #   pkgs.jellyfin
-  #   pkgs.jellyfin-web
-  #   pkgs.jellyfin-ffmpeg
-  # ];
+
+  services.cloudflared = {
+    enable = enableJellyfin && enableCloudflared;
+    tunnels = {
+      "jellyfin" = {
+        certificateFile = config.sops.secrets.cloudflared_cert.path;
+        credentialsFile = config.sops.secrets.cloudflared_jellyfin_credentials.path;
+        default = "http_status:404";
+        ingress = {
+          "jellyfin.matgaw.in" = "http://localhost:8096";
+        };
+      };
+    };
+  };
+
   services.navidrome = {
     enable = enableNavidrome;
     openFirewall = true;

@@ -33,7 +33,7 @@
 
   hardware.sane.enable = true;
   hardware.sane.extraBackends = with pkgs; [
-    epsonscan2
+    # epsonscan2
   ];
 
   hardware.steam-hardware.enable = true;

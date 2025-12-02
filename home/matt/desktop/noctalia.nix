@@ -23,7 +23,7 @@
         preferredPlayer = "spotify";
         visualizerQuality = "high";
         visualizerType = "linear";
-        volumeOverdrive = false;
+        volumeOverdrive = true;
         volumeStep = 5;
       };
 
@@ -59,6 +59,17 @@
               showLabelsOnlyWhenOccupied = true;
             }
             {
+              colorizeIcons = false;
+              hideMode = "hidden";
+              id = "ActiveWindow";
+              maxWidth = 145;
+              scrollingMode = "hover";
+              showIcon = true;
+              useFixedWidth = false;
+            }
+          ];
+          right = [
+            {
               hideMode = "hidden";
               hideWhenIdle = false;
               id = "MediaMini";
@@ -71,17 +82,6 @@
               useFixedWidth = false;
               visualizerType = "linear";
             }
-            {
-              colorizeIcons = false;
-              hideMode = "hidden";
-              id = "ActiveWindow";
-              maxWidth = 145;
-              scrollingMode = "hover";
-              showIcon = true;
-              useFixedWidth = false;
-            }
-          ];
-          right = [
             {
               blacklist = [];
               colorizeIcons = false;
@@ -109,7 +109,7 @@
               colorizeSystemIcon = "none";
               customIconPath = "";
               enableColorization = false;
-              icon = "noctalia";
+              icon = "settings";
               id = "ControlCenter";
               useDistroLogo = false;
             }

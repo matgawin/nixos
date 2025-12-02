@@ -13,7 +13,7 @@
         mode = "0400";
       };
       defaultSecrets = [
-        "zai/api_key"
+        "anthropic/api_key"
 
         "ssh/inlibro/hostname"
         "ssh/inlibro/port"

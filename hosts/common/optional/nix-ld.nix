@@ -11,12 +11,12 @@
       mesa
       wayland
       libxkbcommon
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libXrandr
-      xorg.libXi
-      xorg.libXext
-      xorg.libXfixes
+      libX11
+      libXcursor
+      libXrandr
+      libXi
+      libXext
+      libXfixes
       vulkan-loader
       alsa-lib
       libpulseaudio

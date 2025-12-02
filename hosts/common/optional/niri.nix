@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./sddm.nix
   ];
@@ -21,9 +25,10 @@
       pkgs.xdg-desktop-portal-gnome
     ];
     config.niri = {
-      default = ["gtk"];
-      "org.freedesktop.impl.portal.Secret" = ["kwallet"];
-      "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
+      default = lib.mkForce ["gtk"];
+      "org.freedesktop.impl.portal.FileChooser" = lib.mkForce ["gtk"];
+      "org.freedesktop.impl.portal.Secret" = lib.mkForce ["kwallet"];
+      "org.freedesktop.impl.portal.ScreenCast" = lib.mkForce ["gnome"];
     };
   };
 }

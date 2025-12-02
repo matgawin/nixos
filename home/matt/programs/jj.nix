@@ -44,6 +44,7 @@
         default-command = ["st"];
         pager = "bat --style=numbers";
         paginate = "auto";
+        editor = "vim";
       };
       ui.streampager = {
         interface = "quit-if-one-page";

@@ -16,10 +16,10 @@
   };
 in {
   programs.neovim = {
-    enable = true;
+    enable = false;
     defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
+    viAlias = false;
+    vimAlias = false;
   };
 
   home.file.".config/nvim" = {

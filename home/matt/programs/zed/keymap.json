@@ -19,7 +19,7 @@
             "alt-a": "editor::AcceptEditPrediction",
             "ctrl-j": "editor::NextEditPrediction",
             "ctrl-k": "editor::PreviousEditPrediction",
-            "ctrl-l": "editor::AcceptPartialEditPrediction"
+            "ctrl-l": "editor::AcceptNextWordEditPrediction"
         },
         "context": "Editor && edit_prediction"
     },

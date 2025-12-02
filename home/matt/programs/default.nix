@@ -6,8 +6,8 @@
     ./claude-sandbox.nix
     ./direnv.nix
     ./easyeffects.nix
-    ./espanso.nix
     ./git.nix
+    ./helix.nix
     ./jj.nix
     ./kdeconnect.nix
     ./nm-applet.nix
@@ -16,14 +16,13 @@
     ./syncthing.nix
     ./tmux.nix
     ./udiskie.nix
-    ./visidata.nix
+    ./vim.nix
     ./zoxide.nix
     ./zsh.nix
 
     ./atuin
     ./neovim
     ./zed
-    ./zen-browser
   ];
 
   programs = {

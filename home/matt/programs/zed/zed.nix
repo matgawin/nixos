@@ -1,8 +1,8 @@
 {pkgs}: let
-  version = "0.215.3";
+  version = "0.223.3";
   zedCodeTarball = pkgs.fetchurl {
     url = "https://github.com/zed-industries/zed/releases/download/v${version}/zed-linux-x86_64.tar.gz";
-    hash = "sha256-z3blPIcE2ib2i1EA/nm0dVHlCw8ipr1bbfe81Gn7KVI=";
+    hash = "sha256-TocWUKyh2/wvTaq4MUVCUHjal4CTvW2juQ2j6lksYDE=";
   };
 in
   pkgs.stdenv.mkDerivation rec {
@@ -18,10 +18,10 @@ in
       libGL
       libxkbcommon
       wayland
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libXi
-      xorg.libXrandr
+      libX11
+      libXcursor
+      libXi
+      libXrandr
 
       alsa-lib
 

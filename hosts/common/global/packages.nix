@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     ack
+    android-tools
     bash
     curl
     firefox

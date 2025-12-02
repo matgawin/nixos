@@ -18,6 +18,8 @@
         "hetzner/hostname"
         "hetzner/username"
         "hetzner/port"
+        "cloudflared_cert"
+        "cloudflared_jellyfin_credentials"
       ];
       customSecrets = {
         "user/matt_password" =

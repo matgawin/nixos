@@ -174,7 +174,7 @@
     spawn-at-startup "bash" "-c" "wl-paset --watch cliphist store &"
     spawn-at-startup "fetch-bing-wallpaper"
     spawn-at-startup "noctalia-shell"
-    spawn-sh-at-startup "sleep 2 && DISPLAY=:0 ${pkgs.xorg.xhost}/bin/xhost +local:"
+    spawn-sh-at-startup "sleep 2 && DISPLAY=:0 ${pkgs.xhost}/bin/xhost +local:"
     spawn-sh-at-startup "sleep 5 && ${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator"
 
     prefer-no-csd

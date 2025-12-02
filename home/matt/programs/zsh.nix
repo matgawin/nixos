@@ -30,7 +30,7 @@
       theme = "agnoster";
     };
     initContent = lib.mkOrder 2100 ''
-      alias edit=nvim
+      alias edit=vim
       alias pf="fzf --exact --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
       alias clip="xclip -sel clip"
       alias reload="source ~/.zshrc"
@@ -38,7 +38,7 @@
       alias cd=z
       alias cjo="cj --open"
 
-      export EDITOR=nvim
+      export EDITOR=vim
       export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
 
       COMPLETION_WAITING_DOTS="true"
@@ -56,7 +56,7 @@
         doc=~/.config/pkb/doc.md
 
         if [ -f "$doc" ]; then
-            nvim --cmd \
+            vim --cmd \
                 "nnoremap <buffer> q :quit<CR> | \
                 nnoremap <buffer> <M-x> yy:term <C-r>\"<CR> | \
                 nnoremap <buffer> <M-m> :quit<CR>" \
@@ -70,7 +70,7 @@
             mkdir -p ~/.config/pkb
             touch "$doc"
         fi
-        nvim "$doc"
+        vim "$doc"
       }
 
       zle -N _show_pkb_doc
