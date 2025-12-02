@@ -3,7 +3,11 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  enableArr = false;
+  enableJellyfin = false;
+  enableNavidrome = false;
+in {
   services.jackett = {
     enable = false;
     port = 9117;
@@ -20,7 +24,7 @@
     };
   };
   services.prowlarr = {
-    enable = true;
+    enable = enableArr;
     openFirewall = false;
     settings = {
       server = {
@@ -31,7 +35,7 @@
     };
   };
   services.lidarr = {
-    enable = true;
+    enable = enableArr;
     openFirewall = false;
     user = "matt";
     group = "users";
@@ -44,7 +48,7 @@
     };
   };
   services.radarr = {
-    enable = true;
+    enable = enableArr;
     openFirewall = false;
     user = "matt";
     group = "users";
@@ -57,7 +61,7 @@
     };
   };
   services.sonarr = {
-    enable = true;
+    enable = enableArr;
     openFirewall = false;
     user = "matt";
     group = "users";
@@ -70,18 +74,18 @@
     };
   };
   services.jellyfin = {
-    enable = false;
+    enable = enableJellyfin;
     openFirewall = true;
     user = "matt";
     group = "users";
   };
-  environment.systemPackages = [
-    pkgs.jellyfin
-    pkgs.jellyfin-web
-    pkgs.jellyfin-ffmpeg
-  ];
+  # environment.systemPackages = [
+  #   pkgs.jellyfin
+  #   pkgs.jellyfin-web
+  #   pkgs.jellyfin-ffmpeg
+  # ];
   services.navidrome = {
-    enable = false;
+    enable = enableNavidrome;
     openFirewall = true;
     user = "matt";
     group = "users";

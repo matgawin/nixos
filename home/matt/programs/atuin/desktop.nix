@@ -1,8 +1,8 @@
 {pkgs}: let
-  version = "0.1.10";
+  version = "0.2.6";
   atuinDesktopDeb = pkgs.fetchurl {
-    url = "https://github.com/atuinsh/desktop/releases/download/v${version}/Atuin_Desktop_0.1.10_amd64.deb";
-    hash = "sha256-eZgs3dAXlbp4koIQyrzhuswEljeQLd2qVU+TEek0OIw=";
+    url = "https://github.com/atuinsh/desktop/releases/download/v${version}/Atuin_Desktop_${version}_amd64.deb";
+    hash = "sha256-+uwAZuBO8TLHxGMR8EbENH8XQgpe0oAu8lrcZv/t1RE=";
   };
 in
   pkgs.stdenv.mkDerivation rec {
@@ -25,6 +25,7 @@ in
       openssl_3
       librsvg
       libsoup_3
+      alsa-lib
     ];
 
     meta = {

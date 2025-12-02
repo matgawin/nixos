@@ -159,7 +159,7 @@
         manualSunrise = "06:30";
         manualSunset = "18:30";
         matugenSchemeType = "scheme-fruit-salad";
-        predefinedScheme = "Nord";
+        predefinedScheme = "Tokyo Night";
         schedulingMode = "off";
         useWallpaperColors = false;
       };
@@ -265,6 +265,15 @@
         nightTemp = "2300";
       };
 
+      notifications = {
+        enabled = true;
+        location = "top_right";
+        respectExpireTimeout = false;
+        lowUrgencyDuration = 2;
+        normalUrgencyDuration = 5;
+        criticalUrgencyDuration = 8;
+      };
+
       osd = {
         autoHideMs = 2000;
         backgroundOpacity = 1;
@@ -324,7 +333,7 @@
         fontFixedScale = 0.9;
         panelBackgroundOpacity = 1;
         panelsAttachedToBar = true;
-        settingsPanelAttachToBar = false;
+        settingsPanelAttachToBar = true;
         tooltipsEnabled = true;
       };
 

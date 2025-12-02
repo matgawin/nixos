@@ -18,7 +18,7 @@
 
       paths = [
         "/storage/quark/Snapshots"
-        "/storage/quark/Pixel6a/vault"
+        "/storage/quark/Pixel6a/seed_vault"
       ];
 
       exclude = [

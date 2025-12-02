@@ -19,6 +19,7 @@
     ../common/optional/slskd
 
     ../common/optional/borgbackup.nix
+    ../common/optional/cockpit.nix
     ../common/optional/gamemode.nix
     ../common/optional/kwallet.nix
     ../common/optional/lidarr.nix
