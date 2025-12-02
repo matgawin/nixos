@@ -7,6 +7,7 @@
       let mapleader = " "
       let maplocalleader = " "
       set timeoutlen=500
+      set foldmethod=syntax
 
       set undofile
       set undodir=~/.config/vim/undo//
@@ -53,9 +54,16 @@
       let g:airline#extensions#tabline#formatter = 'unique_tail'
 
       let g:move_key_modifier = 'C'
+
+      " Goyo
       let g:goyo_width = 130
       let g:goyo_height = '100%'
       let g:goyo_linenr = 1
+      nnoremap <leader>g :Goyo<CR>
+      autocmd! User GoyoEnter Copilot disable
+      autocmd! User GoyoEnter Limelight
+      autocmd! User GoyoLeave Copilot enable
+      autocmd! User GoyoLeave Limelight!
 
       let g:NERDCreateDefaultMappings = 0
       map gcc <plug>NERDCommenterToggle
@@ -66,7 +74,13 @@
       nnoremap <C-f> :NERDTreeFind<CR>
 
       nnoremap <leader>s :setlocal spell!<CR>
-      nnoremap <leader>g :Goyo<CR>:Limelight!!<CR>
+
+      nnoremap <F5> :MundoToggle<CR>
+      let g:mundo_right = 1
+
+      inoremap <c-u> <c-g>u<c-u>
+      inoremap <c-w> <c-g>u<c-w>
+      inoremap . <c-g>u.
 
       nnoremap ]b :bnext<CR>
       nnoremap [b :bprevious<CR>
@@ -109,28 +123,8 @@
 
       autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
       autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
-
-      " --- ALE  ---
-      let g:ale_linters_explicit = 0
-      let g:ale_fix_on_save = 0
-      let g:ale_completion_enabled = 1
-
-      let g:ale_sign_error = '✘'
-      let g:ale_sign_warning = '▲'
-      let g:ale_virtualtext_cursor = 1
-
-      let g:ale_open_list = 0
-      let g:ale_keep_list_window_open = 0
-
-      nnoremap <leader>an :ALENextWrap<CR>
-      nnoremap <leader>ap :ALEPreviousWrap<CR>
-      nnoremap <leader>af :ALEFix<CR>
-      nnoremap <leader>ad :ALEDetail<CR>
-      nnoremap <leader>al :ALELint<CR>
-      nnoremap K :ALEHover<CR>
     '';
     plugins = with pkgs.vimPlugins; [
-      ale
       awesome-vim-colorschemes
       bufexplorer
       ctrlp-vim
@@ -147,9 +141,13 @@
       vim-gitgutter
       vim-highlightedyank
       vim-lastplace
+      vim-lsp
+      vim-lsp-settings
       vim-move
+      vim-mundo
       vim-nix
       vim-orgmode
+      vim-peekaboo
       vim-sensible
       vim-signature
       vim-smoothie

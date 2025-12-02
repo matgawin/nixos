@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  config,
   ...
 }: let
   bwc = inputs.bubblewrap-claude.lib.${pkgs.stdenv.hostPlatform.system};
@@ -10,12 +9,6 @@
     env = {
       EDITOR = "vim";
     };
-    preStartHooks = [
-      ''export ANTHROPIC_AUTH_TOKEN="$(${pkgs.coreutils}/bin/cat ${config.sops.secrets."anthropic/api_key".path})"''
-    ];
-    args = [
-      "--ro-bind ${config.sops.secrets."anthropic/api_key".path} ${config.sops.secrets."anthropic/api_key".path}"
-    ];
   };
   mkProfile = name: {inherit name;} // baseProfile;
 

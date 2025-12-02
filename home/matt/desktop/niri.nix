@@ -41,7 +41,8 @@
     layout {
         gaps 6
 
-        center-focused-column "on-overflow"
+        center-focused-column "never"
+        always-center-single-column
         background-color "transparent"
 
         preset-column-widths {

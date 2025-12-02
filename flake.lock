@@ -76,11 +76,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771274761,
-        "narHash": "sha256-/zud1e0HihlEVCIN8lgaiJ8az45sDr2bS3ZerEs17sc=",
+        "lastModified": 1771278721,
+        "narHash": "sha256-FusubCbiZKXdye1t3bLVTmlfYEiSFJGAPcqHp5G1Q+k=",
         "owner": "matgawin",
         "repo": "bubblewrap-claude",
-        "rev": "61e2fcc96790aebd6e6467e3e3584751e51edbd8",
+        "rev": "8ba0958bcece9283b9dbf41549324a5d9c90d95b",
         "type": "github"
       },
       "original": {
@@ -110,11 +110,11 @@
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
-        "lastModified": 1759362264,
-        "narHash": "sha256-wfG0S7pltlYyZTM+qqlhJ7GMw2fTF4mLKCIVhLii/4M=",
+        "lastModified": 1769996383,
+        "narHash": "sha256-AnYjnFWgS49RlqX7LrC4uA+sCCDBj0Ry/WOJ5XWAsa0=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "758cf7296bee11f1706a574c77d072b8a7baa881",
+        "rev": "57928607ea566b5db3ad13af0e57e921e6b12381",
         "type": "github"
       },
       "original": {
@@ -311,11 +311,11 @@
     },
     "nixpkgs-lib": {
       "locked": {
-        "lastModified": 1754788789,
-        "narHash": "sha256-x2rJ+Ovzq0sCMpgfgGaaqgBSwY+LST+WbZ6TytnT9Rk=",
+        "lastModified": 1769909678,
+        "narHash": "sha256-cBEymOf4/o3FD5AZnzC3J9hLbiZ+QDT/KDuyHXVJOpM=",
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "a73b9c743612e4244d865a2fdee11865283c04e6",
+        "rev": "72716169fe93074c333e8d0173151350670b824c",
         "type": "github"
       },
       "original": {
