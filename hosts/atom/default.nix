@@ -143,10 +143,21 @@
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
     docker = {
+      enable = true;
       storageDriver = "btrfs";
       rootless = {
         enable = true;
         setSocketVariable = true;
+        daemon.settings = {
+          insecure-registries = [
+            "100.119.43.101:5000"
+          ];
+        };
+      };
+      daemon.settings = {
+        insecure-registries = [
+          "100.119.43.101:5000"
+        ];
       };
     };
   };

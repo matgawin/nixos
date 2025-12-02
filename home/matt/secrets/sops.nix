@@ -53,6 +53,12 @@
         "ssh/hetzner_storage/hostname"
         "ssh/hetzner_storage/port"
         "ssh/hetzner_storage/user"
+        "ssh/hetzner_dokploy/hostname"
+        "ssh/hetzner_dokploy/port"
+        "ssh/hetzner_dokploy/user"
+        "ssh/hetzner_frontend/hostname"
+        "ssh/hetzner_frontend/port"
+        "ssh/hetzner_frontend/user"
 
         "ssh_keys/id_rsa_inlibro"
         "ssh_keys/id_rsa_cloudways"

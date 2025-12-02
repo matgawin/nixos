@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+  # ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
   users = {
     mutableUsers = false;
@@ -14,7 +14,7 @@ in {
       packages = [pkgs.home-manager];
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = ifTheyExist [
+      extraGroups = [
         "adbusers"
         "gamemode"
         "git"
