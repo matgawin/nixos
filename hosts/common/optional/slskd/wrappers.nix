@@ -27,9 +27,15 @@
     PORT_FILE="${portFile}"
     if [ -f "$PORT_FILE" ] && [ -s "$PORT_FILE" ]; then
       PORT=$(cat "$PORT_FILE")
-      echo "Port file has content ($PORT), restarting slskd with new port..."
+
       ${pkgs.systemd}/bin/systemctl restart slskd-update-port.service
-      ${pkgs.systemd}/bin/systemctl restart slskd.service
+      STATE=$(${pkgs.systemd}/bin/systemctl show -p ActiveState --value slskd.service)
+      if [ "$STATE" = "active" ] || [ "$STATE" = "activating" ]; then
+        echo "Port file has content ($PORT), restarting slskd with new port..."
+        ${pkgs.systemd}/bin/systemctl restart slskd.service
+      else
+        echo "slskd service is stopped (state: $STATE), skipping restart (manually stopped)"
+      fi
     else
       echo "Port file missing or empty, skipping restart (VPN likely disconnected)"
     fi

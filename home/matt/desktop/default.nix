@@ -2,8 +2,7 @@
   imports = [
     ./niri.nix
     ./stylix.nix
-
-    ./dank-shell
+    ./noctalia.nix
   ];
 
   fontProfiles = {

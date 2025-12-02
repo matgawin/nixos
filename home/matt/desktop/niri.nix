@@ -27,7 +27,7 @@
     }
 
     layer-rule {
-        match namespace="^quickshell$"
+        match namespace="^noctalia-overview*"
         place-within-backdrop true
     }
 
@@ -172,6 +172,8 @@
      }
 
     spawn-at-startup "bash" "-c" "wl-paset --watch cliphist store &"
+    spawn-at-startup "fetch-bing-wallpaper"
+    spawn-at-startup "noctalia-shell"
     spawn-sh-at-startup "sleep 2 && DISPLAY=:0 ${pkgs.xorg.xhost}/bin/xhost +local:"
     spawn-sh-at-startup "sleep 5 && ${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator"
 
@@ -198,11 +200,15 @@
         }
     }
 
+    debug {
+        honor-xdg-activation-with-invalid-serial
+    }
+
     binds {
         Mod+Shift+Slash { show-hotkey-overlay; }
 
         Mod+Return { spawn "sh" "-c" "NO_TMUX=1 alacritty --class QuickShell"; }
-        Mod+D { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+        Mod+D { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
 
         Mod+X { spawn "kill-with-confirm"; }
         Mod+MouseMiddle { spawn "kill-with-confirm"; }
@@ -293,18 +299,19 @@
 
         Print { screenshot; }
 
-        Mod+Shift+X { spawn "dms" "ipc" "call" "lock" "lock"; }
+        Mod+Shift+X { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
         Mod+Shift+S { spawn "systemctl" "suspend"; }
 
         Mod+Shift+E { quit; }
 
-        XF86AudioPlay allow-when-locked=true { spawn "dms" "ipc" "call" "mpris" "playPause"; }
-        XF86AudioNext allow-when-locked=true { spawn "dms" "ipc" "call" "mpris" "next"; }
-        XF86AudioPrev allow-when-locked=true { spawn "dms" "ipc" "call" "mpris" "previous"; }
+        XF86AudioPlay allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
+        XF86AudioNext allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "next"; }
+        XF86AudioPrev allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "previous"; }
 
-        XF86AudioMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
-        XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "5"; }
-        XF86AudioRaiseVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "5"; }
+        XF86AudioMute allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+
+        XF86AudioLowerVolume allow-when-locked=true { spawn-sh "${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%"; }
+        XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%"; }
     }
   '';
 }
