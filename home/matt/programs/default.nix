@@ -14,9 +14,9 @@
     ./playerctl.nix
     ./ssh.nix
     ./syncthing.nix
-    ./tmux.nix
     ./udiskie.nix
     ./vim.nix
+    ./zellij.nix
     ./zoxide.nix
     ./zsh.nix
 

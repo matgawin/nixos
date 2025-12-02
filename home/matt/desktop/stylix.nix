@@ -61,6 +61,7 @@
       spotify-player.enable = true;
       firefox.enable = true;
       vim.enable = true;
+      zellij.enable = true;
     };
 
     opacity = {

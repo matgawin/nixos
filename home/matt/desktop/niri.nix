@@ -208,10 +208,10 @@
     binds {
         Mod+Shift+Slash { show-hotkey-overlay; }
 
-        Mod+Return { spawn "sh" "-c" "NO_TMUX=1 alacritty --class QuickShell"; }
+        Mod+Return repeat=false { spawn "sh" "-c" "NO_TMUX=1 alacritty --class QuickShell"; }
         Mod+D { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
 
-        Mod+X { spawn "kill-with-confirm"; }
+        Mod+X repeat=false { spawn "kill-with-confirm"; }
         Mod+MouseMiddle { spawn "kill-with-confirm"; }
 
         Mod+O repeat=false { toggle-overview; }
@@ -243,40 +243,43 @@
         Mod+Comma { focus-monitor-left; }
         Mod+Period { focus-monitor-right; }
 
-        Mod+Shift+Comma { move-column-to-monitor-left; }
-        Mod+Shift+Period { move-column-to-monitor-right; }
+        Mod+Ctrl+Comma { move-window-to-monitor-left; }
+        Mod+Ctrl+Period { move-window-to-monitor-right; }
 
         Mod+Page_Up cooldown-ms=150 { focus-workspace-up; }
         Mod+Page_Down cooldown-ms=150 { focus-workspace-down; }
 
+        Mod+Ctrl+Page_Up cooldown-ms=150 { move-window-to-workspace-up; }
+        Mod+Ctrl+Page_Down cooldown-ms=150 { move-window-to-workspace-down; }
+
         Mod+1 { focus-workspace "1"; }
-        Mod+2 { focus-workspace "2"; }
-        Mod+3 { focus-workspace "3"; }
-        Mod+4 { focus-workspace "4"; }
-        Mod+5 { focus-workspace "5"; }
-        Mod+6 { focus-workspace "6"; }
-        Mod+7 { focus-workspace "7"; }
-        Mod+8 { focus-workspace "8"; }
-        Mod+9 { focus-workspace "9"; }
-        Mod+0 { focus-workspace "10"; }
+        Mod+2 { focus-workspace 2; }
+        Mod+3 { focus-workspace 3; }
+        Mod+4 { focus-workspace 4; }
+        Mod+5 { focus-workspace 5; }
+        Mod+6 { focus-workspace 6; }
+        Mod+7 { focus-workspace 7; }
+        Mod+8 { focus-workspace 8; }
+        Mod+9 { focus-workspace 9; }
+        Mod+0 { focus-workspace 10; }
 
         // Keychron additional keys
         Ctrl+F1 { focus-workspace "6"; }
         Ctrl+F2 { focus-workspace "7"; }
-        Ctrl+F3 { focus-workspace "8"; }
-        Ctrl+F4 { focus-workspace "9"; }
-        Ctrl+F5 { focus-workspace "10"; }
+        Ctrl+F3 { focus-workspace 8; }
+        Ctrl+F4 { focus-workspace 9; }
+        Ctrl+F5 { focus-workspace 10; }
 
         Mod+Shift+1 { move-column-to-workspace "1"; }
-        Mod+Shift+2 { move-column-to-workspace "2"; }
-        Mod+Shift+3 { move-column-to-workspace "3"; }
-        Mod+Shift+4 { move-column-to-workspace "4"; }
-        Mod+Shift+5 { move-column-to-workspace "5"; }
+        Mod+Shift+2 { move-column-to-workspace 2; }
+        Mod+Shift+3 { move-column-to-workspace 3; }
+        Mod+Shift+4 { move-column-to-workspace 4; }
+        Mod+Shift+5 { move-column-to-workspace 5; }
         Mod+Shift+6 { move-column-to-workspace "6"; }
         Mod+Shift+7 { move-column-to-workspace "7"; }
-        Mod+Shift+8 { move-column-to-workspace "8"; }
-        Mod+Shift+9 { move-column-to-workspace "9"; }
-        Mod+Shift+0 { move-column-to-workspace "10"; }
+        Mod+Shift+8 { move-column-to-workspace 8; }
+        Mod+Shift+9 { move-column-to-workspace 9; }
+        Mod+Shift+0 { move-column-to-workspace 10; }
 
         Mod+Shift+F { maximize-column; }
         Mod+F { expand-column-to-available-width; }

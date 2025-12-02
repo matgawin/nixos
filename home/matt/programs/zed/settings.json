@@ -1,4 +1,10 @@
 {
+    "search": {
+        "center_on_match": true
+    },
+    "document_folding_ranges": "on",
+    "document_symbols": "on",
+    "semantic_tokens": "combined",
     "edit_predictions": {
         "provider": "zed"
     },
@@ -66,7 +72,7 @@
         "mute_on_join": true
     },
     "collaboration_panel": {
-        "button": false
+        "button": true
     },
     "confirm_quit": true,
     "current_line_highlight": "all",
@@ -102,7 +108,7 @@
         "inline_blame": {
             "delay_ms": 1000,
             "enabled": true,
-            "min_column": 60
+            "min_column": 80
         }
     },
     "horizontal_scroll_margin": 10,
@@ -138,7 +144,7 @@
         "hide_root": true
     },
     "relative_line_numbers": "wrapped",
-    "restore_on_startup": "last_session",
+    "restore_on_startup": "launchpad",
     "seed_search_query_from_cursor": "always",
     "show_completions_on_input": true,
     "show_edit_predictions": true,

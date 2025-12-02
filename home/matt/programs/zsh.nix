@@ -21,7 +21,6 @@
       plugins = [
         "colored-man-pages"
         "git"
-        "tmux"
         "docker"
         "node"
         "aliases"
@@ -37,6 +36,7 @@
       alias br=broot
       alias cd=z
       alias cjo="cj --open"
+      alias zj="zellij"
 
       export EDITOR=vim
       export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
@@ -83,11 +83,16 @@
           source ~/.zshrc.personal
       fi
 
-      if [[ "''\${NO_TMUX}" != "1" ]]; then
-          # If not running interactively, do not do anything
-          [[ $- != *i* ]] && return
-          # Otherwise start tmux
-          [[ -z "$TMUX" ]] && tmux
+      if [[ $- == *i* ]] && [[ -z "$ZELLIJ" ]] && [[ ''${NO_TMUX:-0} != 1 ]]; then
+          if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
+              zellij attach -c
+          else
+              zellij
+          fi
+
+          if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+              exit
+          fi
       fi
     '';
   };

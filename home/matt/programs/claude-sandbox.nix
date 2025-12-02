@@ -36,8 +36,8 @@
       bun
       supabase-cli
       typescript
-      nodePackages.eslint
-      nodePackages.prettier
+      eslint
+      prettier
       pgcli
       postgresql
       docker
